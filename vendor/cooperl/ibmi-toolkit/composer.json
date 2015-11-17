@@ -1,0 +1,27 @@
+{
+    "name": "cooperl/ibmi-toolkit",
+    "description": "PHP frontend to XMLSERVICE for IBM i development.",
+    "keywords": ["ibmitoolkit","ibmxmltoolkit","XMLSERVICE","IBMi","zend","as400"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Alan Seiden",
+            "email": "alan@alanseiden.com",
+            "homepage": "http://alanseiden.com"
+        },
+        {
+            "name": "Adam Culp",
+            "email": "adamculp@uws.net",
+            "homepage": "http://geekyboy.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "classmap": ["ToolkitApi/"]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.2.*"
+    }
+}
