@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'ibmi'),
+    'default' => env('DB_CONNECTION', 'odbc'),
 
     /*
     |--------------------------------------------------------------------------
@@ -86,84 +86,44 @@ return [
         ],
 
         /*
-         |--------------------------------------------------------------------------
-         | DB2 Databases
-         |--------------------------------------------------------------------------
-         */
+         // Obp/laravel-odbc-db2
+        'odbc' => [
+            'driver'         => 'odbc',
+            'host'           => env('DB2_HOST', 'localhost'),
+            'database'       => env('DB2_DATABASE', 'mysjsu'),
+            'username'       => env('DB2_USER', 'db2inst1'),
+            'password'       => env('DB2_PASSWORD', 'db2inst1'),
+            'port'           => env('DB2_PORT', 50000),
+            'schema'         => 'DB2INST1',
+            'odbc_driver'    => 'DB2', // name of driver created by unixODBC
+        ],
+        */
 
-        'ibmi' => [
-            'driver'               => 'odbc',
-            // General settings
-            'host'                 => 'localhost',
-            'username'             => 'db2inst1',
-            'password'             => 'db2inst1',
-            //Server settings
-            'database'             => 'mysjsu',
-            'prefix'               => '',
-            'schema'               => 'default schema',
-            'signon'               => 3,
-            'ssl'                  => 0,
-            'commitMode'           => 2,
-            'connectionType'       => 0,
-            'defaultLibraries'     => '',
-            'naming'               => 0,
-            'unicodeSql'           => 0,
-            // Format settings
-            'dateFormat'           => 5,
-            'dateSeperator'        => 0,
-            'decimal'              => 0,
-            'timeFormat'           => 0,
-            'timeSeparator'        => 0,
-            // Performances settings
-            'blockFetch'           => 1,
-            'blockSizeKB'          => 32,
-            'allowDataCompression' => 1,
-            'concurrency'          => 0,
-            'lazyClose'            => 0,
-            'maxFieldLength'       => 15360,
-            'prefetch'             => 0,
-            'queryTimeout'         => 1,
-            // Modules settings
-            'defaultPkgLibrary'    => 'QGPL',
-            'defaultPackage'       => 'A/DEFAULT(IBM),2,0,1,0',
-            'extendedDynamic'      => 1,
-            // Diagnostic settings
-            'QAQQINILibrary'       => '',
-            'sqDiagCode'           => '',
-            // Sort settings
-            'languageId'           => 'ENU',
-            'sortTable'            => '',
-            'sortSequence'         => 0,
-            'sortWeight'           => 0,
-            'jobSort'              => 0,
-            // Conversion settings
-            'allowUnsupportedChar' => 0,
-            'ccsid'                => 1208,
-            'graphic'              => 0,
-            'forceTranslation'     => 0,
-            // Other settings
-            'allowProcCalls'       => 0,
-            'DB2SqlStates'         => 0,
-            'debug'                => 0,
-            'trueAutoCommit'       => 0,
-            'catalogOptions'       => 3,
-            'libraryView'          => 0,
-            'ODBCRemarks'          => 0,
-            'searchPattern'        => 1,
-            'translationDLL'       => '',
-            'translationOption'    => 0,
-            'maxTraceSize'         => 0,
-            'multipleTraceFiles'   => 1,
-            'trace'                => 0,
-            'traceFilename'        => '',
-            'extendedColInfo'      => 0,
+        'odbc' => [
+            'driver'         => 'odbc',
+            'host'           => 'localhost',
+            'database'       => 'mysjsu',
+            'username'       => 'db2inst1',
+            'password'       => 'db2inst1',
+            'charset'        => 'utf8',
+            'ccsid'          => 1208,
+            'prefix'         => '',
+            'schema'         => 'DB2INST1',
+            'i5_libl'        => '',
+            'i5_lib'         => '',
+            'i5_commit'      => 0,
+            'i5_naming'      => 0,
+            'i5_date_fmt'    => 5,
+            'i5_date_sep'    => 0,
+            'i5_decimal_sep' => 0,
+            'i5_time_fmt'    => 0,
+            'i5_time_sep'    => 0,
             'options'  => [
                 PDO::ATTR_CASE => PDO::CASE_LOWER,
                 PDO::ATTR_EMULATE_PREPARES => false,
                 PDO::ATTR_PERSISTENT => false
             ]
         ],
-
     ],
 
     /*

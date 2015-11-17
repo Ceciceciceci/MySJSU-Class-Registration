@@ -145,7 +145,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        'Cooperl\Database\DB2\DB2ServiceProvider',
+        //"MichaelB\Database\DB2\DB2ServiceProvider",
+
     ],
 
     /*

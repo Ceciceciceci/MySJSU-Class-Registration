@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a9e5647e03d6e0da7a90ce57eda850e6",
-    "content-hash": "eaef5e355ba91098890537bf62412ef4",
+    "hash": "47825a7cc80cb6d98b926b94282b5840",
+    "content-hash": "944f72e42b88b1c1e117a294d7b507ad",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -60,152 +60,6 @@
                 "preload"
             ],
             "time": "2015-11-09 22:51:51"
-        },
-        {
-            "name": "cooperl/ibmi-toolkit",
-            "version": "1.6.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cooperl22/IbmiToolkit.git",
-                "reference": "ad6903f6ee98031a3a3a37a3069c471c5b603f7e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cooperl22/IbmiToolkit/zipball/ad6903f6ee98031a3a3a37a3069c471c5b603f7e",
-                "reference": "ad6903f6ee98031a3a3a37a3069c471c5b603f7e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.2.*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "ToolkitApi/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Alan Seiden",
-                    "email": "alan@alanseiden.com",
-                    "homepage": "http://alanseiden.com"
-                },
-                {
-                    "name": "Adam Culp",
-                    "email": "adamculp@uws.net",
-                    "homepage": "http://geekyboy.com"
-                }
-            ],
-            "description": "PHP frontend to XMLSERVICE for IBM i development.",
-            "keywords": [
-                "IBMi",
-                "XMLSERVICE",
-                "as400",
-                "ibmitoolkit",
-                "ibmxmltoolkit",
-                "zend"
-            ],
-            "time": "2015-05-12 10:10:13"
-        },
-        {
-            "name": "cooperl/laravel-db2",
-            "version": "2.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cooperl22/laravel-db2.git",
-                "reference": "ed2787c21c329ed6983210e07b95c144b92817fd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cooperl22/laravel-db2/zipball/ed2787c21c329ed6983210e07b95c144b92817fd",
-                "reference": "ed2787c21c329ed6983210e07b95c144b92817fd",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "~5.0",
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Cooperl\\Database\\DB2\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Maxime Rault",
-                    "role": "Developer"
-                }
-            ],
-            "description": "laravel-db2 is a simple DB2 service provider for Laravel. It provides DB2 Connection by extending the Illuminate Database component of the laravel framework.",
-            "keywords": [
-                "database",
-                "db2",
-                "laravel",
-                "odbc",
-                "pdo"
-            ],
-            "time": "2015-07-30 12:24:53"
-        },
-        {
-            "name": "cooperl/laravel-ibmi",
-            "version": "2.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cooperl22/laravel-ibmi.git",
-                "reference": "2ed7604c5c4e81ab95c4c07edd3df431de6abfdf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cooperl22/laravel-ibmi/zipball/2ed7604c5c4e81ab95c4c07edd3df431de6abfdf",
-                "reference": "2ed7604c5c4e81ab95c4c07edd3df431de6abfdf",
-                "shasum": ""
-            },
-            "require": {
-                "cooperl/ibmi-toolkit": "~1.0",
-                "cooperl/laravel-db2": "~2.0",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Cooperl\\IBMi\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Maxime Rault",
-                    "role": "Developer"
-                }
-            ],
-            "description": "laravel-ibmi is a simple DB2 & Toolkit for IBMi service provider for Laravel. It provides DB2 Connection by extending the Illuminate Database component of the laravel framework. Plus it also provides Toolkit for IBMi so that you can access IBMi resources with same credentials.",
-            "keywords": [
-                "IBMi",
-                "ToolkitAPI",
-                "as400",
-                "database",
-                "db2",
-                "laravel",
-                "odbc",
-                "pdo"
-            ],
-            "time": "2015-07-30 12:24:01"
         },
         {
             "name": "danielstjules/stringy",
@@ -720,6 +574,56 @@
                 "storage"
             ],
             "time": "2015-09-30 22:26:59"
+        },
+        {
+            "name": "michaelb/laravel-db2",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michaelbonds/laravel-db2.git",
+                "reference": "b902a5e030f2cded84f486cb94bd5c142209f8b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michaelbonds/laravel-db2/zipball/b902a5e030f2cded84f486cb94bd5c142209f8b5",
+                "reference": "b902a5e030f2cded84f486cb94bd5c142209f8b5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cooperl\\Database\\DB2\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Rault",
+                    "role": "Developer"
+                }
+            ],
+            "description": "laravel-db2 is a simple DB2 service provider for Laravel. It provides DB2 Connection by extending the Illuminate Database component of the laravel framework.",
+            "keywords": [
+                "database",
+                "db2",
+                "laravel",
+                "odbc",
+                "pdo"
+            ],
+            "time": "2015-06-12 15:17:34"
         },
         {
             "name": "monolog/monolog",

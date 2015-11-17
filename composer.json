@@ -5,9 +5,9 @@
     "license": "MIT",
     "type": "project",
     "require": {
+        "michaelb/laravel-db2": "~2.0",
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*",
-        "cooperl/laravel-db2": "~2.0"
+        "laravel/framework": "5.1.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
