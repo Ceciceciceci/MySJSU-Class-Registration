@@ -10,21 +10,41 @@
     
 <style>
 
+    body{
+        height: 100%;
+        width: 100%;
+        display:table-cell;
+        vertical-align: middle;
+    }
+    
     table{
-            width:100%;
+        width: 100%;
+    }
+    
+    table,thead, th, tr,td{
+        padding: 10px;
+        text-align: center;
     }
 </style>
 </head>
 
 
+<body>
+
+<!--NAV BAR--> 
+<ul>
+    <li>HOME</li>
+</ul>
+    
+<!--TABLES-->    
 <?php
 //phpinfo();
 //exit;
 //require 'connect.php';
 
 $database = "MYSJSU";
-$user = "user";
-$pass = "pass";
+$user = "CECI";
+$pass = "bluepanda9";
 
 try{
 	$conn = db2_connect($database, $user, $pass);
@@ -47,17 +67,21 @@ if( $conn ){
 		echo "No results";
 	}
     
-    echo "<table>";
+    echo '<table>';
+    echo '<thead><tr><th>'.'CID'.'</th>'.'<th>'.'SUBJECT'.'</th>'.'<th>'.'PREREQ'.'</th></tr></thead>';
 	while($row = db2_fetch_array($stmt))
 	{
-	   echo "<thead><tr><th>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</th></tr></thead>";
+	   echo "<tbody><tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</td></tr></tbody>";
 	}
-    echo "</table>";
+    echo '</table>';
 	db2_close($conn);
 }
+    
 else{
 	echo db2_conn_error()."<br>";
 	echo db2_conn_errormsg()."<br>";
 	echo "Connection failed.<br>";
 }
 ?>
+    
+</body>
