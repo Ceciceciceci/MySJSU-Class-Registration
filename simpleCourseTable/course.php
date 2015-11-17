@@ -23,8 +23,8 @@
 //require 'connect.php';
 
 $database = "MYSJSU";
-$user = "CECI";
-$pass = "bluepanda9";
+$user = "user";
+$pass = "pass";
 
 try{
 	$conn = db2_connect($database, $user, $pass);
