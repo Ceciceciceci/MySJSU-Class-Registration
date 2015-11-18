@@ -20,4 +20,12 @@ class SiteController extends Controller
     public function logout() {
 
     }
+
+    public function cecilia() {
+        return view('cecilia/temp');
+    }
+
+    public function maninderpal() {
+        return view('maninderpal/temp');
+    }
 }
