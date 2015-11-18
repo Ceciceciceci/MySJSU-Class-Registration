@@ -122,6 +122,8 @@ return [
         Illuminate\Routing\ControllerServiceProvider::class,
         Illuminate\Cookie\CookieServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
+        //Ccovey\ODBCDriver\ODBCDriverServiceProvider::class,
+        //Opb\LaravelOdbcDb2\DatabaseServiceProvider::class,
         Illuminate\Encryption\EncryptionServiceProvider::class,
         Illuminate\Filesystem\FilesystemServiceProvider::class,
         Illuminate\Foundation\Providers\FoundationServiceProvider::class,
@@ -145,7 +147,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        //"MichaelB\Database\DB2\DB2ServiceProvider",
+        //MichaelB\Database\DB2\DB2ServiceProvider::class,
 
     ],
 

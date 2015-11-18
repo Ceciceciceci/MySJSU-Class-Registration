@@ -3043,18 +3043,18 @@
         ]
     },
     {
-        "name": "michaelb/laravel-db2",
-        "version": "2.0.2",
-        "version_normalized": "2.0.2.0",
+        "name": "cooperl/laravel-db2",
+        "version": "2.1.1",
+        "version_normalized": "2.1.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/michaelbonds/laravel-db2.git",
-            "reference": "b902a5e030f2cded84f486cb94bd5c142209f8b5"
+            "url": "https://github.com/cooperl22/laravel-db2.git",
+            "reference": "ed2787c21c329ed6983210e07b95c144b92817fd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/michaelbonds/laravel-db2/zipball/b902a5e030f2cded84f486cb94bd5c142209f8b5",
-            "reference": "b902a5e030f2cded84f486cb94bd5c142209f8b5",
+            "url": "https://api.github.com/repos/cooperl22/laravel-db2/zipball/ed2787c21c329ed6983210e07b95c144b92817fd",
+            "reference": "ed2787c21c329ed6983210e07b95c144b92817fd",
             "shasum": ""
         },
         "require": {
@@ -3062,13 +3062,8 @@
             "illuminate/support": "~5.0",
             "php": ">=5.4.0"
         },
-        "time": "2015-06-12 15:17:34",
+        "time": "2015-07-30 12:24:53",
         "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0-dev"
-            }
-        },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
