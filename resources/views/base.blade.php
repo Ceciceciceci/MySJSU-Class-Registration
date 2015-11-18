@@ -26,12 +26,13 @@
                     <a class="navbar-brand" href="#">MySJSU</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-right" role="form">
+                    <form class="navbar-form navbar-right" role="form" method="POST" action="{{ action('SiteController@login') }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="form-group">
-                            <input type="text" placeholder="SJSU ID" class="form-control">
+                            <input name="sjsu_id" type="text" placeholder="SJSU ID" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control">
+                            <input name="password" type="password" placeholder="Password" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-success">Sign in</button>
                     </form>

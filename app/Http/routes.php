@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/', 'SiteController@index');
+Route::post('login', 'SiteController@login');
+Route::post('logout', 'SiteController@logout');
 
 
 Route::resource('students', 'StudentsController');
