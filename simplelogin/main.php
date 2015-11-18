@@ -20,6 +20,7 @@ if (!isset($_SESSION["mysjsu"])) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <body>
 
 Welcome To MySJSU Registration.
