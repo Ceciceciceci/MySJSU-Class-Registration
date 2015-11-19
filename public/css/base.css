@@ -1,0 +1,17 @@
+body {
+    padding-bottom: 200px;
+}
+#main-content {
+    padding: 20px;
+    height: 320px;
+}
+.sjsu-container-prime {
+    background-color: #0055A2 !important;
+    border: none !important;
+}
+.sjsu-secondary {
+    color: #E5A823 !important;
+}
+.mysjsu-main-row {
+    /*padding-top: 30px;*/
+}
