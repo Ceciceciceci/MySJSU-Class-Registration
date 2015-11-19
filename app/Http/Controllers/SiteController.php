@@ -13,8 +13,8 @@ class SiteController extends Controller
         return view('login');
     }
 
-    public function login($sjsu_id, $password) {
-        return $sjsu_id . " " . $password;
+    public function login(Request $request) {
+        return redirect()->action('StudentsController@index');
     }
 
     public function logout() {
