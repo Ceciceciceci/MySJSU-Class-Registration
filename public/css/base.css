@@ -1,0 +1,11 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+.sjsu-container-prime {
+    background-color: #0055A2 !important;
+    border: none !important;
+}
+.sjsu-secondary {
+    color: #E5A823 !important;
+}
