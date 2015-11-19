@@ -1,23 +1,22 @@
 @extends('base')
 
-@section('main')
-    <style>
-        #main-content {
-            padding: 20px;
-            height: 320px;
-        }
-    </style>
-    <div class="row">
-        <div id="main-content" class="col-xs-12">
-            <h1 class="text-center">San Jose State University</h1>
-            {!! Form::open(['action' => 'SiteController@login', 'class' => 'form']) !!}
-                <div class="form-group">
-                    <input type="text" name="sjsu_id" class="form-control" placeholder="SJSU Id"/>
-                    <input type="text" name="password" class="form-control" placeholder="Password"/>
-                </div>
+@section('navbar-right')
+    {!! Form::open(['action' => 'SiteController@login', 'class' => 'form navbar-form navbar-right']) !!}
+        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+        <div class="form-group">
+            <input name="sjsu_id" type="text" placeholder="SJSU ID" class="form-control input-sm">
+        </div>
+        <div class="form-group">
+            <input name="password" type="password" placeholder="Password" class="form-control input-sm">
+        </div>
+        <button type="submit" class="btn btn-success btn-sm">Sign in</button>
+    {!! Form::close() !!}
+@endsection
 
-                <input type="submit" class="btn btn-default" />
-            {!! Form::close() !!}
+@section('main')
+    <div class="row mysjsu-main-row">
+        <div id="main-content" class="col-xs-12">
+
         </div>
     </div>
     <div class="row">
