@@ -40,7 +40,45 @@
             <hr />
         </div>
         <div class="col-sm-9">
-
+            <br />
+            <h4 class="lead">Spring 2016 Shopping Cart</h4>
+            <hr />
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Course Name</th>
+                    <th>Instructor</th>
+                    <th>Grade Received</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>CS 49J</td>
+                    <td>Introduction to Java</td>
+                    <td>Frank Butt</td>
+                    <td>A+</td>
+                </tr>
+                <tr>
+                    <td>CS 46B</td>
+                    <td>Introduction to CS Part II</td>
+                    <td>Frank Butt</td>
+                    <td>A+</td>
+                </tr>
+                <tr>
+                    <td>CS 49C</td>
+                    <td>Introduction to C Programming</td>
+                    <td>Frank Butt</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td>CS 46A</td>
+                    <td>Introduction to CS Part I</td>
+                    <td>Frank Butt</td>
+                    <td>F</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection
