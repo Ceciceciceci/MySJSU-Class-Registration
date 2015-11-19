@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3a01d412fd47d8dd8de572d164a3aa9a",
-    "content-hash": "202eebfa90ce16e13c9cad2137ff5740",
+    "hash": "35d0ea441d550fddbc6b647cb92b6d06",
+    "content-hash": "26320ca470b81d73bd4a830b7b0ec1e1",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -60,51 +60,6 @@
                 "preload"
             ],
             "time": "2015-11-09 22:51:51"
-        },
-        {
-            "name": "cooperl/laravel-db2",
-            "version": "2.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cooperl22/laravel-db2.git",
-                "reference": "ed2787c21c329ed6983210e07b95c144b92817fd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cooperl22/laravel-db2/zipball/ed2787c21c329ed6983210e07b95c144b92817fd",
-                "reference": "ed2787c21c329ed6983210e07b95c144b92817fd",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "~5.0",
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Cooperl\\Database\\DB2\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Maxime Rault",
-                    "role": "Developer"
-                }
-            ],
-            "description": "laravel-db2 is a simple DB2 service provider for Laravel. It provides DB2 Connection by extending the Illuminate Database component of the laravel framework.",
-            "keywords": [
-                "database",
-                "db2",
-                "laravel",
-                "odbc",
-                "pdo"
-            ],
-            "time": "2015-07-30 12:24:53"
         },
         {
             "name": "danielstjules/stringy",
@@ -535,6 +490,56 @@
                 "laravel"
             ],
             "time": "2015-11-11 22:45:42"
+        },
+        {
+            "name": "laravelcollective/html",
+            "version": "v5.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "5ad8377968ba3b4da91fc60ca98b2eef4df380fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/5ad8377968ba3b4da91fc60ca98b2eef4df380fc",
+                "reference": "5ad8377968ba3b4da91fc60ca98b2eef4df380fc",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "5.1.*",
+                "illuminate/routing": "5.1.*",
+                "illuminate/session": "5.1.*",
+                "illuminate/support": "5.1.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                }
+            ],
+            "time": "2015-11-06 18:14:38"
         },
         {
             "name": "league/flysystem",
@@ -2993,9 +2998,9 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": [],
-    "prefer-stable": true,
+    "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.5.9"

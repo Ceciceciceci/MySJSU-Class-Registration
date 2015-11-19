@@ -3043,32 +3043,41 @@
         ]
     },
     {
-        "name": "cooperl/laravel-db2",
-        "version": "2.1.1",
-        "version_normalized": "2.1.1.0",
+        "name": "laravelcollective/html",
+        "version": "v5.1.7",
+        "version_normalized": "5.1.7.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/cooperl22/laravel-db2.git",
-            "reference": "ed2787c21c329ed6983210e07b95c144b92817fd"
+            "url": "https://github.com/LaravelCollective/html.git",
+            "reference": "5ad8377968ba3b4da91fc60ca98b2eef4df380fc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/cooperl22/laravel-db2/zipball/ed2787c21c329ed6983210e07b95c144b92817fd",
-            "reference": "ed2787c21c329ed6983210e07b95c144b92817fd",
+            "url": "https://api.github.com/repos/LaravelCollective/html/zipball/5ad8377968ba3b4da91fc60ca98b2eef4df380fc",
+            "reference": "5ad8377968ba3b4da91fc60ca98b2eef4df380fc",
             "shasum": ""
         },
         "require": {
-            "illuminate/database": "~5.0",
-            "illuminate/support": "~5.0",
-            "php": ">=5.4.0"
+            "illuminate/http": "5.1.*",
+            "illuminate/routing": "5.1.*",
+            "illuminate/session": "5.1.*",
+            "illuminate/support": "5.1.*",
+            "php": ">=5.5.9"
         },
-        "time": "2015-07-30 12:24:53",
+        "require-dev": {
+            "mockery/mockery": "~0.9",
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2015-11-06 18:14:38",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Cooperl\\Database\\DB2\\": "src/"
-            }
+                "Collective\\Html\\": "src/"
+            },
+            "files": [
+                "src/helpers.php"
+            ]
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -3076,17 +3085,13 @@
         ],
         "authors": [
             {
-                "name": "Maxime Rault",
-                "role": "Developer"
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            },
+            {
+                "name": "Adam Engebretson",
+                "email": "adam@laravelcollective.com"
             }
-        ],
-        "description": "laravel-db2 is a simple DB2 service provider for Laravel. It provides DB2 Connection by extending the Illuminate Database component of the laravel framework.",
-        "keywords": [
-            "database",
-            "db2",
-            "laravel",
-            "odbc",
-            "pdo"
         ]
     }
 ]

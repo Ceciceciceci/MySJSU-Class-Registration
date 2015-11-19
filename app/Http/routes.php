@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/', 'SiteController@index');
+Route::post('login', 'SiteController@login');
+Route::post('logout', 'SiteController@logout');
+
+Route::resource('students', 'StudentsController');
+Route::resource('professors', 'ProfessorsController');
+Route::resource('courses', 'CoursesController');
+
+/*
+ * Temporary Routes
+ */
+Route::get('cecilia', 'SiteController@cecilia');
+Route::get('maninderpal', 'SiteController@maninderpal');

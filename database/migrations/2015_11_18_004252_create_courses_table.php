@@ -16,8 +16,6 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->string('course');
             $table->integer("seats", false, true);
-            $table->string('password', 60);
-            $table->rememberToken();
             $table->timestamps();
         });
     }

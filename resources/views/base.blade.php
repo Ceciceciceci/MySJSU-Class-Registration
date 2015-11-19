@@ -9,12 +9,6 @@
                 padding-top: 50px;
                 padding-bottom: 20px;
             }
-            .footer {
-                position: absolute;
-                bottom: 0;
-                width: 100%;
-                height: 60px;
-            }
         </style>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
@@ -29,15 +23,16 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">MySJSU</a>
+                    <a class="navbar-brand" href="{{ action('SiteController@index') }}">MySJSU</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-right" role="form">
+                    <form class="navbar-form navbar-right" role="form" method="POST" action="{{ action('SiteController@login') }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="form-group">
-                            <input type="text" placeholder="SJSU ID" class="form-control">
+                            <input name="sjsu_id" type="text" placeholder="SJSU ID" class="form-control">
                         </div>
                         <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control">
+                            <input name="password" type="password" placeholder="Password" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-success">Sign in</button>
                     </form>
@@ -50,16 +45,6 @@
             <!-- Example row of columns -->
             @yield('main')
         </div> <!-- /container -->
-
-        <hr class="footer">
-
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <p>&copy; San Jose State University 2015</p>
-                </div>
-            </div>
-        </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

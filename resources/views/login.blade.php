@@ -10,6 +10,14 @@
     <div class="row">
         <div id="main-content" class="col-xs-12">
             <h1 class="text-center">San Jose State University</h1>
+            {!! Form::open(['action' => 'SiteController@login', 'class' => 'form']) !!}
+                <div class="form-group">
+                    <input type="text" name="sjsu_id" class="form-control" placeholder="SJSU Id"/>
+                    <input type="text" name="password" class="form-control" placeholder="Password"/>
+                </div>
+
+                <input type="submit" class="btn btn-default" />
+            {!! Form::close() !!}
         </div>
     </div>
     <div class="row">
