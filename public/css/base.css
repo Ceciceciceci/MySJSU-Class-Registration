@@ -1,6 +1,9 @@
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding-bottom: 200px;
+}
+#main-content {
+    padding: 20px;
+    height: 320px;
 }
 .sjsu-container-prime {
     background-color: #0055A2 !important;
@@ -8,4 +11,7 @@ body {
 }
 .sjsu-secondary {
     color: #E5A823 !important;
+}
+.mysjsu-main-row {
+    /*padding-top: 30px;*/
 }
