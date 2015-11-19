@@ -18,7 +18,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand sjsu-secondary" style="margin-top: -10px;" href="{{ action('SiteController@index') }}">
+                    <a class="navbar-brand sjsu-secondary" style="margin-top: -10px;" href="{{ action('StudentsController@index') }}">
                         <img style="display:inline-block; max-width:40px;" src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/San_Jose_State_Spartans_Logo.svg/996px-San_Jose_State_Spartans_Logo.svg.png" alt="">
                         San Jose State University
                     </a>

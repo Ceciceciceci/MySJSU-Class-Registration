@@ -19,13 +19,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ action('CoursesController@plan') }}">
                         <i class="glyphicon glyphicon-edit"></i>
                         Plan
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ action('CoursesController@enroll') }}">
                         <i class="glyphicon glyphicon-list-alt"></i>
                         Enroll
                     </a>
