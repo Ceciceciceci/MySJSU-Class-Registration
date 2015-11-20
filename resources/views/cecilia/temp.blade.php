@@ -1,6 +1,5 @@
 {{--Blade Documentation: http://laravel.com/docs/5.1/blade --}}
 <!--@extends('base')-->
-
 @section('main')
 <!--**********************************************************************************************
 *******************************D A S H B O A R D   P A G E ***************************************
@@ -21,11 +20,8 @@
   <section id="container" >
       <!--header-->
       <header class="header black-bg">
-        <div class="sidebar-toggle-box">
-          <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-        </div>
             <!--title start-->
-            <a href="index.html" class="logo"><b>MySJSU</b></a>
+            <a href="index.html" class="title"><b>MySJSU</b></a>
             <!--title end-->
             <div class="top-menu">
                 <!--careless whisper-->
@@ -63,43 +59,25 @@
                           <i class="fa fa-desktop"></i>
                           <span>Search Classes</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="general.html">General</a></li>
-                          <li><a  href="buttons.html">Buttons</a></li>
-                          <li><a  href="panels.html">Panels</a></li>
-                      </ul>
-                  </li>
+                    </li>
 
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-cogs"></i>
                           <span>Plan</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="calendar.html">Calendar</a></li>
-                          <li><a  href="gallery.html">Gallery</a></li>
-                          <li><a  href="todo_list.html">Todo List</a></li>
-                      </ul>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-book"></i>
                           <span>Enroll</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="blank.html">Blank Page</a></li>
-                          <li><a  href="login.html">Login</a></li>
-                          <li><a  href="lock_screen.html">Lock Screen</a></li>
-                      </ul>
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-tasks"></i>
                           <span>My Academics</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="form_component.html">Form Components</a></li>
-                      </ul>
                   </li>
               </ul>
               <!-- sidebar menu end-->
@@ -252,8 +230,8 @@
               </div><!--/row -->
           </section>
       </section>
-
       <!--main content end-->
+      
       <!--footer start-->
       <footer class="site-footer">
           <div class="text-center">
@@ -267,7 +245,6 @@
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
     <!--common script for all pages-->
