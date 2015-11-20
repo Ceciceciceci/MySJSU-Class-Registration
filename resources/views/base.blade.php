@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/css/base.css">
     </head>
     <body>
-        <nav class="navbar navbar-inverse navbar-static-top sjsu-container-prime" role="navigation">
+       <!-- <nav class="navbar navbar-inverse navbar-static-top sjsu-container-prime" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -25,9 +25,9 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     @yield('navbar-right')
-                </div><!--/.navbar-collapse -->
-            </div>
-        </nav>
+                </div>--><!--/.navbar-collapse -->
+           <!--</div>-->
+        <!--</nav>-->
 
 
         <div class="container">

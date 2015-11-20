@@ -1,163 +1,20 @@
 Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22081
-01-LAB
-Regular
-MoWe 9:00AM - 10:15AM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22082
-02-LAB
-Regular
-MoWe 10:30AM - 11:45AM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22083
-03-LAB
-Regular
-MoWe 12:00PM - 1:15PM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22084
-04-LAB
+23002
+02-SEM
 Regular
 MoWe 1:30PM - 2:45PM
-Washington Square Hall 001E
+MacQuarrie Hall 425
 Staff
 01/28/2016 - 05/16/2016
-Open
+Wait List
 select
 View Textbooks
 Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22085
-05-LAB
+28483
+03-SEM
 Regular
 MoWe 3:00PM - 4:15PM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22086
-06-LAB
-Regular
-MoWe 4:30PM - 5:45PM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22087
-07-LAB
-Regular
-TuTh 7:30AM - 8:45AM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22088
-08-LAB
-Regular
-TuTh 9:00AM - 10:15AM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22089
-09-LAB
-Regular
-TuTh 10:30AM - 11:45AM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22140
-10-LAB
-Regular
-TuTh 12:00PM - 1:15PM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22141
-11-LAB
-Regular
-TuTh 1:30PM - 2:45PM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-22142
-12-LAB
-Regular
-TuTh 3:00PM - 4:15PM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-23005
-13-LAB
-Regular
-TuTh 4:30PM - 5:45PM
-Washington Square Hall 001E
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-28389
-14-LAB
-Regular
-MoWe 9:00AM - 10:15AM
-MacQuarrie Hall 234
-Staff
-01/28/2016 - 05/16/2016
-Open
-select
-View Textbooks
-Class	Section	Days & Times	Room	Instructor	Meeting Dates	Status	 	View Textbooks
-28390
-15-LAB
-Regular
-TuTh 9:00AM - 10:15AM
-MacQuarrie Hall 234
+MacQuarrie Hall 425
 Staff
 01/28/2016 - 05/16/2016
 Open
