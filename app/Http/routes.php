@@ -15,8 +15,11 @@ Route::get('/', 'SiteController@index');
 Route::post('login', 'SiteController@login');
 Route::post('logout', 'SiteController@logout');
 
+Route::get('students/academics', 'StudentsController@academics');
 Route::resource('students', 'StudentsController');
 Route::resource('professors', 'ProfessorsController');
+Route::get('courses/enroll', 'CoursesController@enroll');
+Route::get('courses/plan', 'CoursesController@plan');
 Route::resource('courses', 'CoursesController');
 
 /*

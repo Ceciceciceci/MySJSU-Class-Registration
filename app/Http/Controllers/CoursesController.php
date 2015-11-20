@@ -16,7 +16,7 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        //
+        return view('courses.index');
     }
 
     /**
@@ -83,5 +83,15 @@ class CoursesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function plan()
+    {
+        return view('courses.plan');
+    }
+
+    public function enroll()
+    {
+        return view('courses.enroll');
     }
 }
