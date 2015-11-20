@@ -1,7 +1,3 @@
-<head>   
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-
-</head>
 @extends('base')
 
 @section('navbar-right')
@@ -15,8 +11,8 @@
         <div class="col-sm-3">
             <h4 class="lead">Quick Links</h4>
             <hr />
-            <ul class="nav nav-stacked">
-                <li>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
                     <a href="{{ action('CoursesController@index') }}">
                         <i class="glyphicon glyphicon-search"></i>
                         Search Classes
@@ -44,12 +40,13 @@
             <hr />
         </div>
         <div class="col-sm-9">
-            <h4 class="lead">Alerts</h4>
-            <hr />
-            <p class="text-center">You have no alert</p>
+            <br />
+            <div class="form">
+                <input type="text" class="form-control" placeholder="Angular Search ngFilter">
+            </div>
             <br />
 
-            <h4 class="lead">Courses I've Taken</h4>
+            <h4 class="lead">Computer Science</h4>
             <hr />
             <table class="table">
                 <thead>
@@ -61,25 +58,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="success">
+                <tr>
                     <td>CS 49J</td>
                     <td>Introduction to Java</td>
                     <td>Frank Butt</td>
                     <td>A+</td>
                 </tr>
-                <tr class="success">
+                <tr>
                     <td>CS 46B</td>
                     <td>Introduction to CS Part II</td>
                     <td>Frank Butt</td>
                     <td>A+</td>
                 </tr>
-                <tr class="warning">
+                <tr>
                     <td>CS 49C</td>
                     <td>Introduction to C Programming</td>
                     <td>Frank Butt</td>
                     <td>C</td>
                 </tr>
-                <tr class="danger">
+                <tr>
                     <td>CS 46A</td>
                     <td>Introduction to CS Part I</td>
                     <td>Frank Butt</td>
@@ -87,12 +84,47 @@
                 </tr>
                 </tbody>
             </table>
-            <a href=""><p class="text-right">more</p></a>
             <br />
 
-            <h4 class="lead">Student Balance</h4>
+            <h4 class="lead">Mathematics</h4>
             <hr />
-            <p class="text-center">You have no outstanding balance</p>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Course Name</th>
+                    <th>Instructor</th>
+                    <th>Grade Received</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>CS 49J</td>
+                    <td>Introduction to Java</td>
+                    <td>Frank Butt</td>
+                    <td>A+</td>
+                </tr>
+                <tr>
+                    <td>CS 46B</td>
+                    <td>Introduction to CS Part II</td>
+                    <td>Frank Butt</td>
+                    <td>A+</td>
+                </tr>
+                <tr>
+                    <td>CS 49C</td>
+                    <td>Introduction to C Programming</td>
+                    <td>Frank Butt</td>
+                    <td>C</td>
+                </tr>
+                <tr>
+                    <td>CS 46A</td>
+                    <td>Introduction to CS Part I</td>
+                    <td>Frank Butt</td>
+                    <td>F</td>
+                </tr>
+                </tbody>
+            </table>
+            <br />
         </div>
     </div>
 @endsection
