@@ -41,7 +41,7 @@
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">
 
-
+                   <center><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/San_Jose_State_Spartans_Logo.svg/325px-San_Jose_State_Spartans_Logo.svg.png" style="width:30%; height:30%;"></center>
                     <h5 class="centered">
                         Welcome, <br><br>
                         SJSU Student Name</h5>
@@ -54,26 +54,26 @@
                     </li>
 
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="{{ action('CoursesController@index') }}" >
                             <i class="fa fa-desktop"></i>
                             <span>Search Classes</span>
                         </a>
                     </li>
 
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="{{ action('CoursesController@plan') }}" >
                             <i class="fa fa-cogs"></i>
                             <span>Plan</span>
                         </a>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="{{ action('CoursesController@enroll') }}" >
                             <i class="fa fa-book"></i>
                             <span>Enroll</span>
                         </a>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="{{ action('StudentsController@academics') }}" >
                             <i class="fa fa-tasks"></i>
                             <span>My Academics</span>
                         </a>
