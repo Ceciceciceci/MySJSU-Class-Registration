@@ -1,12 +1,15 @@
 @extends('base')
 
 @section('main')
-    <style>
+<head>
+
+ <style>
         #main-content {
             padding: 20px;
             height: 320px;
         }
     </style>
+    </head>
     <div class="row">
         <div id="main-content" class="col-xs-12">
             <h1 class="text-center">San Jose State University</h1>
