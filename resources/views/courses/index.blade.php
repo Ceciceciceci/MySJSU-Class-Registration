@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ action('StudentsController@academics') }}">
                         <i class="glyphicon glyphicon-education"></i>
                         Academics
                     </a>

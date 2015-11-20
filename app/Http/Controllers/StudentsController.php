@@ -84,4 +84,9 @@ class StudentsController extends Controller
     {
         //
     }
+
+    public function academics()
+    {
+        return view('students.academics');
+    }
 }
