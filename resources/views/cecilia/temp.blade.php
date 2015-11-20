@@ -92,8 +92,8 @@
             <section class="wrapper">
 
                 <div class="row">
-                    <div class="col-lg-9 main-chart">
-                        <table class="table" style="padding-top: 80px;">
+                    <div class="col-lg-9 main-chart"  style="padding-top: 20px;">
+                        <table class="table">
                             <thead>
                             <tr>
                                 <th>Section</th>
