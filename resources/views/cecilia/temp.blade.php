@@ -12,6 +12,8 @@
         <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('/css/style-responsive.css') }}" rel="stylesheet" type="text/css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </head>
 
     <body>
@@ -90,8 +92,6 @@
         <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
-
-                <div class="row">
                     <div class="col-lg-9 main-chart"  style="padding-top: 20px;">
                         <table class="table">
                             <thead>
@@ -183,37 +183,34 @@
                             </tr>
                             </tbody>
                         </table>
-                        <table class="table" style="padding-top: 80px;">
-                            <thead>
-                            <tr>
-                                <th>Section</th>
-                                <th>Class</th>
-                                <th>Room</th>
-                                <th>Time</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>CS 174</td>
-                                <td>MQH 232</td>
-                                <td>6:00 - 7:15 AM</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>CS 151</td>
-                                <td>MQH 232</td>
-                                <td>6:00 - 7:15 AM</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>CS 157B</td>
-                                <td>MQH 232</td>
-                                <td>6:00 - 7:15 AM</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div><!-- /col-lg-9 END SECTION MIDDLE -->
+   
+<div ng-app="main" ng-controller="namesCtrl">
+
+ <table>
+  <tr ng-repeat="x in names | orderBy : 'Country'">
+    <td>[[ x.Name ]]</td>
+    <td>[[ x.Country ]]</td>
+  </tr>
+</table>
+
+</div>
+
+<script>
+    angular.module('main', [])
+    .config(function ($interpolateProvider) {
+        $interpolateProvider.startSymbol('[[');
+        $interpolateProvider.endSymbol(']]');
+    })
+    .controller('namesCtrl', function($scope) {
+        $scope.names = [
+            {name:'Jani',country:'Norway'},
+            {name:'Hege',country:'Sweden'},
+            {name:'Kai',country:'Denmark'}
+        ];
+    });
+</script>
+                      
+    </div><!-- /col-lg-9 END SECTION MIDDLE -->
 
 
                     <!--**********************************************************************************************

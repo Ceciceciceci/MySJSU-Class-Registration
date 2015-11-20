@@ -40,17 +40,104 @@
             <hr />
         </div>
         <div class="col-sm-9">
-                        <div class="form">
-                <input type="text" class="form-control" placeholder="Angular Search ngFilter">
-            </div>
+
             <br />
+            
+<!-- TEST SECTION DON'T TOUCH-->            
+<div ng-app="main" ng-controller="mainController">
+  
+  <div class="alert alert-info">
+    <p>Sort Type: [[ sortType ]]</p>
+    <p>Sort Reverse: [[ sortReverse ]]</p>
+    <p>Search Query: [[ searchClass ]]</p>
+  </div>
+  
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Search for ya classes" ng-model="searchClass">
+      </div>      
+    </div>
+  </form>
+  
+  <table class="table table-bordered table-striped">
+    
+    <thead>
+      <tr>
+        <td>
+          <a href="#" ng-click="sortType = 'courseid'; sortReverse = !sortReverse">
+            Course ID
+            <span ng-show="sortType == 'courseid' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'courseid' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a href="#" ng-click="sortType = 'coursename'; sortReverse = !sortReverse">
+          Course Name 
+            <span ng-show="sortType == 'coursename' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'coursename' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a href="#" ng-click="sortType = 'professor'; sortReverse = !sortReverse">
+          Professor 
+            <span ng-show="sortType == 'professor' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'professor' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+        <td>
+          <a href="#" ng-click="sortType = 'room'; sortReverse = !sortReverse">
+            Room Number and Time
+            <span ng-show="sortType == 'room' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'room' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+        </td>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <tr ng-repeat="roll in class | orderBy:sortType:sortReverse | filter:searchClass">
+        <td>[[ roll.courseid ]]</td>
+        <td>[[ roll.coursename ]]</td>
+        <td>[[ roll.professor ]]</td>
+        <td>[[ roll.room ]]</td>
+      </tr>
+    </tbody>
+    
+  </table>
+  
+</div> 
+            
+    <script>
+    angular.module('main', [])
+    .config(function ($interpolateProvider) {
+        $interpolateProvider.startSymbol('[[');
+        $interpolateProvider.endSymbol(']]');
+    })
+    .controller('mainController', function($scope) {
+      $scope.sortType     = 'courseid'; // set the default sort type
+      $scope.sortReverse  = false;  // set the default sort order
+      $scope.searchClass   = '';     // set the default search/filter term
+
+      // create the list of class rolls 
+      $scope.class = [
+        { courseid: '10000', coursename: 'CS46A', professor: 'O-Brien',room:'WSQ 109' },
+        { courseid: '20000', coursename: 'CS46B', professor: 'Potika', room:'MQH 233' },
+        { courseid: '30000', coursename: 'CS151', professor: 'Frank',room:'MQH 225' },
+        { courseid: '40000', coursename: 'CS151', professor: 'Kim',room:'MQH 345' }
+      ];
+
+    });
+</script>        
+            
             <h4 class="lead">Spring 2016 Shopping Cart</h4>
             <hr />
             <table class="table">
                 <thead>
                 <tr>
                     <th>Course</th>
-                    <th>Course Name</th>
+                    <th>Course courseid</th>
                     <th>Instructor</th>
                     <th>Grade Received</th>
                 </tr>
@@ -82,6 +169,7 @@
                 </tr>
                 </tbody>
             </table>
+            
         </div>
     </div>
 @endsection

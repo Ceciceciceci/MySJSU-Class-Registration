@@ -41,12 +41,9 @@
         </div>
         <div class="col-sm-9">
              <br />
-            <div class="form">
-                <input type="text" class="form-control" placeholder="Angular Search ngFilter">
-            </div>
             <br />
             <br />
-            <h4 class="lead">Spring 2016 Shopping Cart</h4>
+ <h4 class="lead">Spring 2016 Shopping Cart</h4>
             <hr />
             <table class="table">
                 <thead>
