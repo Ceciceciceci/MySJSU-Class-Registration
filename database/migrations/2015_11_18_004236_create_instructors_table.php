@@ -13,7 +13,7 @@ class CreateInstructorsTable extends Migration
     public function up()
     {
         Schema::create('instructors', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('iid');
             $table->string('fullName');
             $table->string('password', 60);
             $table->rememberToken();
