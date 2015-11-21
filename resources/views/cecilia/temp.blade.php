@@ -14,6 +14,9 @@
         <link href="{{ asset('/css/style-responsive.css') }}" rel="stylesheet" type="text/css" />
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        
+    <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
     </head>
 
     <body>
@@ -141,9 +144,9 @@
                         
                         <!--<div class="col-lg-6">-->
                           <div class="content-panel">
-							  <h4><i class="fa fa-angle-right"></i> Line</h4>
+							  <h4><i class="fa fa-angle-right"></i> GPA Chart</h4>
                               <div class="panel-body text-center">
-                                  <canvas id="line" height="300" width="400"></canvas>
+                                  <canvas id="line" height="300" width="200"></canvas>
                               </div>
                           </div>
                         <!--</div>-->
@@ -165,7 +168,25 @@
         <!--footer end-->
     </section>
 
-    <!-- js placed at the end of the document so the pages load faster -->
+    <!-- ******************* JAVASCRIPT ****************** -->
+    <script>  
+    var Script = function () {
+        var lineChartData = {
+            labels : ["Sem 1","Sem 2","Sem 3","Sem 4","Sem 5","Sem 6","Sem 7"],
+            datasets : [
+                {
+                    data : [3.5,4.0,4.0,3.5,3.75,3.2,4.0],
+                    fillColor : "rgba(151,187,205,0.5)",
+                    strokeColor : "rgba(151,187,205,1)",
+                    pointColor : "rgba(151,187,205,1)",
+                    pointStrokeColor : "#fff"
+                }
+            ]
+
+        };
+         new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
+        }();
+    </script>
     <script src="assets/js/jquery.js"></script>
     <script src="assets/js/jquery-1.8.3.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -173,6 +194,6 @@
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
-
+    <!-- ************** END OF JAVASCRIPT *************** -->
     </body>
 </html>
