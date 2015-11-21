@@ -14,9 +14,8 @@ class CoursesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('courses.index');
     }
 
     /**
@@ -90,8 +89,15 @@ class CoursesController extends Controller
         return view('courses.plan');
     }
 
-    public function enroll()
+    public function enroll(Request $request)
     {
+//        if($request->ajax()) {
+//            return response()->json(['courses' => $courses]);
+//        }
+//        else {
+//            return view('courses.enroll', ['courses' => $courses]);
+//        }
+
         return view('courses.enroll');
     }
 }

@@ -6,11 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CreateClassesTakenTable' => $baseDir . '/database/migrations/2015_11_20_024134_create_ClassesTaken_table.php',
+    'CreateClassesTakenTable' => $baseDir . '/database/migrations/2015_11_20_024134_create_classestaken_table.php',
     'CreateCoursesTable' => $baseDir . '/database/migrations/2015_11_18_004252_create_courses_table.php',
     'CreateInstructorsTable' => $baseDir . '/database/migrations/2015_11_18_004236_create_instructors_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
-    'CreateRequisitesTable' => $baseDir . '/database/migrations/2015_11_20_024057_create_Requisites_table.php',
+    'CreateRequisitesTable' => $baseDir . '/database/migrations/2015_11_20_024057_create_requisites_table.php',
     'CreateStudentsTable' => $baseDir . '/database/migrations/2015_11_18_004225_create_students_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',

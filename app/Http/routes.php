@@ -22,6 +22,9 @@ Route::get('courses/enroll', 'CoursesController@enroll');
 Route::get('courses/plan', 'CoursesController@plan');
 Route::resource('courses', 'CoursesController');
 
+/* API */
+Route::get('api', 'APIController@main');
+
 /*
  * Temporary Routes
  */
