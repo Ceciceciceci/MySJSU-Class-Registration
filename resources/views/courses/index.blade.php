@@ -59,7 +59,7 @@
               </form>
 
               <div ng-repeat="(key, value) in class | orderBy:sortType:sortReverse | filter:searchClass | groupBy: 'courseName1'" >
-                <p> [[key]] </p>
+                <p> [[key]] <img src="test.png"></p>
                 <table class="table table-bordered table-striped">
 
                   <thead>
@@ -72,13 +72,6 @@
                         </a>
                       </td>
                       <td>
-                        <a href="javascript:void(0)" ng-click="sortType = 'courseid'; sortReverse = !sortReverse">
-                        Course ID
-                          <span ng-show="sortType == 'courseid' && !sortReverse" class="fa fa-caret-down"></span>
-                          <span ng-show="sortType == 'courseid' && sortReverse" class="fa fa-caret-up"></span>
-                        </a>
-                      </td>
-                      <td>
                         <a href="javascript:void(0)" ng-click="sortType = 'professor'; sortReverse = !sortReverse">
                         Professor
                           <span ng-show="sortType == 'professor' && !sortReverse" class="fa fa-caret-down"></span>
@@ -87,9 +80,21 @@
                       </td>
                       <td>
                         <a href="javascript:void(0)" ng-click="sortType = 'room'; sortReverse = !sortReverse">
-                          Room Number and Time
+                        Room
                           <span ng-show="sortType == 'room' && !sortReverse" class="fa fa-caret-down"></span>
                           <span ng-show="sortType == 'room' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript:void(0)" ng-click="sortType = 'meeting'; sortReverse = !sortReverse">
+                          Meeting Days & Time
+                          <span ng-show="sortType == 'meeting' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'meeting' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                      </td>
+                      <td>
+                        
+                          
                         </a>
                       </td>
                     </tr>
@@ -99,9 +104,10 @@
                     <tr ng-repeat="roll in value | orderBy:sortType:sortReverse | filter:searchClass">
                       <!-- <td>[[roll.courseId]]</td> -->
                         <td>[[roll.courseId1.courseSection]]</td>
-                        <td>[[roll.courseId1.subject]] [[roll.courseId1.courseNumber]]</td>
                         <td>[[roll.courseId1.instructor ]]</td>
+                        <td>[[roll.courseId1.room]]</td>
                         <td>[[roll.courseId1.meeting]]</td>
+                        <td style="text-align:center"><i class="glyphicon glyphicon-plus text-success"></i></td>
                     </tr> 
                   </tbody>
 
@@ -134,12 +140,12 @@
                         var obj = json[i];
                         var result = {};
                         result.courseSection = obj["class"];
-                        result.courseNumber = obj.subject + " " + obj.courseNumber;
-                        result.courseName = obj.courseName;
+                        result.courseName = obj.subject + " " + obj.courseNumber + " - " +obj.courseName;
                         result["type"] = obj.section1 + " " + obj.section2;
-                        result.days = obj.days;
-                        result.meeting = obj.room + " " + obj.startTime + " - " + obj.endTime;
+                        result.room = obj.room;
+                        result.meeting = obj. days + " " + obj.startTime + " - " + obj.endTime;
                         result.instructor = obj.instructor;
+                        result.seats= obj.seats;
 
                         groups.push({
                           courseId1 : result,
