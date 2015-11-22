@@ -34,7 +34,7 @@ class InstructorsTableSeeder extends Seeder
             array('fullName' => 'James Morgan', 'password' => 'password'),
             array('fullName' => 'Jon Pearce', 'password' => 'password'),
             array('fullName' => 'Juan Gomez', 'password' => 'password'),
-            array('fullName' => 'Kathleen O''Brien', 'password' => 'password'),
+            array('fullName' => 'Kathleen O\'Brien', 'password' => 'password'),
             array('fullName' => 'Kaushik Patra', 'password' => 'password'),
             array('fullName' => 'Kong Li', 'password' => 'password'),
             array('fullName' => 'Leonard Wesley', 'password' => 'password'),

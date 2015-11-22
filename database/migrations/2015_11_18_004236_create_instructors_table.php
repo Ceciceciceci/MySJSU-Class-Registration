@@ -17,7 +17,7 @@ class CreateInstructorsTable extends Migration
             $table->string('fullName');
             $table->string('password', 60);
             $table->rememberToken();
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 
