@@ -18,7 +18,12 @@ class DatabaseSeeder extends Seeder
         $this->call(InstructorsTableSeeder::class);
         $this->call(StudentsTableSeeder::class);
         $this->call(CoursesTableSeeder::class);
+<<<<<<< HEAD
         $this->call(UsersTableSeeder::class);
+||||||| merged common ancestors
+=======
+        $this->call(RequisitesTableSeeder::class);
+>>>>>>> f38ac4de8192afc07fafe27bed09006b8154deea
 
         Model::reguard();
     }
