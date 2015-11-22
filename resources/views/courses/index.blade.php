@@ -59,7 +59,7 @@
               </form>
 
               <div ng-repeat="(key, value) in class | orderBy:sortType:sortReverse | filter:searchClass | groupBy: 'courseName1'" >
-                <p> [[key]] <img src="test.png"></p>
+                <p> [[key]] <i class="glyphicon glyphicon-ok-sign text-success"></i></p>
                 <table class="table table-bordered table-striped">
 
                   <thead>
