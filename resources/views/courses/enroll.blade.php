@@ -98,7 +98,7 @@
 
                 <tbody>
                   <tr ng-repeat="roll in class | orderBy:sortType:sortReverse | filter:searchClass">
-                    <td>[[ roll.courseid ]]</td>
+                    <td>[[ roll.class ]]</td>
                     <td>[[ roll.coursename ]]</td>
                     <td>[[ roll.professor ]]</td>
                     <td>[[ roll.room ]]</td>
