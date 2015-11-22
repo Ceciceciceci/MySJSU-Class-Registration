@@ -44,18 +44,15 @@
             <!--Beginning of NG-Filter-->
             <div ng-app="main" ng-controller="mainController">
 
-              <div class="alert alert-info">
-                <p>Sort Type: [[ sortType ]]</p>
-                <p>Sort Reverse: [[ sortReverse ]]</p>
-                <p>Search Query: [[ searchClass ]]</p>
-              </div>
+              {{--<div class="alert alert-info">--}}
+                {{--<p>Sort Type: [[ sortType ]]</p>--}}
+                {{--<p>Sort Reverse: [[ sortReverse ]]</p>--}}
+                {{--<p>Search Query: [[ searchClass ]]</p>--}}
+              {{--</div>--}}
 
-              <form>
+              <form class="form">
                 <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
                     <input type="text" class="form-control" placeholder="Enter class information here" ng-model="searchClass">
-                  </div>
                 </div>
               </form>
 
@@ -63,7 +60,7 @@
                 <thead>
                   <tr>
                     <td>
-                      <a href="#" ng-click="sortType = 'courseid'; sortReverse = !sortReverse">
+                      <a href="javascript:void(0)" ng-click="sortType = 'courseid'; sortReverse = !sortReverse">
                         Course ID
                         <span ng-show="sortType == 'courseid' && !sortReverse" class="fa fa-caret-down"></span>
                         <span ng-show="sortType == 'courseid' && sortReverse" class="fa fa-caret-up"></span>
@@ -77,21 +74,21 @@
                       </a>
                     </td> -->
                     <td>
-                      <a href="#" ng-click="sortType = 'coursename'; sortReverse = !sortReverse">
+                      <a href="javascript:void(0)" ng-click="sortType = 'coursename'; sortReverse = !sortReverse">
                       Course Name
                         <span ng-show="sortType == 'coursename' && !sortReverse" class="fa fa-caret-down"></span>
                         <span ng-show="sortType == 'coursename' && sortReverse" class="fa fa-caret-up"></span>
                       </a>
                     </td>
                     <td>
-                      <a href="#" ng-click="sortType = 'professor'; sortReverse = !sortReverse">
+                      <a href="javascript:void(0)" ng-click="sortType = 'professor'; sortReverse = !sortReverse">
                       Professor
                         <span ng-show="sortType == 'professor' && !sortReverse" class="fa fa-caret-down"></span>
                         <span ng-show="sortType == 'professor' && sortReverse" class="fa fa-caret-up"></span>
                       </a>
                     </td>
                     <td>
-                      <a href="#" ng-click="sortType = 'room'; sortReverse = !sortReverse">
+                      <a href="javascript:void(0)" ng-click="sortType = 'room'; sortReverse = !sortReverse">
                         Room Number and Time
                         <span ng-show="sortType == 'room' && !sortReverse" class="fa fa-caret-down"></span>
                         <span ng-show="sortType == 'room' && sortReverse" class="fa fa-caret-up"></span>
@@ -134,30 +131,6 @@
                 });
             </script>
             <!--End of NG-Filter-->
-            <br />
-
-            <h4 class="lead">Mathematics</h4>
-            <hr />
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Course</th>
-                    <th>Course Name</th>
-                    <th>Instructor</th>
-                    <th>Grade Received</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($courses as $course)
-                    <tr>
-                        <td>{{ $course->subject . ' ' . $course->courseNumber }}</td>
-                        <td>{{ $course->courseName }}</td>
-                        <td>{{ $course->instructor }}</td>
-                        <td></td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
             <br />
         </div>
     </div>
