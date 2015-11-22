@@ -46,18 +46,15 @@
             <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.4/angular-filter.min.js"></script>
             <div ng-app="search" ng-controller="mainController">
 
-              <div class="alert alert-info">
-                <p>Sort Type: [[ sortType ]]</p>
-                <p>Sort Reverse: [[ sortReverse ]]</p>
-                <p>Search Query: [[ searchClass ]]</p>
-              </div>
+              {{--<div class="alert alert-info">--}}
+                {{--<p>Sort Type: [[ sortType ]]</p>--}}
+                {{--<p>Sort Reverse: [[ sortReverse ]]</p>--}}
+                {{--<p>Search Query: [[ searchClass ]]</p>--}}
+              {{--</div>--}}
 
-              <form>
+              <form class="form">
                 <div class="form-group">
-                  <div class="input-group">
-                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
                     <input type="text" class="form-control" placeholder="Enter class information here" ng-model="searchClass">
-                  </div>
                 </div>
               </form>
 
