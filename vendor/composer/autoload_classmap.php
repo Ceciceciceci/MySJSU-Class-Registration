@@ -524,4 +524,5 @@ return array(
     'StudentsTableSeeder' => $baseDir . '/database/seeds/StudentsTableSeeder.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'UsersTableSeeder' => $baseDir . '/database/seeds/UsersTableSeeder.php',
 );

@@ -13,7 +13,7 @@
 
 Route::get('/', 'SiteController@index');
 Route::post('login', 'SiteController@login');
-Route::post('logout', 'SiteController@logout');
+Route::get('logout', 'SiteController@logout');
 
 Route::get('students/academics', 'StudentsController@academics');
 Route::resource('students', 'StudentsController');
@@ -30,3 +30,10 @@ Route::get('api', 'APIController@main');
  */
 Route::get('cecilia', 'SiteController@cecilia');
 Route::get('maninderpal', 'SiteController@maninderpal');
+
+/*
+ * Redirect routes
+ */
+Route::get('auth/login', function() {
+   return redirect()->action('SiteController@index');
+});

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SiteController extends Controller
 {
@@ -19,19 +21,26 @@ class SiteController extends Controller
 
     public function login(Request $request) {
         $id = $request->get('sjsu_id');
+        $password = $request->get('password');
+        $inputs = ['id' => $id, 'password' => $password];
+        $rules = ['id'    => 'required', 'password' => 'required',];
+        $validator = Validator::make($inputs, $rules);
+        $user = User::find($id);
 
-        // For simplicity, if < 50 then Professor else Student
-        if($id < 50) {
-            $user = Instructor::where('iid', $id)->first();
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput($request->except('password'));
+        }
 
-            if($user && $request->get('password') === $user->password) {
+
+        if($user && $password === $user->password) {
+            Auth::login($user);
+
+            if($id <= 38) {
                 return redirect()->action('ProfessorsController@index');
             }
-        }
-        else {
-            $user = Student::where('sid', $id)->first();
-
-            if($user && $request->get('password') === $user->password) {
+            else {
                 return redirect()->action('StudentsController@index');
             }
         }
@@ -40,7 +49,8 @@ class SiteController extends Controller
     }
 
     public function logout() {
-
+        Auth::logout();
+        return redirect()->action('SiteController@index');
     }
 
     public function cecilia() {
@@ -49,5 +59,35 @@ class SiteController extends Controller
 
     public function maninderpal() {
         return view('maninderpal/temp');
+    }
+
+    private function verify($request, $id, $password)
+    {
+        $inputs = ['id' => $id, 'password' => $password];
+        $rules = [
+            'id'    => 'required',
+            'password' => 'required',
+        ];
+        $validator = Validator::make($inputs, $rules);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                             ->withErrors($validator) // send back all errors to the login form
+                             ->withInput($request->except('password')); // send back the input (not the password) so that we can repopulate the form
+        }
+        else {
+            $id = (isset($inputs['id']) ? $inputs['id'] : '');
+            $password = (isset($inputs['password']) ? $inputs['password'] : '');
+
+            if (Auth::attempt(['id' => $id, 'password' => $password], false, true)) {
+                return redirect()->route('students.index');
+            }
+            else {
+                return "wrong credential: " . $id . " " . $password;
+//                return redirect()->back()
+//                    ->withErrors('Login credentials are not correct, please try again.')
+//                    ->withInput($request->except('password'));
+            }
+        }
     }
 }
