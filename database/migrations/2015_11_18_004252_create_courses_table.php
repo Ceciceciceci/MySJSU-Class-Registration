@@ -21,7 +21,7 @@ class CreateCoursesTable extends Migration
         });*/
         Schema::create('courses', function (Blueprint $table) {
             $table->integer('class');
-            $table->integer('cid'); // class id
+            $table->increments('cid'); // class id
             $table->string('subject');
             $table->string('courseNumber');
             $table->string('courseName');
@@ -32,10 +32,10 @@ class CreateCoursesTable extends Migration
             $table->string('endTime'); // what format?
             $table->string('room');
             $table->string('instructor');
-            $table->integer('iid'); // instructor id
+            $table->integer('iid')->nullable(); // instructor id
             $table->string('meetingDates');
-            $table->integer("seats", false, true);
-            $table->timestamps();
+            $table->integer("seats", false, true)->nullable();
+            $table->nullableTimestamps();
         }); 
     }
 
