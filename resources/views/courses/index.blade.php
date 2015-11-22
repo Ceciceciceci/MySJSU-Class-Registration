@@ -58,30 +58,38 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>CS 49J</td>
-                    <td>Introduction to Java</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr>
-                    <td>CS 46B</td>
-                    <td>Introduction to CS Part II</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr>
-                    <td>CS 49C</td>
-                    <td>Introduction to C Programming</td>
-                    <td>Frank Butt</td>
-                    <td>C</td>
-                </tr>
-                <tr>
-                    <td>CS 46A</td>
-                    <td>Introduction to CS Part I</td>
-                    <td>Frank Butt</td>
-                    <td>F</td>
-                </tr>
+                @foreach($courses as $course)
+                    <tr>
+                        <td>{{ $course->subject . ' ' . $course->courseNumber }}</td>
+                        <td>{{ $course->courseName }}</td>
+                        <td></td>
+                        <td>A+</td>
+                    </tr>
+                @endforeach
+                {{--<tr>--}}
+                    {{--<td>CS 49J</td>--}}
+                    {{--<td>Introduction to Java</td>--}}
+                    {{--<td>Frank Butt</td>--}}
+                    {{--<td>A+</td>--}}
+                {{--</tr>--}}
+                {{--<tr>--}}
+                    {{--<td>CS 46B</td>--}}
+                    {{--<td>Introduction to CS Part II</td>--}}
+                    {{--<td>Frank Butt</td>--}}
+                    {{--<td>A+</td>--}}
+                {{--</tr>--}}
+                {{--<tr>--}}
+                    {{--<td>CS 49C</td>--}}
+                    {{--<td>Introduction to C Programming</td>--}}
+                    {{--<td>Frank Butt</td>--}}
+                    {{--<td>C</td>--}}
+                {{--</tr>--}}
+                {{--<tr>--}}
+                    {{--<td>CS 46A</td>--}}
+                    {{--<td>Introduction to CS Part I</td>--}}
+                    {{--<td>Frank Butt</td>--}}
+                    {{--<td>F</td>--}}
+                {{--</tr>--}}
                 </tbody>
             </table>
             <br />
