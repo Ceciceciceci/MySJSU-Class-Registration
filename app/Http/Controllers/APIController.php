@@ -16,21 +16,7 @@ class APIController extends Controller
     public function main(Request $request) {
         switch($request->data) {
             case "courses":
-                $courses = [
-                    [
-                        'courseid' => '10000',
-                        'coursename' => 'CS46A',
-                        'professor' => 'O-Brien',
-                        'room' =>'WSQ 109'
-                    ],
-                    [
-                        'courseid' => '20000',
-                        'coursename' => 'CS46B',
-                        'professor' => 'Potika',
-                        'room' => 'MQH 233'
-                    ]
-                ];
-//                $courses = Course::all();
+                $courses = Course::all();
                 return response()->json(['courses' => $courses]);
 
             default:

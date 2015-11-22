@@ -14,7 +14,15 @@ class SiteController extends Controller
     }
 
     public function login(Request $request) {
-        return redirect()->action('StudentsController@index');
+        $id = $request->get('sjsu_id');
+
+        // For simplicity, if < 50 then Professor else Student
+        if($id < 50) {
+            return redirect()->action('ProfessorsController@index');
+        }
+        else {
+            return redirect()->action('StudentsController@index');
+        }
     }
 
     public function logout() {

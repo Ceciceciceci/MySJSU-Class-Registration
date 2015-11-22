@@ -16,7 +16,7 @@ class ProfessorsController extends Controller
      */
     public function index()
     {
-        //
+        return "this is professor's view";
     }
 
     /**
