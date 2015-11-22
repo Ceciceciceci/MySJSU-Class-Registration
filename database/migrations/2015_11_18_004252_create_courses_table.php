@@ -12,12 +12,31 @@ class CreateCoursesTable extends Migration
      */
     public function up()
     {
+        /*
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('course');
             $table->integer("seats", false, true);
             $table->timestamps();
-        });
+        });*/
+        Schema::create('courses', function (Blueprint $table) {
+            $table->integer('class');
+            $table->integer('cid'); // class id
+            $table->string('subject');
+            $table->string('courseNumber');
+            $table->string('courseName');
+            $table->string('section1');
+            $table->string('section2');
+            $table->string('days');
+            $table->string('startTime'); // what format?
+            $table->string('endTime'); // what format?
+            $table->string('room');
+            $table->string('instructor');
+            $table->integer('iid'); // instructor id
+            $table->string('meetingDates');
+            $table->integer("seats", false, true);
+            $table->timestamps();
+        }); 
     }
 
     /**
