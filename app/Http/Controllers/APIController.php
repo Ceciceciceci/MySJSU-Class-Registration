@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -29,6 +30,7 @@ class APIController extends Controller
                         'room' => 'MQH 233'
                     ]
                 ];
+//                $courses = Course::all();
                 return response()->json(['courses' => $courses]);
 
             default:
