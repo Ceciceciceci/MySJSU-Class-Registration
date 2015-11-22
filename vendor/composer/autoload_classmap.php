@@ -6,7 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CreateClassesTakenTable' => $baseDir . '/database/migrations/2015_11_20_024134_create_classestaken_table.php',
+    'CoursesTableSeeder' => $baseDir . '/database/seeds/CoursesTableSeeder.php',
+    'CreateClassestakenTable' => $baseDir . '/database/migrations/2015_11_20_024134_create_classestaken_table.php',
     'CreateCoursesTable' => $baseDir . '/database/migrations/2015_11_18_004252_create_courses_table.php',
     'CreateInstructorsTable' => $baseDir . '/database/migrations/2015_11_18_004236_create_instructors_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
@@ -86,6 +87,7 @@ return array(
     'Hamcrest\\Util' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
     'Hamcrest\\Xml\\HasXPath' => $vendorDir . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
+    'InstructorsTableSeeder' => $baseDir . '/database/seeds/InstructorsTableSeeder.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
     'PHPUnit_Extensions_PhptTestCase' => $vendorDir . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
