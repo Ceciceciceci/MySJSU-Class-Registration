@@ -295,11 +295,12 @@ function courseReverseID( $courseID ){
 	global $coursesReversedHT;
 	return $coursesReversedHT[ $courseID ];
 }
-
+/*
 echo instructorID("Robert Bruce");
 echo "<br>";
 echo courseID( "MATH 8" );
 echo "<br>";
 echo courseReverseID( "115" );
 echo "<br>";
+*/
 ?>
