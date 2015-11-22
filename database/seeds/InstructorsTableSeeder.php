@@ -11,12 +11,6 @@ class InstructorsTableSeeder extends Seeder
      */
     public function run()
     {
-        /*\DB::table('instructors')->insert([
-            [
-                'fullName' => 'Ahmad Yazdankhah',
-                'pass' => 'frankbutt'
-            ]
-        ]);*/
         DB::table('instructors')->insert(array(
             array('fullName' => 'Ahmad Yazdankhah', 'password' => 'password'),
             array('fullName' => 'Ahmed Ezzat', 'password' => 'password'),

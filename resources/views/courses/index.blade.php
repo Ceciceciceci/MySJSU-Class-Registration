@@ -41,33 +41,119 @@
         </div>
         <div class="col-sm-9">
             <br />
-            <div class="form">
-                <input type="text" class="form-control" placeholder="Angular Search ngFilter">
-            </div>
-            <br />
+            <!--Beginning of NG-Filter-->
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.4/angular-filter.min.js"></script>
+            <div ng-app="search" ng-controller="mainController">
 
-            <h4 class="lead">Mathematics</h4>
-            <hr />
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Course</th>
-                    <th>Course Name</th>
-                    <th>Instructor</th>
-                    <th>Grade Received</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($courses as $course)
+              {{--<div class="alert alert-info">--}}
+                {{--<p>Sort Type: [[ sortType ]]</p>--}}
+                {{--<p>Sort Reverse: [[ sortReverse ]]</p>--}}
+                {{--<p>Search Query: [[ searchClass ]]</p>--}}
+              {{--</div>--}}
+
+              <form class="form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter class information here" ng-model="searchClass">
+                </div>
+              </form>
+
+              <div ng-repeat="(key, value) in class | orderBy:sortType:sortReverse | filter:searchClass | groupBy: 'courseName1'" >
+                <p> [[key]] </p>
+                <table class="table table-bordered table-striped">
+
+                  <thead>
                     <tr>
-                        <td>{{ $course->subject . ' ' . $course->courseNumber }}</td>
-                        <td>{{ $course->courseName }}</td>
-                        <td>{{ $course->instructor }}</td>
-                        <td></td>
+                      <td>
+                        <a href="javascript:void(0)" ng-click="sortType = 'section1'; sortReverse = !sortReverse">
+                          Section ID
+                          <span ng-show="sortType == 'section1' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'section1' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript:void(0)" ng-click="sortType = 'courseid'; sortReverse = !sortReverse">
+                        Course ID
+                          <span ng-show="sortType == 'courseid' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'courseid' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript:void(0)" ng-click="sortType = 'professor'; sortReverse = !sortReverse">
+                        Professor
+                          <span ng-show="sortType == 'professor' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'professor' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript:void(0)" ng-click="sortType = 'room'; sortReverse = !sortReverse">
+                          Room Number and Time
+                          <span ng-show="sortType == 'room' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'room' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                      </td>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
+                  </thead>
+
+                  <tbody>
+                    <tr ng-repeat="roll in value | orderBy:sortType:sortReverse | filter:searchClass">
+                      <!-- <td>[[roll.courseId]]</td> -->
+                        <td>[[roll.courseId1.courseSection]]</td>
+                        <td>[[roll.courseId1.subject]] [[roll.courseId1.courseNumber]]</td>
+                        <td>[[roll.courseId1.instructor ]]</td>
+                        <td>[[roll.courseId1.meeting]]</td>
+                    </tr> 
+                  </tbody>
+
+                </table>
+                <br />
+              </div>
+
+            </div>
+            
+            <script>
+                var search = angular.module('search', ['angular.filter']);
+                search.config(function ($interpolateProvider) {
+                    $interpolateProvider.startSymbol('[[');
+                    $interpolateProvider.endSymbol(']]');
+                })
+                search.controller('mainController', function($scope, $http) {
+                  $scope.sortType     = 'courseid'; // set the default sort type
+                  $scope.sortReverse  = false;  // set the default sort order
+                  $scope.searchClass   = '';     // set the default search/filter term
+
+                  $http.get('/index.php/api?data=courses')
+                  .success(function(response) {
+
+                      var groups = [];
+                      var json = response["courses"];
+
+                      //console.log(json);
+                      
+                      for(var i = 0; i < json.length; i++) {
+                        var obj = json[i];
+                        var result = {};
+                        result.courseSection = obj["class"];
+                        result.courseNumber = obj.subject + " " + obj.courseNumber;
+                        result.courseName = obj.courseName;
+                        result["type"] = obj.section1 + " " + obj.section2;
+                        result.days = obj.days;
+                        result.meeting = obj.room + " " + obj.startTime + " - " + obj.endTime;
+                        result.instructor = obj.instructor;
+
+                        groups.push({
+                          courseId1 : result,
+                          courseName1 : result.courseName
+                        });
+                      }
+
+                      // create the list of class rolls
+                      $scope.class = groups;
+
+                  });
+                });
+            </script>
+            <!--End of NG-Filter-->
             <br />
         </div>
     </div>
