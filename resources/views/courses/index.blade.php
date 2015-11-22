@@ -46,7 +46,7 @@
             </div>
             <br />
 
-            <h4 class="lead">Computer Science</h4>
+            <h4 class="lead">Mathematics</h4>
             <hr />
             <table class="table">
                 <thead>
@@ -62,74 +62,10 @@
                     <tr>
                         <td>{{ $course->subject . ' ' . $course->courseNumber }}</td>
                         <td>{{ $course->courseName }}</td>
+                        <td>{{ $course->instructor }}</td>
                         <td></td>
-                        <td>A+</td>
                     </tr>
                 @endforeach
-                {{--<tr>--}}
-                    {{--<td>CS 49J</td>--}}
-                    {{--<td>Introduction to Java</td>--}}
-                    {{--<td>Frank Butt</td>--}}
-                    {{--<td>A+</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                    {{--<td>CS 46B</td>--}}
-                    {{--<td>Introduction to CS Part II</td>--}}
-                    {{--<td>Frank Butt</td>--}}
-                    {{--<td>A+</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                    {{--<td>CS 49C</td>--}}
-                    {{--<td>Introduction to C Programming</td>--}}
-                    {{--<td>Frank Butt</td>--}}
-                    {{--<td>C</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                    {{--<td>CS 46A</td>--}}
-                    {{--<td>Introduction to CS Part I</td>--}}
-                    {{--<td>Frank Butt</td>--}}
-                    {{--<td>F</td>--}}
-                {{--</tr>--}}
-                </tbody>
-            </table>
-            <br />
-
-            <h4 class="lead">Mathematics</h4>
-            <hr />
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Course</th>
-                    <th>Course Name</th>
-                    <th>Instructor</th>
-                    <th>Grade Received</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>CS 49J</td>
-                    <td>Introduction to Java</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr>
-                    <td>CS 46B</td>
-                    <td>Introduction to CS Part II</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr>
-                    <td>CS 49C</td>
-                    <td>Introduction to C Programming</td>
-                    <td>Frank Butt</td>
-                    <td>C</td>
-                </tr>
-                <tr>
-                    <td>CS 46A</td>
-                    <td>Introduction to CS Part I</td>
-                    <td>Frank Butt</td>
-                    <td>F</td>
-                </tr>
                 </tbody>
             </table>
             <br />
