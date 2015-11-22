@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Instructor;
+use App\Professor;
+use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,11 +22,21 @@ class SiteController extends Controller
 
         // For simplicity, if < 50 then Professor else Student
         if($id < 50) {
-            return redirect()->action('ProfessorsController@index');
+            $user = Instructor::where('iid', $id)->first();
+
+            if($user && $request->get('password') === $user->password) {
+                return redirect()->action('ProfessorsController@index');
+            }
         }
         else {
-            return redirect()->action('StudentsController@index');
+            $user = Student::where('sid', $id)->first();
+
+            if($user && $request->get('password') === $user->password) {
+                return redirect()->action('StudentsController@index');
+            }
         }
+
+        return redirect()->back();
     }
 
     public function logout() {
