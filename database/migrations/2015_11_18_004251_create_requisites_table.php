@@ -13,7 +13,7 @@ class CreateRequisitesTable extends Migration
     public function up()
     {
         Schema::create('requisites', function (Blueprint $table) {
-            $table->integer('cid')->index();
+            $table->integer('cid')->unsigned()->index();
             $table->integer('prid')->nullable();
             $table->integer('ORprid')->nullable();
             $table->integer('crid')->nullable();
