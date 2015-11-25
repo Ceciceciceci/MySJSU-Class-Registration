@@ -7,6 +7,7 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/base.css">
+
               <!--   <link rel="stylesheet" href="/css/style.css">  -->
         <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     </head>
@@ -32,13 +33,22 @@
         </nav>
 
 
-        <div class="container">
+        <div class="main_body">
             <!-- Example row of columns -->
             @yield('main')
         </div> <!-- /container -->
 
+        <div class="footer_1 sjsu-container-prime">
+            
+            @yield('footer')
+        </div> 
+
+    
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="js/modernizr-latest.js"></script> 
+
     </body>
 </html>
