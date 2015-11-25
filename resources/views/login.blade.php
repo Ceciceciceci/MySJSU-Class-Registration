@@ -96,7 +96,7 @@
         <div class="row">
             <div class="col-lg-12" style="color:#E5A823" style=" background-color:#0D26B4" >
                 <h1 class="page-header" align="center" style="background-color:#0055A2" >
-                    Welcome to San Jose State university
+                    Welcome to San Jose State University
                 </h1>
             </div>
             <div class="col-md-4">
@@ -133,7 +133,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-success btn-sm">Sign in</button>
+        <!--<button type="submit" class="btn btn-success btn-sm">Sign in</button>-->
     {!! Form::close() !!}
     @if ($errors->has())
         <div style="position:relative;top:10px;background-color:white" class="pull-right text-danger">
