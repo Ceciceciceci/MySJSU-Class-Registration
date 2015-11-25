@@ -14,7 +14,11 @@
                 @endsection
 
                 @section('main')
-                 
+                    <style>
+                        body {
+                            padding-bottom:0 !important;
+                        }
+                    </style>
 
                  <!-- Navigation -->
 
@@ -96,7 +100,7 @@
         <div class="row">
             <div class="col-lg-12" style="color:#E5A823" style=" background-color:#0D26B4" >
                 <h1 class="page-header" align="center" style="background-color:#0055A2" >
-                    Welcome to San Jose State university
+                    Welcome to San Jose State University
                 </h1>
             </div>
             <div class="col-md-4">
@@ -133,15 +137,15 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-success btn-sm">Sign in</button>
-    {!! Form::close() !!}
-    @if ($errors->has())
-        <div style="position:relative;top:10px;background-color:white" class="pull-right text-danger">
-            @foreach ($errors->all() as $error)
-                {{ $error }}
-            @endforeach
-        </div>
-    @endif
+        {{--<button type="submit" class="btn btn-success btn-sm">Sign in</button>--}}
+        {!! Form::close() !!}
+        @if ($errors->has())
+            <div style="position:relative;top:10px;background-color:white" class="pull-right text-danger">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            </div>
+        @endif
 @endsection
 
        
@@ -164,75 +168,78 @@
     </script>
 
 
-                    <!-- .container end --> 
+                    <!-- .container end -->
                 @endsection
 
 
                 @section('footer')
+                    <div class="footer_1 sjsu-container-prime">
+                        <footer>
+                            <div class="container" >
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="col">
+                                            <h4>Contact us</h4>
+                                            <ul>
+                                                <li><a href="https://www.google.com/maps/@37.3351916,-121.8832602,17z">1 Washington Sq, San Jose, CA 95192</a></li>
+                                                <li>Phone: 408-924-1000  </li>
+                                                <li>Email: <a href="mailto:info@example.com" title="Email Us">ithelpdesk@sjsu.edu</a></li>
 
-                <footer>
-<div class="container" >
-        <div class="row">
-            <div class="col-md-3">
-                <div class="col">
-                   <h4>Contact us</h4>
-                   <ul>
-                        <li><a href="https://www.google.com/maps/@37.3351916,-121.8832602,17z">1 Washington Sq, San Jose, CA 95192</a></li>
-                        <li>Phone: 408-924-1000  </li>
-                        <li>Email: <a href="mailto:info@example.com" title="Email Us">ithelpdesk@sjsu.edu</a></li>
-                        
-                    </ul>
-                 </div>
-            </div>
-            
-            <div class="col-md-3">
-                <div class="col">
-                        <h4>Colleges</h4>
-                        <ul>
-                            <li><a href="http://www.sjsu.edu/casa/">Applied Sciences &amp; Arts</a></li>
-                            <li><a href="http://www.sjsu.edu/cob/">Business</a></li>
-                            <li><a href="http://www.sjsu.edu/education/">Education</a></li>
-                            <li><a href="http://engineering.sjsu.edu/">Engineering</a></li>
-                            <li><a href="http://www.sjsu.edu/humanitiesandarts/">Humanities &amp; the Arts</a></li>
-                            <li><a href="http://www.sjsu.edu/cies/">International &amp; Extended Studies</a></li>
-                            <li><a href="http://www.sjsu.edu/science/">Science</a></li>
-                            <li><a href="http://www.sjsu.edu/socialsciences/">Social Sciences</a></li>
-                        </ul>
-                  
-                </div>
-            </div>
-            
-            <div class="col-md-3" >
-                <div class="col col-social-icons">
-                    <h4>Follow us</h4>
-    
-                    <li><a href="https://www.facebook.com/sanjosestate/">Facebook</a></li>
-                    <li><a href="https://plus.google.com/+SJSUBMES/posts">Google +</a></li>
-                    <li><a href="https://www.youtube.com/user/sjsu">You Tube</a></li>
-                    <li><a href="https://www.linkedin.com/edu/san-jose-state-university-17911">Linkedin</li>
-                    <li><a href="https://twitter.com/SJSU?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">twitter</a></li>
-                </div>
-            </div>
+                                            </ul>
+                                        </div>
+                                    </div>
 
-             <div class="col-md-3">
-                <div class="col">
-                    <h4>Quick link</h4>
-                       <ul>
-                            <li><a href="http://www.sjsu.edu/siteindex">A-Z Index</a></li>
-                            <li><a href="http://www.sjsu.edu/adminfinance/about/budget_central/index.html">Budget Central</a></li>
-                            <li><a href="http://www.sjsu.edu/calendars/index.html">Calendars</a></li>
-                            <li><a href="https://sjsu.instructure.com/">Canvas</a></li>
-                            <li><a href="http://www.sjsu.edu/employment">Careers &amp; Jobs</a></li>
-                            <li><a href="http://library.sjsu.edu/"> King Library</a></li>
-                            <li><a href="http://www.sjsu.edu/parkingtransportationmaps/index.html">Parking &amp; Maps</a></li>
-                        </ul>
-                </div>
-            </div>
-        </div>
-         
-    </div>
-    
-</footer>
+                                    <div class="col-md-3">
+                                        <div class="col">
+                                            <h4>Colleges</h4>
+                                            <ul>
+                                                <li><a href="http://www.sjsu.edu/casa/">Applied Sciences &amp; Arts</a></li>
+                                                <li><a href="http://www.sjsu.edu/cob/">Business</a></li>
+                                                <li><a href="http://www.sjsu.edu/education/">Education</a></li>
+                                                <li><a href="http://engineering.sjsu.edu/">Engineering</a></li>
+                                                <li><a href="http://www.sjsu.edu/humanitiesandarts/">Humanities &amp; the Arts</a></li>
+                                                <li><a href="http://www.sjsu.edu/cies/">International &amp; Extended Studies</a></li>
+                                                <li><a href="http://www.sjsu.edu/science/">Science</a></li>
+                                                <li><a href="http://www.sjsu.edu/socialsciences/">Social Sciences</a></li>
+                                            </ul>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3" >
+                                        <div class="col col-social-icons">
+                                            <h4>Follow us</h4>
+
+                                            <li><a href="https://www.facebook.com/sanjosestate/">Facebook</a></li>
+                                            <li><a href="https://plus.google.com/+SJSUBMES/posts">Google +</a></li>
+                                            <li><a href="https://www.youtube.com/user/sjsu">You Tube</a></li>
+                                            <li><a href="https://www.linkedin.com/edu/san-jose-state-university-17911">Linkedin</li>
+                                            <li><a href="https://twitter.com/SJSU?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">twitter</a></li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="col">
+                                            <h4>Quick link</h4>
+                                            <ul>
+                                                <li><a href="http://www.sjsu.edu/siteindex">A-Z Index</a></li>
+                                                <li><a href="http://www.sjsu.edu/adminfinance/about/budget_central/index.html">Budget Central</a></li>
+                                                <li><a href="http://www.sjsu.edu/calendars/index.html">Calendars</a></li>
+                                                <li><a href="https://sjsu.instructure.com/">Canvas</a></li>
+                                                <li><a href="http://www.sjsu.edu/employment">Careers &amp; Jobs</a></li>
+                                                <li><a href="http://library.sjsu.edu/"> King Library</a></li>
+                                                <li><a href="http://www.sjsu.edu/parkingtransportationmaps/index.html">Parking &amp; Maps</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </footer>
+
+                    </div>
+
 
 
                 @endsection

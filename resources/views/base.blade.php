@@ -33,22 +33,20 @@
         </nav>
 
 
-        <div class="main_body">
+        <div class="main_body container">
             <!-- Example row of columns -->
             @yield('main')
         </div> <!-- /container -->
 
-        <div class="footer_1 sjsu-container-prime">
-            
-            @yield('footer')
-        </div> 
+       @yield('footer')
+
 
     
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="js/modernizr-latest.js"></script> 
+        <script src="/js/modernizr-latest.js"></script>
 
     </body>
 </html>
