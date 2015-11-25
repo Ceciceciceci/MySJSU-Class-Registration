@@ -64,7 +64,7 @@
               {{--<table class="table table-bordered table-striped">--}}
 
                 {{--<thead>--}}
-                  {{--<tr>--}}
+                    {{--<tr>--}}
                     {{--<td>--}}
                       {{--<a href="#" ng-click="sortType = 'courseid'; sortReverse = !sortReverse">--}}
                         {{--Course ID--}}
