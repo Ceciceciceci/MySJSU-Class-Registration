@@ -7,8 +7,8 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
         <link rel="stylesheet" href="/css/base.css">
+        <!--   <link rel="stylesheet" href="/css/style.css">  -->
 
-              <!--   <link rel="stylesheet" href="/css/style.css">  -->
         <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     </head>
     <body>

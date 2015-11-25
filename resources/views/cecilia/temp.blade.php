@@ -15,7 +15,7 @@
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-        
+    
     <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
     </head>
 
@@ -49,7 +49,7 @@
                    <center><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/San_Jose_State_Spartans_Logo.svg/325px-San_Jose_State_Spartans_Logo.svg.png" style="width:30%; height:30%;"></center>
                     <h5 class="centered">
                         Welcome, <br><br>
-                        SJSU Student Name</h5>
+                        [[Student.name]]</h5>
 
                     <li class="mt">
                         <a href="{{ action('StudentsController@index') }}">
@@ -190,15 +190,12 @@
                         { courseid: 'edcba', coursename: 'CS161', professor: 'Ezzat',room:'MQH 345' },
                         { courseid: 'zywxv', coursename: 'CS151', professor: 'Lynn',room:'MQH 345' }
                       ];
-
                     });
                 </script>        
 
                     <!--***********************************************************************************
                     **************************END OF NG FILTER********************************************
                     *************************************************************************************-->
-                        
-                        
                         
                         <h1>CURRENT CLASSES</h1>
                         <table class="table">

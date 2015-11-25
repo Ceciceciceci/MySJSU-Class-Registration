@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Requisites extends Model
 {
 
     /**
@@ -12,7 +12,7 @@ class Course extends Model
      *
      * @var string
      */
-    protected $table = 'courses';
+    protected $table = 'requisites';
 
     /**
      * The attributes that are mass assignable.
@@ -33,12 +33,7 @@ class Course extends Model
      *
      * @var array
      */
-    public function requisites() {
-        return $this->hasMany('App\Requisites', 'cid', 'cid');
-    }
-    public function test(){
-        return $this->instructor;
-    }
+
     /*
     public function corequisites() {
         return $this->belongsToMany('App\Course', 'requisites', 'cid', 'crid');

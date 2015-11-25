@@ -42,7 +42,9 @@
         <div class="col-sm-9">
             <br />
             <!--Beginning of NG-Filter-->
-            <div ng-app="main" ng-controller="mainController">
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.4/angular-filter.min.js"></script>
+            <div ng-app="search" ng-controller="mainController">
 
               {{--<div class="alert alert-info">--}}
                 {{--<p>Sort Type: [[ sortType ]]</p>--}}
@@ -56,76 +58,103 @@
                 </div>
               </form>
 
-              <table class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <td>
-                      <a href="javascript:void(0)" ng-click="sortType = 'courseid'; sortReverse = !sortReverse">
-                        Course ID
-                        <span ng-show="sortType == 'courseid' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'courseid' && sortReverse" class="fa fa-caret-up"></span>
-                      </a>
-                    </td>
-                    <!--<td>
-                      <a href="#" ng-click="sortType = 'section1'; sortReverse = !sortReverse">
-                        Section ID
-                        <span ng-show="sortType == 'section1' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'section1' && sortReverse" class="fa fa-caret-up"></span>
-                      </a>
-                    </td> -->
-                    <td>
-                      <a href="javascript:void(0)" ng-click="sortType = 'coursename'; sortReverse = !sortReverse">
-                      Course Name
-                        <span ng-show="sortType == 'coursename' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'coursename' && sortReverse" class="fa fa-caret-up"></span>
-                      </a>
-                    </td>
-                    <td>
-                      <a href="javascript:void(0)" ng-click="sortType = 'professor'; sortReverse = !sortReverse">
-                      Professor
-                        <span ng-show="sortType == 'professor' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'professor' && sortReverse" class="fa fa-caret-up"></span>
-                      </a>
-                    </td>
-                    <td>
-                      <a href="javascript:void(0)" ng-click="sortType = 'room'; sortReverse = !sortReverse">
-                        Room Number and Time
-                        <span ng-show="sortType == 'room' && !sortReverse" class="fa fa-caret-down"></span>
-                        <span ng-show="sortType == 'room' && sortReverse" class="fa fa-caret-up"></span>
-                      </a>
-                    </td>
-                  </tr>
-                </thead>
+              <div ng-repeat="(key, value) in class | orderBy:sortType:sortReverse | filter:searchClass | groupBy: 'courseName1'" >
+                <p> [[key]] <i class="glyphicon glyphicon-ok-sign text-success"></i></p>
+                <table class="table table-bordered table-striped">
 
-                <tbody>
-                  <tr ng-repeat="roll in class | orderBy:sortType:sortReverse | filter:searchClass">
-                    <td>[[ roll.subject]] [[ roll.courseNumber]]</td>
-                    <!-- <td>[[ roll.section1]]</td> -->
-                    <td>[[ roll.courseName ]]</td>
-                    <td>[[ roll.instructor ]]</td>
-                    <td>[[ roll.room]] [[ roll.startTime]] - [[ roll.endTime]]</td>
-                  </tr>
-                </tbody>
+                  <thead>
+                    <tr>
+                      <td>
+                        <a href="javascript:void(0)" ng-click="sortType = 'section1'; sortReverse = !sortReverse">
+                          Section ID
+                          <span ng-show="sortType == 'section1' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'section1' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript:void(0)" ng-click="sortType = 'professor'; sortReverse = !sortReverse">
+                        Professor
+                          <span ng-show="sortType == 'professor' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'professor' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript:void(0)" ng-click="sortType = 'room'; sortReverse = !sortReverse">
+                        Room
+                          <span ng-show="sortType == 'room' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'room' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                      </td>
+                      <td>
+                        <a href="javascript:void(0)" ng-click="sortType = 'meeting'; sortReverse = !sortReverse">
+                          Meeting Days & Time
+                          <span ng-show="sortType == 'meeting' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'meeting' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                      </td>
+                      <td>
+                        
+                          
+                        </a>
+                      </td>
+                    </tr>
+                  </thead>
 
-              </table>
+                  <tbody>
+                    <tr ng-repeat="roll in value | orderBy:sortType:sortReverse | filter:searchClass">
+                      <!-- <td>[[roll.courseId]]</td> -->
+                        <td>[[roll.courseId1.courseSection]]</td>
+                        <td>[[roll.courseId1.instructor ]]</td>
+                        <td>[[roll.courseId1.room]]</td>
+                        <td>[[roll.courseId1.meeting]]</td>
+                        <td style="text-align:center"><i class="glyphicon glyphicon-plus text-success"></i></td>
+                    </tr> 
+                  </tbody>
+
+                </table>
+                <br />
+              </div>
 
             </div>
             
             <script>
-                angular.module('main', [])
-                .config(function ($interpolateProvider) {
+                var search = angular.module('search', ['angular.filter']);
+                search.config(function ($interpolateProvider) {
                     $interpolateProvider.startSymbol('[[');
                     $interpolateProvider.endSymbol(']]');
                 })
-                .controller('mainController', function($scope, $http) {
+                search.controller('mainController', function($scope, $http) {
                   $scope.sortType     = 'courseid'; // set the default sort type
                   $scope.sortReverse  = false;  // set the default sort order
                   $scope.searchClass   = '';     // set the default search/filter term
 
                   $http.get('/index.php/api?data=courses')
                   .success(function(response) {
+
+                      var groups = [];
+                      var json = response["courses"];
+
+                      //console.log(json);
+                      
+                      for(var i = 0; i < json.length; i++) {
+                        var obj = json[i];
+                        var result = {};
+                        result.courseSection = obj["class"];
+                        result.courseName = obj.subject + " " + obj.courseNumber + " - " +obj.courseName;
+                        result["type"] = obj.section1 + " " + obj.section2;
+                        result.room = obj.room;
+                        result.meeting = obj. days + " " + obj.startTime + " - " + obj.endTime;
+                        result.instructor = obj.instructor;
+                        result.seats= obj.seats;
+
+                        groups.push({
+                          courseId1 : result,
+                          courseName1 : result.courseName
+                        });
+                      }
+
                       // create the list of class rolls
-                      $scope.class = response["courses"];
+                      $scope.class = groups;
 
                   });
                 });

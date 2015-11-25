@@ -21,7 +21,8 @@ class CreateCoursesTable extends Migration
         });*/
         Schema::create('courses', function (Blueprint $table) {
             $table->integer('class');
-            $table->increments('cid'); // class id
+            $table->integer('cid')->unsigned()->nullable(); // class id
+            //$table->foreign('cid')->references('cid')->on('requisites');
             $table->string('subject');
             $table->string('courseNumber');
             $table->string('courseName');

@@ -133,7 +133,16 @@
                 </div>
             </div>
         </div>
-        <!-- /.row -->
+        <button type="submit" class="btn btn-success btn-sm">Sign in</button>
+    {!! Form::close() !!}
+    @if ($errors->has())
+        <div style="position:relative;top:10px;background-color:white" class="pull-right text-danger">
+            @foreach ($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </div>
+    @endif
+@endsection
 
        
         <!-- /.row -->
