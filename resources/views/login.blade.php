@@ -2,7 +2,7 @@
 
                 @section('navbar-right')
                     {!! Form::open(['action' => 'SiteController@login', 'class' => 'form navbar-form navbar-right']) !!}
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                       <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}" /> -->
                         <div class="form-group">
                             <input name="sjsu_id" type="text" placeholder="SJSU ID" class="form-control input-sm">
                         </div>
