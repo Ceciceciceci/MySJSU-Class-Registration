@@ -92,11 +92,17 @@ class CoursesController extends Controller
 
     public function plan()
     {
-        return view('students.courses.plan');
+        if(Auth::user()->id <= 38)
+            return redirect()->route('professors.index');
+        else
+            return view('students.courses.plan');
     }
 
     public function enroll(Request $request)
     {
-        return view('students.courses.enroll');
+        if(Auth::user()->id <= 38)
+            return redirect()->route('professors.index');
+        else
+            return view('students.courses.enroll');
     }
 }
