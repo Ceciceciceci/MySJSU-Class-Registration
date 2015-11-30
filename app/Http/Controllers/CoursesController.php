@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CoursesController extends Controller
 {
@@ -17,7 +18,10 @@ class CoursesController extends Controller
      */
     public function index(Request $request)
     {
-        return view('courses.index', ['courses' => Course::all()]);
+        if(Auth::user()->id <= 38)
+            return view('professors.courses.index', ['courses' => Course::all()]);
+        else
+            return view('students.courses.index', ['courses' => Course::all()]);
     }
 
     /**
@@ -88,11 +92,11 @@ class CoursesController extends Controller
 
     public function plan()
     {
-        return view('courses.plan');
+        return view('students.courses.plan');
     }
 
     public function enroll(Request $request)
     {
-        return view('courses.enroll');
+        return view('students.courses.enroll');
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class StudentsController extends Controller
 {
@@ -20,7 +21,10 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        return view('students.index');
+        if(Auth::user()->id <= 38)
+            return redirect()->route('professors.index');
+        else
+            return view('students.index');
     }
 
     /**
