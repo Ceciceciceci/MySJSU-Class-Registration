@@ -95,6 +95,9 @@ class StudentsController extends Controller
 
     public function academics()
     {
-        return view('students.academics');
+        if(Auth::user()->id <=38)
+            return redirect()->route('professors.index');
+        else
+            return view('students.academics');
     }
 }
