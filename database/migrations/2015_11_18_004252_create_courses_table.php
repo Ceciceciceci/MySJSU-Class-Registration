@@ -20,8 +20,8 @@ class CreateCoursesTable extends Migration
             $table->timestamps();
         });*/
         Schema::create('courses', function (Blueprint $table) {
-            $table->integer('class');
-            $table->integer('cid')->unsigned()->nullable(); // class id
+            $table->integer('class')->unsigned()->index();
+            $table->integer('cid')->unsigned()->index();//->nullable(); // class id
             //$table->foreign('cid')->references('cid')->on('requisites');
             $table->string('subject');
             $table->string('courseNumber');
