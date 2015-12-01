@@ -23,7 +23,7 @@
                         Search Classes
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="{{ action('CoursesController@addCode') }}">
                         <i class="glyphicon glyphicon-list-alt"></i>
                         Add Codes
