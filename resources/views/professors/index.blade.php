@@ -1,6 +1,6 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    
+
 </head>
 @extends('base')
 
@@ -41,7 +41,7 @@
         <div class="col-sm-9">
             <h4 class="lead">Alerts</h4>
             <hr />
-            <p class="text-center">There is a problem student in CS 49J Enrolled.</p>
+            <p class="text-center">You have no alert</p>
             <br />
 
             <h4 class="lead">Courses I Teach</h4>
@@ -51,88 +51,39 @@
                 <tr>
                     <th>Course</th>
                     <th>Course Name</th>
-                    <th></th>
-                    <th>View Enrolled</th>
+                    <th>Instructor</th>
+                    <th>Grade Received</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="success"> 
-                    <td>CS 49J
-                    </td>
+                <tr class="success">
+                    <td>CS 49J</td>
                     <td>Introduction to Java</td>
                     <td>Frank Butt</td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseOne" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
-                                </div>
-                            </div>
-                        </div></td>
+                    <td>A+</td>
                 </tr>
                 <tr class="success">
                     <td>CS 46B</td>
                     <td>Introduction to CS Part II</td>
                     <td>Frank Butt</td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseTwo" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
-                                </div>
-                            </div>
-                        </div></td>
+                    <td>A+</td>
                 </tr>
-                <tr class="success">
+                <tr class="warning">
                     <td>CS 49C</td>
                     <td>Introduction to C Programming</td>
                     <td>Frank Butt</td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseThree" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
-                                </div>
-                            </div>
-                        </div></td>
+                    <td>C</td>
                 </tr>
-                <tr class="success">
+                <tr class="danger">
                     <td>CS 46A</td>
                     <td>Introduction to CS Part I</td>
                     <td>Frank Butt</td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseFour">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseFour" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
-                                </div>
-                            </div>
-                        </div></td>
+                    <td>F</td>
                 </tr>
                 </tbody>
-            </table> 
+            </table>
             <a href=""><p class="text-right">more</p></a>
             <br />
         </div>
     </div>
-
-<!-- JAVASCRIPT -->
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.4/angular-filter.min.js"></script>
 @endsection
