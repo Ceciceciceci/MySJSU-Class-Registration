@@ -53,53 +53,50 @@
         <div class="col-sm-9">
             <h4 class="lead">Alerts</h4>
             <hr />
-            <p class="text-center">You have no alert</p>
+            <p class="alert alert-info text-center">You have no alert</p>
             <br />
 
             <h4 class="lead">Courses I've Taken</h4>
             <hr />
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Course</th>
-                    <th>Course Name</th>
-                    <th>Instructor</th>
-                    <th>Grade Received</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="success">
-                    <td>CS 49J</td>
-                    <td>Introduction to Java</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr class="success">
-                    <td>CS 46B</td>
-                    <td>Introduction to CS Part II</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr class="warning">
-                    <td>CS 49C</td>
-                    <td>Introduction to C Programming</td>
-                    <td>Frank Butt</td>
-                    <td>C</td>
-                </tr>
-                <tr class="danger">
-                    <td>CS 46A</td>
-                    <td>Introduction to CS Part I</td>
-                    <td>Frank Butt</td>
-                    <td>F</td>
-                </tr>
-                </tbody>
-            </table>
-            <a href=""><p class="text-right">more</p></a>
+            @if(Auth::user()->classesTaken())
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Course Name</th>
+                        <th>Semester</th>
+                        <th>Grade Received</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach(Auth::user()->classesTaken() as $class)
+                        @if($class["grade"][0] === "A")
+                        <tr class="success">
+                        @elseif($class["grade"][0] === "B")
+                        <tr class="info">
+                        @elseif($class["grade"][0] === "C")
+                        <tr class="warning">
+                        @else
+                        <tr class="danger">
+                        @endif
+
+                            <td>{{$class["subjectNumber"]}}</td>
+                            <td>{{$class["courseName"]}}</td>
+                            <td>{{$class["semester"]}}</td>
+                            <td>{{$class["grade"]}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p class="alert alert-info text-center">You have not taken any courses yet</p>
+            @endif
+            {{--<a href=""><p class="text-right">more</p></a>--}}
             <br />
 
             <h4 class="lead">Student Balance</h4>
             <hr />
-            <p class="text-center">You have no outstanding balance</p>
+            <p class="alert alert-info text-center">You have no outstanding balance</p>
         </div>
     </div>
 @endsection

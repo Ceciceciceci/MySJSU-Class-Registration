@@ -1,51 +1,18 @@
-                @extends('base')
+@extends('base')
 
-                @section('navbar-right')
-                    {!! Form::open(['action' => 'SiteController@login', 'class' => 'form navbar-form navbar-right']) !!}
-                        <div class="form-group">
-                            <input name="sjsu_id" type="text" placeholder="SJSU ID" class="form-control input-sm">
-                        </div>
-                        <div class="form-group">
-                            <input name="password" type="password" placeholder="Password" class="form-control input-sm">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-sm">Sign in</button>
-                    {!! Form::close() !!}
-                @endsection
+@section('navbar-right')
+    {!! Form::open(['action' => 'SiteController@login', 'class' => 'form navbar-form navbar-right']) !!}
+        <div class="form-group">
+            <input name="sjsu_id" type="text" placeholder="SJSU ID" class="form-control input-sm">
+        </div>
+        <div class="form-group">
+            <input name="password" type="password" placeholder="Password" class="form-control input-sm">
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm">Sign in</button>
+    {!! Form::close() !!}
+@endsection
 
-                @section('main')
-                    <style>
-                        body {
-                            padding-bottom:0 !important;
-                        }
-                        
-                        #page-header{
-                            
-                        }
-                    </style>
-
-                 <!-- Navigation -->
-
-   <!--  <div class="navbar navbar-inverse navbar-fixed-top-down" role="navigation" style="background-color:#F5F5F5">
-
-         <ul class="nav navbar-nav navbar-right-" align="center" style="margin-left:1in">
-            <li>
-                <a href="http://www.sjsu.edu/academics/index.html">Academic</a>
-            </li>
-            <li>
-                <a href="http://sjsu.bncollege.com/webapp/wcs/stores/servlet/BNCBHomePage?storeId=65133&catalogId=10001&langId=-1">Bookstore</a>
-            </li>
-            
-            <li>
-                <a href="http://www.sjsu.edu/employment/index.html">Carrer</a>
-            </li>
-            <li>
-                <a href="http://www.sjsu.edu/contact/">Contact</a>
-            </li>
-
-        </ul>
-
-    </div> -->
-
+@section('main')
     <div class="container">
         <!-- Header Carousel -->
         <div id="myCarousel" class="carousel slide">
@@ -62,14 +29,14 @@
                     <div>
                         <img src="img/1.gif" alt="sjsu" style=" width:1500px" height="350px">
                     </div>
-                    
+
                     <div class="carousel-caption">
                         <h2></h2>
                     </div>
                 </div>
                 <div class="item">
                     <div>
-                        <img src="img/5.gif" alt="modern sjsu" style=" width:1500px" height="350px"> 
+                        <img src="img/5.gif" alt="modern sjsu" style=" width:1500px" height="350px">
                     </div>
                     <div class="carousel-caption">
                         <h2></h2>
@@ -77,7 +44,7 @@
                 </div>
                 <div class="item">
                     <div>
-                        <img src="img/3.gif" alt="modern sjsu" style=" width:1500px" height="350px"> 
+                        <img src="img/3.gif" alt="modern sjsu" style=" width:1500px" height="350px">
                     </div>
                     <div class="carousel-caption">
                         <h2>Spartan</h2>
@@ -92,13 +59,11 @@
             <a class="right carousel-control" href="#myCarousel" data-slide="next">
                 <span class="icon-next"></span>
             </a>
-        </div> 
-    </div>  
-    
+        </div>
+    </div>
 
     <!-- Page Content -->
     <div class="container">
-
         <!-- Marketing Icons Section -->
         <div class="row">
             <div class="col-lg-12" style="color:#E5A823" style=" background-color:#0D26B4;" >
@@ -141,14 +106,14 @@
             </div>
         </div>
         <!--<button type="submit" class="btn btn-success btn-sm">Sign in</button>-->
-    {!! Form::close() !!}
-    @if ($errors->has())
-        <div style="position:relative;top:10px;background-color:white" class="pull-right text-danger">
-            @foreach ($errors->all() as $error)
-                {{ $error }}
-            @endforeach
-        </div>
-    @endif
+        {!! Form::close() !!}
+        @if ($errors->has())
+            <div style="position:relative;top:10px;background-color:white" class="pull-right text-danger">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            </div>
+        @endif
         {{--<button type="submit" class="btn btn-success btn-sm">Sign in</button>--}}
         {!! Form::close() !!}
         @if ($errors->has())
@@ -158,13 +123,21 @@
                 @endforeach
             </div>
         @endif
-@endsection
-
-       
         <!-- /.row -->
-
     </div>
     <!-- /.container -->
+@endsection
+
+@section('footer')
+    <style>
+        body {
+            padding-bottom:0 !important;
+        }
+
+        #page-header{
+
+        }
+    </style>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -174,85 +147,73 @@
 
     <!-- Script to Activate the Carousel -->
     <script>
-    $('.carousel').carousel({
-        interval: 2000 //changes the speed
-    })
+        $('.carousel').carousel({
+            interval: 2000 //changes the speed
+        })
     </script>
 
+    <div class="footer_1 sjsu-container-prime">
+        <footer>
+            <div class="container" >
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="col">
+                            <h4>Contact us</h4>
+                            <ul>
+                                <li><a href="https://www.google.com/maps/@37.3351916,-121.8832602,17z">1 Washington Sq, San Jose, CA 95192</a></li>
+                                <li>Phone: 408-924-1000  </li>
+                                <li>Email: <a href="mailto:info@example.com" title="Email Us">ithelpdesk@sjsu.edu</a></li>
 
-                    <!-- .container end -->
-                @endsection
-
-
-                @section('footer')
-                    <div class="footer_1 sjsu-container-prime">
-                        <footer>
-                            <div class="container" >
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="col">
-                                            <h4>Contact us</h4>
-                                            <ul>
-                                                <li><a href="https://www.google.com/maps/@37.3351916,-121.8832602,17z">1 Washington Sq, San Jose, CA 95192</a></li>
-                                                <li>Phone: 408-924-1000  </li>
-                                                <li>Email: <a href="mailto:info@example.com" title="Email Us">ithelpdesk@sjsu.edu</a></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="col">
-                                            <h4>Colleges</h4>
-                                            <ul>
-                                                <li><a href="http://www.sjsu.edu/casa/">Applied Sciences &amp; Arts</a></li>
-                                                <li><a href="http://www.sjsu.edu/cob/">Business</a></li>
-                                                <li><a href="http://www.sjsu.edu/education/">Education</a></li>
-                                                <li><a href="http://engineering.sjsu.edu/">Engineering</a></li>
-                                                <li><a href="http://www.sjsu.edu/humanitiesandarts/">Humanities &amp; the Arts</a></li>
-                                                <li><a href="http://www.sjsu.edu/cies/">International &amp; Extended Studies</a></li>
-                                                <li><a href="http://www.sjsu.edu/science/">Science</a></li>
-                                                <li><a href="http://www.sjsu.edu/socialsciences/">Social Sciences</a></li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3" >
-                                        <div class="col col-social-icons">
-                                            <h4>Follow us</h4>
-
-                                            <li><a href="https://www.facebook.com/sanjosestate/">Facebook</a></li>
-                                            <li><a href="https://plus.google.com/+SJSUBMES/posts">Google +</a></li>
-                                            <li><a href="https://www.youtube.com/user/sjsu">You Tube</a></li>
-                                            <li><a href="https://www.linkedin.com/edu/san-jose-state-university-17911">Linkedin</li>
-                                            <li><a href="https://twitter.com/SJSU?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">twitter</a></li>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="col">
-                                            <h4>Quick link</h4>
-                                            <ul>
-                                                <li><a href="http://www.sjsu.edu/siteindex">A-Z Index</a></li>
-                                                <li><a href="http://www.sjsu.edu/adminfinance/about/budget_central/index.html">Budget Central</a></li>
-                                                <li><a href="http://www.sjsu.edu/calendars/index.html">Calendars</a></li>
-                                                <li><a href="https://sjsu.instructure.com/">Canvas</a></li>
-                                                <li><a href="http://www.sjsu.edu/employment">Careers &amp; Jobs</a></li>
-                                                <li><a href="http://library.sjsu.edu/"> King Library</a></li>
-                                                <li><a href="http://www.sjsu.edu/parkingtransportationmaps/index.html">Parking &amp; Maps</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </footer>
-
+                            </ul>
+                        </div>
                     </div>
 
+                    <div class="col-md-3">
+                        <div class="col">
+                            <h4>Colleges</h4>
+                            <ul>
+                                <li><a href="http://www.sjsu.edu/casa/">Applied Sciences &amp; Arts</a></li>
+                                <li><a href="http://www.sjsu.edu/cob/">Business</a></li>
+                                <li><a href="http://www.sjsu.edu/education/">Education</a></li>
+                                <li><a href="http://engineering.sjsu.edu/">Engineering</a></li>
+                                <li><a href="http://www.sjsu.edu/humanitiesandarts/">Humanities &amp; the Arts</a></li>
+                                <li><a href="http://www.sjsu.edu/cies/">International &amp; Extended Studies</a></li>
+                                <li><a href="http://www.sjsu.edu/science/">Science</a></li>
+                                <li><a href="http://www.sjsu.edu/socialsciences/">Social Sciences</a></li>
+                            </ul>
 
+                        </div>
+                    </div>
 
-                @endsection
+                    <div class="col-md-3" >
+                        <div class="col col-social-icons">
+                            <h4>Follow us</h4>
+
+                            <li><a href="https://www.facebook.com/sanjosestate/">Facebook</a></li>
+                            <li><a href="https://plus.google.com/+SJSUBMES/posts">Google +</a></li>
+                            <li><a href="https://www.youtube.com/user/sjsu">You Tube</a></li>
+                            <li><a href="https://www.linkedin.com/edu/san-jose-state-university-17911">Linkedin</li>
+                            <li><a href="https://twitter.com/SJSU?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">twitter</a></li>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="col">
+                            <h4>Quick link</h4>
+                            <ul>
+                                <li><a href="http://www.sjsu.edu/siteindex">A-Z Index</a></li>
+                                <li><a href="http://www.sjsu.edu/adminfinance/about/budget_central/index.html">Budget Central</a></li>
+                                <li><a href="http://www.sjsu.edu/calendars/index.html">Calendars</a></li>
+                                <li><a href="https://sjsu.instructure.com/">Canvas</a></li>
+                                <li><a href="http://www.sjsu.edu/employment">Careers &amp; Jobs</a></li>
+                                <li><a href="http://library.sjsu.edu/"> King Library</a></li>
+                                <li><a href="http://www.sjsu.edu/parkingtransportationmaps/index.html">Parking &amp; Maps</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+@endsection
 

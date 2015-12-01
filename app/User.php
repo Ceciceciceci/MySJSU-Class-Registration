@@ -50,6 +50,21 @@ class User extends Model implements AuthenticatableContract,
         }
     }
 
+    public function classesTaken() {
+        $classes_taken = ClassesTaken::where('id', $this->id)->get();
+        $result = $classes_taken->toArray();
+
+        for($i = 0; $i < sizeof($classes_taken); $i++) {
+            $info = $classes_taken[$i]->courseinfo->toArray();
+            $result[$i]["subjectNumber"] = $info["subjectNumber"];
+            $result[$i]["courseName"] = $info["courseName"];
+        }
+
+        return $result;
+    }
+
+
+
     /*
      * returns all courses in shopping cart
      */
