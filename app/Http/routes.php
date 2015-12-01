@@ -18,6 +18,7 @@ Route::get('logout', 'SiteController@logout');
 Route::get('students/academics', 'StudentsController@academics');
 Route::resource('students', 'StudentsController');
 Route::resource('professors', 'ProfessorsController');
+Route::get('courses/dropclass', 'CoursesController@dropClass');
 Route::get('courses/addtocart', 'CoursesController@addToCart');
 Route::get('courses/removefromcart', 'CoursesController@removeFromCart');
 Route::get('courses/enrollall', 'CoursesController@enrollAll');

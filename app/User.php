@@ -141,6 +141,20 @@ class User extends Model implements AuthenticatableContract,
         return $total / $n;
     }
 
+    public function currentClasses() {
+        return array_filter($this->classesTaken(),
+            function($class) {
+                return $class["grade"] === "-";
+            });
+    }
+
+    public function pastClasses() {
+        return array_filter($this->classesTaken(),
+            function($class) {
+                return $class["grade"] !== "-";
+            });
+    }
+
     public function classesTaken() {
         if($this->isStudent()) {
             $classes_taken = ClassesTaken::where('id', $this->id)->get();

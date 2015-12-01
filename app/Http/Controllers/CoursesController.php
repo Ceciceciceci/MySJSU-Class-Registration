@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CoursesController extends Controller
 {
@@ -96,6 +97,19 @@ class CoursesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function dropClass(Request $request) {
+        if($request->has('student_id') && $request->has('section_id')) {
+            $student_id = $request->get('student_id');
+            $section_id = $request->get('section_id');
+
+            DB::table('classestaken')->where('id', $student_id)
+                                     ->where('section_id', $section_id)
+                                     ->delete();
+        }
+
+        return redirect()->back();
     }
 
     public function addToCart(Request $request) {

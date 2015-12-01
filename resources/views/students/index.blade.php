@@ -51,14 +51,54 @@
             <hr />
         </div>
         <div class="col-sm-9">
-            <h4 class="lead">Alerts</h4>
+            {{--<h4 class="lead">Alerts</h4>--}}
+            {{--<hr />--}}
+            {{--<p class="alert alert-info text-center">You have no alert</p>--}}
+            {{--<br />--}}
+
+            <h4 class="lead">Courses I'm Taking</h4>
             <hr />
-            <p class="alert alert-info text-center">You have no alert</p>
-            <br />
+            @if(Auth::user()->currentClasses())
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Course Name</th>
+                        <th>Semester</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach(Auth::user()->currentClasses() as $class)
+                        @if($class["grade"][0] === "-")
+                            <tr class="default">
+                                @elseif($class["grade"][0] === "A")
+                            <tr class="success">
+                                @elseif($class["grade"][0] === "B")
+                            <tr class="info">
+                                @elseif($class["grade"][0] === "C")
+                            <tr class="warning">
+                        @else
+                            <tr class="danger">
+                                @endif
+
+                                <td>{{$class["subjectNumber"]}}</td>
+                                <td>{{$class["courseName"]}}</td>
+                                <td>{{$class["semester"]}}</td>
+                                <td><a href="{{ action('CoursesController@dropClass', ['student_id' => Auth::user()->id, 'section_id' => $class["section_id"]]) }}">drop</a></td>
+                            </tr>
+                            @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p class="alert alert-info text-center">You are not currently taking any classes</p>
+            @endif
+
+            <br/>
 
             <h4 class="lead">Courses I've Taken</h4>
             <hr />
-            @if(Auth::user()->classesTaken())
+            @if(Auth::user()->pastClasses())
                 <table class="table">
                     <thead>
                     <tr>
@@ -69,7 +109,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach(Auth::user()->classesTaken() as $class)
+                    @foreach(Auth::user()->pastClasses() as $class)
                         @if($class["grade"][0] === "-")
                         <tr class="default">
                         @elseif($class["grade"][0] === "A")
@@ -81,7 +121,6 @@
                         @else
                         <tr class="danger">
                         @endif
-
                             <td>{{$class["subjectNumber"]}}</td>
                             <td>{{$class["courseName"]}}</td>
                             <td>{{$class["semester"]}}</td>
@@ -91,14 +130,14 @@
                     </tbody>
                 </table>
             @else
-                <p class="alert alert-info text-center">You have not taken any courses yet</p>
+                <p class="alert alert-info text-center">You have not previously taken any courses yet</p>
             @endif
             {{--<a href=""><p class="text-right">more</p></a>--}}
-            <br />
 
-            <h4 class="lead">Student Balance</h4>
-            <hr />
-            <p class="alert alert-info text-center">You have no outstanding balance</p>
+
+            {{--<h4 class="lead">Student Balance</h4>--}}
+            {{--<hr />--}}
+            {{--<p class="alert alert-info text-center">You have no outstanding balance</p>--}}
         </div>
     </div>
 @endsection
