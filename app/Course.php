@@ -3,6 +3,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\CourseInfo;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 //include(app_path().'/hashTables.php');
 
@@ -39,6 +41,43 @@ class Course extends Model
 
     public function meetingTime() {
         return $this->days . ' ' . $this->startTime . '-' . $this->endTime;
+    }
+
+    public function enroll() {
+        $user_id = Auth::user()->id;
+        $section_id = $this->id;
+        $course_id = $this->cid;
+        $semester = "Spring 2016";
+        $grade = "-";
+        $eligible = $this->tryEnroll($user_id, $course_id);
+
+        if($eligible) {
+            DB::table('classestaken')->insert([
+                'id' => $user_id,
+                'cid' => $course_id,
+                'section_id' => $section_id,
+                'semester' => $semester,
+                'grade' => $grade
+            ]);
+            Auth::user()->removeClassFromCart($section_id);
+            $this->decSeats();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private function incSeats() {
+        // Increment seats
+        $this->seats++;
+        $this->save();
+    }
+
+    private function decSeats() {
+        // Decrement seats
+        $this->seats--;
+        $this->save();
     }
 
     /**

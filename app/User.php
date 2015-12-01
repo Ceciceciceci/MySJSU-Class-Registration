@@ -45,14 +45,8 @@ class User extends Model implements AuthenticatableContract,
                 'course_id' => $course_id
             ];
 
-            if(DB::table('cart')->where($data)->exists() == false) {
+            if(DB::table('cart')->where($data)->exists() == false)
                 DB::table('cart')->insert($data);
-
-                // Decrement seats
-                $course = Course::find($course_id);
-                $course->seats--;
-                $course->save();
-            }
         }
     }
 
@@ -63,14 +57,8 @@ class User extends Model implements AuthenticatableContract,
                 'course_id' => $course_id
             ];
 
-            if(DB::table('cart')->where($data)->exists()) {
+            if(DB::table('cart')->where($data)->exists())
                 DB::table('cart')->where($data)->delete();
-
-                // Increment seats
-                $course = Course::find($course_id);
-                $course->seats++;
-                $course->save();
-            }
         }
     }
 
@@ -84,7 +72,7 @@ class User extends Model implements AuthenticatableContract,
             $result[$i]["courseName"] = $info["courseName"];
         }
 
-        return $result;
+        return array_reverse($result);
     }
 
 

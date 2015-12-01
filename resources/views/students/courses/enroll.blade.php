@@ -46,7 +46,19 @@
         </div>
         <div class="col-sm-9">
             <br />
-            <h4 class="lead">Spring 2016 Shopping Cart</h4>
+            <h4 class="lead">
+                @if ($errors->has())
+
+                    @foreach ($errors->all() as $error)
+                        <p class="alert alert-danger text-center small">
+                            {{ $error}}
+                        </p>
+                    @endforeach
+
+                @endif
+                Spring 2016 Shopping Cart
+                <a href="{{action('CoursesController@enrollAll')}}" class="btn btn-success pull-right">Enroll All</a>
+            </h4>
             <hr />
             @if(Auth::user()->cart->isEmpty())
                 <p class="alert alert-info text-center">Your shopping cart is empty.</p>

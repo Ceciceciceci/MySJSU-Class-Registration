@@ -15,6 +15,7 @@ class CreateClassestakenTable extends Migration
         Schema::create('classestaken', function (Blueprint $table) {
             //$table->increments('id');
             $table->integer('id')->unsigned()->index(); //student id
+            $table->integer('section_id')->unsigned()->nullable();
             $table->integer('cid');
             $table->string('semester');
             $table->string('grade')->nullable();

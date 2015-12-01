@@ -18,11 +18,12 @@ Route::get('logout', 'SiteController@logout');
 Route::get('students/academics', 'StudentsController@academics');
 Route::resource('students', 'StudentsController');
 Route::resource('professors', 'ProfessorsController');
+Route::get('courses/addtocart', 'CoursesController@addToCart');
+Route::get('courses/removefromcart', 'CoursesController@removeFromCart');
+Route::get('courses/enrollall', 'CoursesController@enrollAll');
 Route::get('courses/enroll', 'CoursesController@enroll');
 Route::get('courses/plan', 'CoursesController@plan');
 Route::get('courses/addcode', 'CoursesController@addCode');
-Route::get('courses/addtocart', 'CoursesController@addToCart');
-Route::get('courses/removefromcart', 'CoursesController@removeFromCart');
 Route::resource('courses', 'CoursesController');
 
 /* API */

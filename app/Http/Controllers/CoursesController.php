@@ -118,6 +118,22 @@ class CoursesController extends Controller
         }
     }
 
+    public function enrollAll(Request $request) {
+        $courses = Auth::user()->cart;
+        $errors = [];
+
+        foreach($courses as $course) {
+            $success = $course->enroll();
+
+            if($success == false) {
+                array_push($errors, ["Section " . $course->class . ": unable to enroll"]);
+            }
+        }
+
+        return redirect()->action('CoursesController@enroll')
+                         ->withErrors($errors);
+    }
+
     public function plan()
     {
         if(Auth::user()->id <= 38)

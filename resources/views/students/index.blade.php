@@ -70,7 +70,9 @@
                     </thead>
                     <tbody>
                     @foreach(Auth::user()->classesTaken() as $class)
-                        @if($class["grade"][0] === "A")
+                        @if($class["grade"][0] === "-")
+                        <tr class="default">
+                        @elseif($class["grade"][0] === "A")
                         <tr class="success">
                         @elseif($class["grade"][0] === "B")
                         <tr class="info">
