@@ -61,15 +61,7 @@
                     <td>CS 49J
                     </td>
                     <td>Introduction to Java</td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseOne" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]] <br> </div>
+                    <td><div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]] <br> </div>
                                 </div>
                             </div>
                         </div></td>
@@ -78,53 +70,29 @@
                 <tr class="success">
                     <td>CS 46B</td>
                     <td>Introduction to CS Part II</td>
-                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseTwo" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
+                    <td> <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
                                 </div>
                             </div>
                         </div></td>
+                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
                 </tr>
                 <tr class="success">
                     <td>CS 49C</td>
                     <td>Introduction to C Programming</td>
-                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseThree" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
+                    <td> <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
                                 </div>
                             </div>
                         </div></td>
+                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
                 </tr>
                 <tr class="success">
                     <td>CS 46A</td>
                     <td>Introduction to CS Part I</td>
-                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseFour">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseFour" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
+                        <td><div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
                                 </div>
                             </div>
                         </div></td>
+                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
                 </tr>
                 </tbody>
             </table> 
