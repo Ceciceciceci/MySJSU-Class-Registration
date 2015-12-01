@@ -17,6 +17,12 @@
             <h4 class="lead">Quick Links</h4>
             <hr />
             <ul class="nav nav-pills nav-stacked">
+                <li>
+                    <a href="{{ action('ProfessorsController@index') }}">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Dashboard
+                    </a>
+                </li>
                 <li class="active">
                     <a href="{{ action('CoursesController@index') }}">
                         <i class="glyphicon glyphicon-search"></i>

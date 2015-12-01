@@ -22,7 +22,13 @@
         <div class="col-sm-3">
             <h4 class="lead">Quick Links</h4>
             <hr />
-            <ul class="nav nav-stacked">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                    <a href="">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Dashboard
+                    </a>
+                </li>
                 <li>
                     <a href="{{ action('CoursesController@index') }}">
                         <i class="glyphicon glyphicon-search"></i>
