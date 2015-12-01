@@ -18,15 +18,15 @@
             <hr />
             <ul class="nav nav-pills nav-stacked">
                 <li>
-                    <a href="{{ action('CoursesController@index') }}">
-                        <i class="glyphicon glyphicon-search"></i>
-                        Search Classes
+                    <a href="{{ action('StudentsController@index') }}">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="{{ action('CoursesController@plan') }}">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Plan
+                    <a href="{{ action('CoursesController@index') }}">
+                        <i class="glyphicon glyphicon-search"></i>
+                        Search Classes
                     </a>
                 </li>
                 <li class="active">
