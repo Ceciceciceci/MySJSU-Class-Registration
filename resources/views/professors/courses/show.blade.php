@@ -33,6 +33,31 @@
             <hr />
         </div>
         <div class="col-sm-9">
+            <h4 class="lead">Enrolled Students </h4>
+            <hr />
+            <table class ="table">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <center><th>Remove</th></center>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td>39</td>
+                        <td>John Doe</td>
+                        <td>
+                      <a href="#">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>  
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            
+            </table>
 
         </div>
     </div>
