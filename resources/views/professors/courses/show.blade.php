@@ -45,16 +45,16 @@
                 </thead>
                 
                 <tbody>
+                    @foreach($class->enrolledStudents() as $student)
                     <tr>
-                        <td>39</td>
-                        <td>John Doe</td>
+                        <td>{{ $student->id }}</td>
+                        <td>{{ $student->name }}</td>
                         <td>
                       <a href="#">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </a>  
-                        </td>
+                          <span class="glyphicon glyphicon-remove"></span>
+                      </a>
                     </tr>
-                    
+                    @endforeach
                 </tbody>
             
             </table>

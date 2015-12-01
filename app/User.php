@@ -63,16 +63,25 @@ class User extends Model implements AuthenticatableContract,
     }
 
     public function classesTaken() {
-        $classes_taken = ClassesTaken::where('id', $this->id)->get();
-        $result = $classes_taken->toArray();
+        if($this->isStudent()) {
+            $classes_taken = ClassesTaken::where('id', $this->id)->get();
+            $result = $classes_taken->toArray();
 
-        for($i = 0; $i < sizeof($classes_taken); $i++) {
-            $info = $classes_taken[$i]->courseinfo->toArray();
-            $result[$i]["subjectNumber"] = $info["subjectNumber"];
-            $result[$i]["courseName"] = $info["courseName"];
+            for($i = 0; $i < sizeof($classes_taken); $i++) {
+                $info = $classes_taken[$i]->courseinfo->toArray();
+                $result[$i]["subjectNumber"] = $info["subjectNumber"];
+                $result[$i]["courseName"] = $info["courseName"];
+            }
+
+            return array_reverse($result);
         }
+    }
 
-        return array_reverse($result);
+    public function classesTaught() {
+        if($this->isProfessor()) {
+            return Course::where('iid', $this->id)->get();
+        }
+        return "not a professor";
     }
 
 

@@ -47,56 +47,33 @@
             <!--<a href="{{ action('CoursesController@show', 1) }}">link</a>-->
             <h4 class="lead">Courses I Teach</h4>
             <hr />
-            <table class="table">
+
+            <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>Course</th>
                     <th>Course Name</th>
-                    <th></th>
+                    <th>Status</th>
                     <th>View Enrolled</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="success"> 
-                    <td>CS 49J
-                    </td>
-                    <td>Introduction to Java</td>
-                    <td><div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]] <br> </div>
-                                </div>
+                @foreach(Auth::user()->classesTaught() as $class)
+                    <tr>
+                        <td>{{ $class->subject . ' ' . $class->courseNumber }}</td>
+                        <td>{{ $class->courseName }}</td>
+                        <td>
+                            <div class="accordion-inner">
+                                Enrolled: {{ $class->totalEnrolled() }} <br>
+                                Waitlist: {{ $class->totalWaitlisted() }} <br>
                             </div>
-                        </div></td>
-                    <td> <a href="{{ action('CoursesController@show', 1) }}">More Info</a> </td>
-                </tr>
-                <tr class="success">
-                    <td>CS 46B</td>
-                    <td>Introduction to CS Part II</td>
-                    <td> <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
-                                </div>
-                            </div>
-                        </div></td>
-                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
-                </tr>
-                <tr class="success">
-                    <td>CS 49C</td>
-                    <td>Introduction to C Programming</td>
-                    <td> <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
-                                </div>
-                            </div>
-                        </div></td>
-                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
-                </tr>
-                <tr class="success">
-                    <td>CS 46A</td>
-                    <td>Introduction to CS Part I</td>
-                        <td><div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
-                                </div>
-                            </div>
-                        </div></td>
-                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
-                </tr>
+                        </td>
+                        <td> <a href="{{ action('CoursesController@show', $class->id) }}">More Info</a> </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table> 
-            <a href=""><p class="text-right">more</p></a>
+            {{--<a href=""><p class="text-right">more</p></a>--}}
             <br />
         </div>
     </div>

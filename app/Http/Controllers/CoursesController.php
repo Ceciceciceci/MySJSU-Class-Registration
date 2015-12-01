@@ -54,12 +54,14 @@ class CoursesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($course_id)
     {
-        if(Auth::user()->id <= 38)
-            return view('professors.courses.show');
-        else
+        if(Auth::user()->isProfessor()) {
+            return view('professors.courses.show', ['class' => Course::find($course_id)]);
+        }
+        else {
             return view('students.courses.show');
+        }
     }
 
     /**

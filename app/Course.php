@@ -31,6 +31,16 @@ class Course extends Model
      */
     //protected $hidden = ['password', 'remember_token'];
 
+    public function enrolledStudents() {
+        $students = [];
+        $ids = DB::table('classestaken')->where('section_id', $this->id)
+                                        ->lists('id');
+        foreach($ids as $id)
+            array_push($students, User::find($id));
+
+        return $students;
+    }
+
     public function totalEnrolled() {
         return ($this->seats > 35) ? 35 : 35 - $this->seats;
     }
