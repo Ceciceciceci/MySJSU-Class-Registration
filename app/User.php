@@ -54,7 +54,6 @@ class User extends Model implements AuthenticatableContract,
      * returns all courses in shopping cart
      */
     public function cart() {
-
         return $this->belongsToMany('App\Course', 'cart', 'user_id', 'course_id');
     }
 

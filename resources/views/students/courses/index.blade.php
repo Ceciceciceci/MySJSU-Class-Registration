@@ -57,9 +57,21 @@
                 {{--<p>Search Query: [[ searchClass ]]</p>--}}
               {{--</div>--}}
 
-              <a href="{{ action('CoursesController@addToCart', ['course_id' => 7]) }}">
-                Adding class id 7
-              </a>
+              <a href="{{ action('CoursesController@addToCart', ['course_id' => 22270]) }}">
+                Adding class section 22270
+              </a><br/>
+              <a href="{{ action('CoursesController@addToCart', ['course_id' => 20465]) }}">
+                Adding class section 20465
+              </a><br/>
+              <a href="{{ action('CoursesController@addToCart', ['course_id' => 20466]) }}">
+                Adding class section 20466
+              </a><br/>
+              <a href="{{ action('CoursesController@addToCart', ['course_id' => 22372]) }}">
+                Adding class section 22372
+              </a><br/>
+              <a href="{{ action('CoursesController@addToCart', ['course_id' => 26250]) }}">
+                Adding class section 26250
+              </a><br/>
               <form class="form">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter class information here" ng-model="searchClass">

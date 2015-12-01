@@ -8,7 +8,7 @@ class CoursesTableSeeder extends Seeder
     public function add_id($courses) {
 
         for($i = 0; $i < sizeof($courses); $i++) {
-            $courses[$i]["id"] = $courses[$i]["cid"];
+            $courses[$i]["id"] = $courses[$i]["class"];
         }
         return $courses;
     }
