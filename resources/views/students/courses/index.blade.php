@@ -57,6 +57,9 @@
                 {{--<p>Search Query: [[ searchClass ]]</p>--}}
               {{--</div>--}}
 
+              <a href="{{ action('CoursesController@addToCart', ['course_id' => 7]) }}">
+                Adding class id 7
+              </a>
               <form class="form">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter class information here" ng-model="searchClass">
@@ -112,7 +115,9 @@
                         <td>[[roll.courseId1.instructor ]]</td>
                         <td>[[roll.courseId1.room]]</td>
                         <td>[[roll.courseId1.meeting]]</td>
-                        <td style="text-align:center"><i class="glyphicon glyphicon-plus text-success"></i></td>
+                        <td style="text-align:center">
+                            <i class="glyphicon glyphicon-plus text-success"></i>
+                        </td>
                     </tr> 
                   </tbody>
 
