@@ -107,6 +107,17 @@ class CoursesController extends Controller
         }
     }
 
+    public function removeFromCart(Request $request) {
+        if($request->has('course_id')) {
+            $course_id = $request->get('course_id');
+            Auth::user()->removeClassFromCart($course_id);
+            return redirect()->action('CoursesController@enroll');
+        }
+        else {
+            return redirect()->back();
+        }
+    }
+
     public function plan()
     {
         if(Auth::user()->id <= 38)

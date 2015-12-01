@@ -29,6 +29,18 @@ class Course extends Model
      */
     //protected $hidden = ['password', 'remember_token'];
 
+    public function totalEnrolled() {
+        return ($this->seats > 35) ? 35 : 35 - $this->seats;
+    }
+
+    public function totalWaitlisted() {
+        return ($this->seats < 0) ? abs($this->seats) : 0;
+    }
+
+    public function meetingTime() {
+        return $this->days . ' ' . $this->startTime . '-' . $this->endTime;
+    }
+
     /**
      * Gets the prerequisites associated with the given course id
      *

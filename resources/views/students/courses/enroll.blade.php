@@ -48,27 +48,34 @@
             <br />
             <h4 class="lead">Spring 2016 Shopping Cart</h4>
             <hr />
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Course</th>
-                    <th>Course courseid</th>
-                    <th>Instructor</th>
-                    <th>Grade Received</th>
-                </tr>
-                </thead>
-                <tbody>
+            @if(Auth::user()->cart->isEmpty())
+                <p class="alert alert-info text-center">Your shopping cart is empty.</p>
+            @else
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Instructor</th>
+                        <th>Meeting Days & Time</th>
+                        <th>Enrolled</th>
+                        <th>Waitlist</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     @foreach(Auth::user()->cart as $class)
                         <tr>
-                            <td>{{ $class->subject . ' ' . $class->courseNumber }}</td>
-                            <td>{{ $class->courseName }}</td>
+                            <td>{{ $class->subject . $class->courseNumber . ' - ' . $class->courseName}}</td>
                             <td>{{ $class->instructor }}</td>
-                            <td>A+</td>
+                            <td>{{ $class->meetingTime() }}</td>
+                            <td>{{ $class->totalEnrolled() . '/35' }}</td>
+                            <td>{{ $class->totalWaitlisted() . '/15' }}</td>
+                            <td class="text-center"><a href="{{ action('CoursesController@removeFromCart', ['course_id' => $class->id]) }}">delete</a></td>
                         </tr>
                     @endforeach
-                </tbody>
-            </table>
-            
+                    </tbody>
+                </table>
+            @endif
         </div>
     </div>
 @endsection
