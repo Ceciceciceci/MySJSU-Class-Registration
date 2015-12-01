@@ -2,7 +2,12 @@
 
 @section('navbar-right')
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="" style="color: white">John Doe | Sign out</a></li>
+        <li>
+            <a href="javascript:void(0)" style="color: white;cursor: default;">{{ Auth::user()->name }}</a>
+        </li>
+        <li>
+            <a href="{{ action('SiteController@logout') }}" class="sjsu-secondary" style="color: white;">Sign out</a>
+        </li>
     </ul>
 @endsection
 
@@ -19,21 +24,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ action('CoursesController@plan') }}">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Plan
-                    </a>
-                </li>
-                <li>
                     <a href="{{ action('CoursesController@enroll') }}">
                         <i class="glyphicon glyphicon-list-alt"></i>
                         Enroll
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ action('StudentsController@academics') }}">
-                        <i class="glyphicon glyphicon-education"></i>
-                        Academics
                     </a>
                 </li>
             </ul>
@@ -73,14 +66,14 @@
                       </td>
                       <td>
                         <a href="javascript:void(0)" ng-click="sortType = 'professor'; sortReverse = !sortReverse">
-                        Professor
+                          Professor
                           <span ng-show="sortType == 'professor' && !sortReverse" class="fa fa-caret-down"></span>
                           <span ng-show="sortType == 'professor' && sortReverse" class="fa fa-caret-up"></span>
                         </a>
                       </td>
                       <td>
                         <a href="javascript:void(0)" ng-click="sortType = 'room'; sortReverse = !sortReverse">
-                        Room
+                          Room
                           <span ng-show="sortType == 'room' && !sortReverse" class="fa fa-caret-down"></span>
                           <span ng-show="sortType == 'room' && sortReverse" class="fa fa-caret-up"></span>
                         </a>
@@ -90,11 +83,6 @@
                           Meeting Days & Time
                           <span ng-show="sortType == 'meeting' && !sortReverse" class="fa fa-caret-down"></span>
                           <span ng-show="sortType == 'meeting' && sortReverse" class="fa fa-caret-up"></span>
-                        </a>
-                      </td>
-                      <td>
-                        
-                          
                         </a>
                       </td>
                     </tr>
@@ -107,8 +95,7 @@
                         <td>[[roll.courseId1.instructor ]]</td>
                         <td>[[roll.courseId1.room]]</td>
                         <td>[[roll.courseId1.meeting]]</td>
-                        <td style="text-align:center"><i class="glyphicon glyphicon-plus text-success"></i></td>
-                    </tr> 
+                    </tr>
                   </tbody>
 
                 </table>

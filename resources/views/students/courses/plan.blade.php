@@ -2,7 +2,12 @@
 
 @section('navbar-right')
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="" style="color: white">John Doe | Sign out</a></li>
+        <li>
+            <a href="javascript:void(0)" style="color: white;cursor: default;">{{ Auth::user()->name }}</a>
+        </li>
+        <li>
+            <a href="{{ action('SiteController@logout') }}" class="sjsu-secondary" style="color: white;">Sign out</a>
+        </li>
     </ul>
 @endsection
 

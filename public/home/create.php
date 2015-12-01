@@ -1,16 +1,17 @@
 <?php
 // Get a file into an array.  In this example we'll go through HTTP to get
 // the HTML source of a URL.
-$lines = file('courses_unique.txt');
+$lines = file('ccFinal.txt');
 
 // Loop through our array, show HTML source as HTML source; and line numbers too.
 $i=1;
-echo "coursesReversedHT = array("."<br>";
+echo "DB::table('courseinfo')->insert(array("."<br>";
 foreach ($lines as $line) {
-    echo '"'.$i++.'" => "'.$line.'/,<br>';
+	$x = explode(":",$line);
+	echo "array('subjectNumber' => '".$x[0]." ".$x[1]."', 'courseName' => '".addslashes(trim($x[2]))."'),"."<br>";
 }
 
-echo ");"."<br>";
+echo "));"."<br>";
 
 
 /*

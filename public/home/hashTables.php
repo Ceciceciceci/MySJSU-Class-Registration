@@ -1,4 +1,17 @@
 <?php
+/*
+	This File Provides Three different types of hash functions as listed below.
+
+	instructorID("Robert Bruce");
+	@returns 27
+
+	courseID( "MATH 8" );
+	@returns 115
+
+	courseReverseID( "115" );
+	@returns "Math 8"
+
+*/
 
 $instructorsHT = array(
 "Ahmad Yazdankhah" => "1",
@@ -295,12 +308,4 @@ function courseReverseID( $courseID ){
 	global $coursesReversedHT;
 	return $coursesReversedHT[ $courseID ];
 }
-/*
-echo instructorID("Robert Bruce");
-echo "<br>";
-echo courseID( "MATH 8" );
-echo "<br>";
-echo courseReverseID( "115" );
-echo "<br>";
-*/
 ?>

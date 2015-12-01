@@ -13,7 +13,9 @@ class CreateStudentsTable extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->increments('sid');
+            /* I had to change sid to integer because manually defining the sid
+            in seeder created conflicts with increments() */
+            $table->integer('sid')->unsigned();
             $table->string('fullName');
             $table->string('password', 60);
             $table->rememberToken();
