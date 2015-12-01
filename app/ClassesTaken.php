@@ -13,7 +13,7 @@ class ClassesTaken extends Model
      *
      * @var string
      */
-    protected $table = 'classesTaken';
+    protected $table = 'classestaken';
 
     /**
      * The attributes that are mass assignable.

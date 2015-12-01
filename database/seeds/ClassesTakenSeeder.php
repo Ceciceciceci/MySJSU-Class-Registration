@@ -11,7 +11,7 @@ class ClassesTakenSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert(array(
+        DB::table('classestaken')->insert(array(
             array('id' => '39', 'cid' => '80', 'semester' => 'Spring 2014', 'grade' => 'B'),
             array('id' => '39', 'cid' => '81', 'semester' => 'Spring 2014', 'grade' => 'A'),
             array('id' => '39', 'cid' => '47', 'semester' => 'Spring 2014', 'grade' => 'B+'),
