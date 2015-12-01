@@ -105,4 +105,11 @@ class CoursesController extends Controller
         else
             return view('students.courses.enroll');
     }
+
+    public function addCode(Request $request) {
+        if(Auth::user()->id <= 38)
+            return view('professors.courses.addCode');
+        else
+            return redirect()->route('students.index');
+    }
 }
