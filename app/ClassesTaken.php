@@ -64,6 +64,11 @@ class ClassesTaken extends Model
         //return $this->instructor;
     }
     */
+    public function courseinfo() {
+        return $this->hasOne('App\CourseInfo', 'id', 'cid');
+    }
+    
+
     public function test1(){
         return "apples";
     }
