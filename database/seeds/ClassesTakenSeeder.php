@@ -17,7 +17,7 @@ class ClassesTakenSeeder extends Seeder
             array('id' => '39', 'cid' => '47', 'semester' => 'Spring 2014', 'grade' => 'B+'),
             array('id' => '39', 'cid' => '46', 'semester' => 'Spring 2014', 'grade' => 'C+'),
 
-            array('id' => '39', 'cid' => '108', 'semester' => 'Fall 2015', 'grade' => 'B+'),
+            array('id' => '39', 'cid' => '108', 'semester' => 'Fall 2015', 'grade' => 'F'),
             array('id' => '39', 'cid' => '98', 'semester' => 'Fall 2015', 'grade' => 'A+'),
             array('id' => '39', 'cid' => '101', 'semester' => 'Fall 2015', 'grade' => 'B'),
             array('id' => '39', 'cid' => '43', 'semester' => 'Fall 2015', 'grade' => 'C+'),

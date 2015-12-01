@@ -46,34 +46,51 @@
         </div>
         <div class="col-sm-9">
             <div class="content-panel">
-                              <h4><i class="fa fa-angle-right"></i> GPA Chart</h4>
-                              <div class="panel-body text-center">
-                                  <canvas id="line" height="300" width="600"></canvas>
-                              </div>
-                          </div>
-            
-            
-            <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
-            <script>  
-    var Script = function () {
-        var lineChartData = {
-            labels : ["Sem 1","Sem 2","Sem 3","Sem 4","Sem 5","Sem 6","Sem 7"],
-            datasets : [
-                {
-                    data : [3.5,4.0,4.0,3.5,3.75,3.2,4.0],
-                    fillColor : "rgba(151,187,205,0.5)",
-                    strokeColor : "rgba(151,187,205,1)",
-                    pointColor : "rgba(151,187,205,1)",
-                    pointStrokeColor : "#fff"
-                }
-            ]
-
-        };
-         new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
-        }();
-    </script>
+                <div class="panel-body text-center">
+                    <canvas id="line" height="300" width="600"></canvas>
+                </div>
+            </div>
         </div>
-
-        
     </div>
+@endsection
+
+@section('footer')
+    <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
+    <script>
+        var url = '/index.php/api?data=gpa&student_id=' + {{ Auth::user()->id }}
+        var data;
+        $.ajax(url, {
+            success: function(ret) {
+                data = ret;
+            },
+            async: false
+        });
+
+        var lineChartData = {
+            labels : data.semesters,
+            datasets : [{
+                data : data.gpa,
+                fillColor : "rgba(0, 0, 0, 0)",
+                strokeColor : "rgba(151,187,205,1)",
+                pointColor : "rgba(151,187,205,1)",
+                pointStrokeColor : "#fff"
+            }]
+        };
+
+        Chart.types.Line.extend({
+            name: "LineAlt",
+            initialize: function(data){
+                Chart.types.Line.prototype.initialize.apply(this, arguments);
+                this.eachPoints(function(point, index){
+                    Chart.helpers.extend(point, {
+                        x: this.scale.calculateX(0),
+                        y: this.scale.calculateY(point.value)
+                    });
+                    point.save();
+                }, this);
+            }
+        });
+
+        var Script = new Chart(document.getElementById("line").getContext("2d")).LineAlt(lineChartData);
+    </script>
 @endsection

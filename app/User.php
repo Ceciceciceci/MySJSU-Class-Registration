@@ -62,6 +62,85 @@ class User extends Model implements AuthenticatableContract,
         }
     }
 
+    public function gpa() {
+        $arr = ClassesTaken::where('id', $this->id)->get();
+        $n = sizeof($arr);
+        $semesters = [];
+        $total_gpa = [];
+
+        $i = 0;
+        while($i < $n) {
+            $prev = $arr[$i]->semester;
+            $gpa = [];
+            $j = $i;
+            while($j < $n && $arr[$j]->semester === $prev) {
+                array_push($gpa, $arr[$j]->grade);
+                $j++;
+            }
+            $avg = $this->gpa_avg($gpa);
+            if($avg) {
+                array_push($semesters, $prev);
+                array_push($total_gpa, $avg);
+            }
+            $i = $j;
+        }
+
+        return ['semesters' => $semesters, 'gpa' => $total_gpa];
+    }
+
+    public function gpa_avg($gpa) {
+        $n = sizeof($gpa);
+
+        if($n > 0 && $gpa[0] === "-")
+            return false;
+
+        $total = 0;
+        foreach($gpa as $num) {
+            switch($num) {
+                case "A+":
+                    $total += 4;
+                    break;
+                case "A":
+                    $total += 4;
+                    break;
+                case "A-":
+                    $total += 3.7;
+                    break;
+                case "B+":
+                    $total += 3.3;
+                    break;
+                case "B":
+                    $total += 3;
+                    break;
+                case "B-":
+                    $total += 2.7;
+                    break;
+                case "C+":
+                    $total += 2.3;
+                    break;
+                case "C":
+                    $total += 2;
+                    break;
+                case "C-":
+                    $total += 1.7;
+                    break;
+                case "D+":
+                    $total += 1.3;
+                    break;
+                case "D":
+                    $total += 1;
+                    break;
+                case "D-":
+                    $total += 0.7;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return $total / $n;
+    }
+
     public function classesTaken() {
         if($this->isStudent()) {
             $classes_taken = ClassesTaken::where('id', $this->id)->get();
