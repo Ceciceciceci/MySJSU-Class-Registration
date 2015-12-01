@@ -53,7 +53,10 @@ class CoursesController extends Controller
      */
     public function show($id)
     {
-        //
+        if(Auth::user()->id <= 38)
+            return view('professors.courses.show');
+        else
+            return view('students.courses.show');
     }
 
     /**
