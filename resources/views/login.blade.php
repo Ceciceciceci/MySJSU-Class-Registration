@@ -1,6 +1,15 @@
 @extends('base')
 
 @section('navbar-right')
+    <style>
+        body {
+            padding-bottom:0 !important;
+        }
+
+        #page-header{
+
+        }
+    </style>
     {!! Form::open(['action' => 'SiteController@login', 'class' => 'form navbar-form navbar-right']) !!}
         <div class="form-group">
             <input name="sjsu_id" type="text" placeholder="SJSU ID" class="form-control input-sm">
@@ -27,7 +36,7 @@
             <div class="carousel-inner">
                 <div class="item active">
                     <div>
-                        <img src="img/1.gif" alt="sjsu" style=" width:1500px" height="350px">
+                        <img src="/img/1.gif" alt="sjsu" style=" width:1500px" height="350px">
                     </div>
 
                     <div class="carousel-caption">
@@ -36,7 +45,7 @@
                 </div>
                 <div class="item">
                     <div>
-                        <img src="img/5.gif" alt="modern sjsu" style=" width:1500px" height="350px">
+                        <img src="/img/5.gif" alt="modern sjsu" style=" width:1500px" height="350px">
                     </div>
                     <div class="carousel-caption">
                         <h2></h2>
@@ -44,7 +53,7 @@
                 </div>
                 <div class="item">
                     <div>
-                        <img src="img/3.gif" alt="modern sjsu" style=" width:1500px" height="350px">
+                        <img src="/img/3.gif" alt="modern sjsu" style=" width:1500px" height="350px">
                     </div>
                     <div class="carousel-caption">
                         <h2>Spartan</h2>
@@ -129,21 +138,11 @@
 @endsection
 
 @section('footer')
-    <style>
-        body {
-            padding-bottom:0 !important;
-        }
-
-        #page-header{
-
-        }
-    </style>
-
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    {{--<script src="/js/jquery.js"></script>--}}
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    {{--<script src="/js/bootstrap.min.js"></script>--}}
 
     <!-- Script to Activate the Carousel -->
     <script>
