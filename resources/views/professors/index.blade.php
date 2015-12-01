@@ -30,9 +30,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ action('CoursesController@enroll') }}">
+                    <a href="{{ action('CoursesController@addCode') }}">
                         <i class="glyphicon glyphicon-list-alt"></i>
-                        Enroll
+                        Add Codes
                     </a>
                 </li>
             </ul>
