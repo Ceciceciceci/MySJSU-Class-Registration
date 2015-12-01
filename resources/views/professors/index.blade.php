@@ -44,7 +44,7 @@
             <p class="text-center">There is a problem student in CS 49J Enrolled.</p>
             <br />
 
-            <a href="{{ action('CoursesController@show', 1) }}">link</a>
+            <!--<a href="{{ action('CoursesController@show', 1) }}">link</a>-->
             <h4 class="lead">Courses I Teach</h4>
             <hr />
             <table class="table">
@@ -73,12 +73,12 @@
                                 </div>
                             </div>
                         </div></td>
-                    <td> More Info </td>
+                    <td> <a href="{{ action('CoursesController@show', 1) }}">More Info</a> </td>
                 </tr>
                 <tr class="success">
                     <td>CS 46B</td>
                     <td>Introduction to CS Part II</td>
-                    <td>Frank Butt</td>
+                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
                     <td> <div class="accordion" id="accordion2">
                             <div class="accordion-group">
                                 <div class="accordion-heading">
@@ -95,7 +95,7 @@
                 <tr class="success">
                     <td>CS 49C</td>
                     <td>Introduction to C Programming</td>
-                    <td>Frank Butt</td>
+                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
                     <td> <div class="accordion" id="accordion2">
                             <div class="accordion-group">
                                 <div class="accordion-heading">
@@ -112,7 +112,7 @@
                 <tr class="success">
                     <td>CS 46A</td>
                     <td>Introduction to CS Part I</td>
-                    <td>Frank Butt</td>
+                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
                     <td> <div class="accordion" id="accordion2">
                             <div class="accordion-group">
                                 <div class="accordion-heading">
