@@ -21,6 +21,7 @@ Route::resource('professors', 'ProfessorsController');
 Route::get('courses/enroll', 'CoursesController@enroll');
 Route::get('courses/plan', 'CoursesController@plan');
 Route::get('courses/addcode', 'CoursesController@addCode');
+Route::get('courses/addtocart', 'CoursesController@addToCart');
 Route::resource('courses', 'CoursesController');
 
 /* API */

@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\DB;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -36,4 +37,32 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function addClassToCart($course_id) {
+        if($this->isStudent()) {
+            $data = [
+                'user_id' => $this->id,
+                'course_id' => $course_id
+            ];
+
+            if(DB::table('cart')->where($data)->exists() == false)
+                DB::table('cart')->insert($data);
+        }
+    }
+
+    /*
+     * returns all courses in shopping cart
+     */
+    public function cart() {
+
+        return $this->belongsToMany('App\Course', 'cart', 'user_id', 'course_id');
+    }
+
+    public function isStudent() {
+        return $this->id >= 39;
+    }
+
+    public function isProfessor() {
+        return $this->id <= 38;
+    }
 }

@@ -58,30 +58,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>CS 49J</td>
-                    <td>Introduction to Java</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr>
-                    <td>CS 46B</td>
-                    <td>Introduction to CS Part II</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr>
-                    <td>CS 49C</td>
-                    <td>Introduction to C Programming</td>
-                    <td>Frank Butt</td>
-                    <td>C</td>
-                </tr>
-                <tr>
-                    <td>CS 46A</td>
-                    <td>Introduction to CS Part I</td>
-                    <td>Frank Butt</td>
-                    <td>F</td>
-                </tr>
+                    @foreach(Auth::user()->cart as $class)
+                        <tr>
+                            <td>{{ $class->subject . ' ' . $class->courseNumber }}</td>
+                            <td>{{ $class->courseName }}</td>
+                            <td>{{ $class->instructor }}</td>
+                            <td>A+</td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
             

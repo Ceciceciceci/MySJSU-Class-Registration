@@ -96,6 +96,17 @@ class CoursesController extends Controller
         //
     }
 
+    public function addToCart(Request $request) {
+        if($request->has('course_id')) {
+            $course_id = $request->get('course_id');
+            Auth::user()->addClassToCart($course_id);
+            return redirect()->action('CoursesController@enroll');
+        }
+        else {
+            return redirect()->back();
+        }
+    }
+
     public function plan()
     {
         if(Auth::user()->id <= 38)
