@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ClassesTakenSeeder.php extends Seeder
+class ClassesTakenSeeder extends Seeder
 {
     /**
      * Run the database seeds.
