@@ -308,4 +308,16 @@ function courseReverseID( $courseID ){
 	global $coursesReversedHT;
 	return $coursesReversedHT[ $courseID ];
 }
+echo "MATH 19"." = ".courseID( "MATH 19" )."<br>";
+echo "MATH 19W"." = ".courseID( "MATH 19W" )."<br>";
+echo "CS 49J"." = ".courseID( "CS 49J" )."<br>";
+echo "CS 49C"." = ".courseID( "CS 49C" )."<br>";
+echo "<br>Next Semester:<br>";
+echo "MATH 42"." = ".courseID( "MATH 42" )."<br>";
+echo "MATH 30"." = ".courseID( "MATH 30" )."<br>";
+echo "MATH 30"." = ".courseID( "MATH 30W" )."<br>";
+echo "MATH 42"." = ".courseID( "MATH 42" )."<br>";
+echo "<br>Next Semester:<br>";
+echo "CS 46A"." = ".courseID( "CS 46A" )."<br>";
+echo "MATH 32"." = ".courseID( "MATH 32" )."<br>";
 ?>
