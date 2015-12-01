@@ -68,14 +68,18 @@ class Course extends Model
         //return $this->instructor;
     }
 
-        public function tryEnroll( $sid , $cid ){
-            //$x = ClassesTaken::find( $sid )->where('cid','=',$cid)->first();
+    /*
+     * First Parameter is Student ID, Second Parameter is Course ID
+     * @returns boolean
+     */
+    public function tryEnroll( $sid , $cid ){
+        //$x = ClassesTaken::find( $sid )->where('cid','=',$cid)->first();
 
-            $list = Course::where('cid','=',$cid)->first()->requisites;
+        $list = Course::where('cid','=',$cid)->first()->requisites;
 
-            //return $list;
-            if(!($list))
-                return true;
+        //return $list;
+        if(!($list))
+            return true;
 
         foreach ($list as $row) {
             if($row->ORprid){
