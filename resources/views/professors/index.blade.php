@@ -61,7 +61,6 @@
                     <td>CS 49J
                     </td>
                     <td>Introduction to Java</td>
-                    <td>Frank Butt</td>
                     <td> <div class="accordion" id="accordion2">
                             <div class="accordion-group">
                                 <div class="accordion-heading">
@@ -70,10 +69,11 @@
                                     </a>
                                 </div>
                                 <div id="collapseOne" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
+                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]] <br> </div>
                                 </div>
                             </div>
                         </div></td>
+                    <td> More Info </td>
                 </tr>
                 <tr class="success">
                     <td>CS 46B</td>
