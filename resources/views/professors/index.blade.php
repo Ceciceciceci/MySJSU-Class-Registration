@@ -41,9 +41,10 @@
         <div class="col-sm-9">
             <h4 class="lead">Alerts</h4>
             <hr />
-            <p class="text-center">You have no alert</p>
+            <p class="text-center">There is a problem student in CS 49J Enrolled.</p>
             <br />
 
+            
             <h4 class="lead">Courses I Teach</h4>
             <hr />
             <table class="table">
@@ -51,39 +52,88 @@
                 <tr>
                     <th>Course</th>
                     <th>Course Name</th>
-                    <th>Instructor</th>
-                    <th>Grade Received</th>
+                    <th></th>
+                    <th>View Enrolled</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="success">
-                    <td>CS 49J</td>
+                <tr class="success"> 
+                    <td>CS 49J
+                    </td>
                     <td>Introduction to Java</td>
                     <td>Frank Butt</td>
-                    <td>A+</td>
+                    <td> <div class="accordion" id="accordion2">
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
+                                        More Info
+                                    </a>
+                                </div>
+                                <div id="collapseOne" class="accordion-body collapse in">
+                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
+                                </div>
+                            </div>
+                        </div></td>
                 </tr>
                 <tr class="success">
                     <td>CS 46B</td>
                     <td>Introduction to CS Part II</td>
                     <td>Frank Butt</td>
-                    <td>A+</td>
+                    <td> <div class="accordion" id="accordion2">
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
+                                        More Info
+                                    </a>
+                                </div>
+                                <div id="collapseTwo" class="accordion-body collapse in">
+                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
+                                </div>
+                            </div>
+                        </div></td>
                 </tr>
-                <tr class="warning">
+                <tr class="success">
                     <td>CS 49C</td>
                     <td>Introduction to C Programming</td>
                     <td>Frank Butt</td>
-                    <td>C</td>
+                    <td> <div class="accordion" id="accordion2">
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">
+                                        More Info
+                                    </a>
+                                </div>
+                                <div id="collapseThree" class="accordion-body collapse in">
+                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
+                                </div>
+                            </div>
+                        </div></td>
                 </tr>
-                <tr class="danger">
+                <tr class="success">
                     <td>CS 46A</td>
                     <td>Introduction to CS Part I</td>
                     <td>Frank Butt</td>
-                    <td>F</td>
+                    <td> <div class="accordion" id="accordion2">
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseFour">
+                                        More Info
+                                    </a>
+                                </div>
+                                <div id="collapseFour" class="accordion-body collapse in">
+                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
+                                </div>
+                            </div>
+                        </div></td>
                 </tr>
                 </tbody>
-            </table>
+            </table> 
             <a href=""><p class="text-right">more</p></a>
             <br />
         </div>
     </div>
+
+<!-- JAVASCRIPT -->
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.4/angular-filter.min.js"></script>
 @endsection

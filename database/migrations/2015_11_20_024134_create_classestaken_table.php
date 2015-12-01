@@ -14,10 +14,11 @@ class CreateClassestakenTable extends Migration
     {
         Schema::create('classestaken', function (Blueprint $table) {
             //$table->increments('id');
-            $table->integer('sid');
+            $table->integer('id')->unsigned()->index(); //student id
             $table->integer('cid');
-            $table->string('grade');
-            $table->timestamps();
+            $table->string('semester');
+            $table->string('grade')->nullable();
+            $table->nullableTimestamps();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateClassestakenTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ClassesTaken');
+        Schema::drop('classesTaken');
     }
 }
