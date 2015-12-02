@@ -103,7 +103,9 @@ class Course extends Model
     /*
      * Returns a formatted string of Prerequisites and Corequisites of a given 'class'
      */
-
+    public function genAddCode(){
+        return crc32(2);
+    }
     public function requisitesToString(){
         $results = $this->requisites;
         $x = "Prerequisites: ";
@@ -128,13 +130,26 @@ class Course extends Model
         //return $string;
         //return $this->instructor;
     }
-
+    public function getCid($class){
+        return Course::where('class','=',$class)->first()->cid;
+    }
     /*
-     * First Parameter is Student ID, Second Parameter is Course ID
+     * First Parameter is Student ID, Second Parameter is Class Section ID
      * @returns boolean
      */
-    public function tryEnroll( $sid , $cid ){
-        //$x = ClassesTaken::find( $sid )->where('cid','=',$cid)->first();
+    public function tryEnroll( $sid , $class ){
+        //Get Cid
+        $cid = Course::first()->getCid( $class );
+
+        //$cid = Course::where('class','=',$class)->first()->requisites;
+        //$cid = Course::where('cid','=',$cid)->first()->requisites;
+
+        
+        // Check if Student has taken the class.
+        $x = ClassesTaken::find( $sid )->where('cid','=',$cid)->first();
+        if($x)
+            return false;
+
 
         $list = Course::where('cid','=',$cid)->first()->requisites;
 
