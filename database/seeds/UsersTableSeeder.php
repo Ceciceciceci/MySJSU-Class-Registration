@@ -11,7 +11,69 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert(array(
+        $all = array_merge($this->professors(), $this->students());
+        DB::table('users')->insert($all);
+    }
+
+    private function students() {
+        $students = array(
+            [
+                'name' => 'Cecilia Tran',
+                'password' => 'password'
+            ],
+            [
+                'name' => 'Edwin Limantara',
+                'password' => 'password'
+            ],
+            [
+                'name' => 'Emannuel Mendoza',
+                'password' => 'password'
+            ],
+            [
+                'name' => 'Maninderpal Singh',
+                'password' => 'password'
+            ],
+            [
+                'name' => 'Udit Sharma',
+                'password' => 'password'
+            ]
+        );
+
+        return array_merge($students, $this->fakeUsers());
+    }
+
+    private function fakeUsers() {
+        $firsts = ["Aaron", "Abdul", "Abe", "Abel", "Abraham",
+                   "Abram", "Adalberto", "Adam", "Adan", "Adolfo",
+                   "Adolph", "Adrian", "Agustin", "Ahmad", "Ahmed",
+                   "Al", "Alan", "Albert", "Alberto", "Alden"];
+        $lasts = ["Smith", "Johnson", "Williams", "Brown", "Jones",
+                  "Miller", "Davis", "Garcia", "Rodriguez", "Wilson",
+                  "Martinez", "Anderson", "Taylor", "Thomas", "Hernandez",
+                  "Moore", "Martin", "Jackson", "Thompson", "White"];
+
+        $users = [];
+
+        $m = sizeof($firsts);
+        $n = sizeof($lasts);
+
+        for($i = 0; $i < $m; $i++) {
+            for($j = 0; $j < $n; $j++) {
+                $first = $firsts[$i];
+                $last = $lasts[$j];
+                $name = $first . ' ' . $last;
+
+                array_push($users, [
+                    'name' => $name,
+                    'password' => 'password'
+                ]);
+            }
+        }
+        return $users;
+    }
+
+    private function professors() {
+        $professors = array(
             array('name' => 'Ahmad Yazdankhah', 'password' => 'password'),
             array('name' => 'Ahmed Ezzat', 'password' => 'password'),
             array('name' => 'Aikaterini Potika', 'password' => 'password'),
@@ -49,27 +111,8 @@ class UsersTableSeeder extends Seeder
             array('name' => 'Teng-Sheng Moh', 'password' => 'password'),
             array('name' => 'Thomas Austin', 'password' => 'password'),
             array('name' => 'Tsau-Young Lin', 'password' => 'password'),
-            array('name' => 'Vidya Rangasayee', 'password' => 'password'),
-            [
-                'name' => 'Cecilia Tran',
-                'password' => 'password'
-            ],
-            [
-                'name' => 'Edwin Limantara',
-                'password' => 'password'
-            ],
-            [
-                'name' => 'Emannuel Mendoza',
-                'password' => 'password'
-            ],
-            [
-                'name' => 'Maninderpal Singh',
-                'password' => 'password'
-            ],
-            [
-                'name' => 'Udit Sharma',
-                'password' => 'password'
-            ]
-        ));
+            array('name' => 'Vidya Rangasayee', 'password' => 'password')
+        );
+        return $professors;
     }
 }

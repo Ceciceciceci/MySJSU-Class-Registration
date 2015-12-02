@@ -59,7 +59,7 @@ class Course extends Model
         $course_id = $this->cid;
         $semester = "Spring 2016";
         $grade = "-";
-        $eligible = $this->tryEnroll($user_id, $course_id);
+        $eligible = $this->tryEnroll($user_id, $section_id);
 
         if($eligible) {
             DB::table('classestaken')->insert([
