@@ -57,21 +57,6 @@
                 {{--<p>Search Query: [[ searchClass ]]</p>--}}
               {{--</div>--}}
 
-              <a href="{{ action('CoursesController@addToCart', ['course_id' => 22270]) }}">
-                Adding class section 22270
-              </a><br/>
-              <a href="{{ action('CoursesController@addToCart', ['course_id' => 20465]) }}">
-                Adding class section 20465
-              </a><br/>
-              <a href="{{ action('CoursesController@addToCart', ['course_id' => 20466]) }}">
-                Adding class section 20466
-              </a><br/>
-              <a href="{{ action('CoursesController@addToCart', ['course_id' => 22372]) }}">
-                Adding class section 22372
-              </a><br/>
-              <a href="{{ action('CoursesController@addToCart', ['course_id' => 26250]) }}">
-                Adding class section 26250
-              </a><br/>
               <form class="form">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Enter class information here" ng-model="searchClass">
@@ -113,8 +98,7 @@
                         </a>
                       </td>
                       <td>
-                        
-                          
+                        <a>
                         </a>
                       </td>
                     </tr>
@@ -128,7 +112,9 @@
                         <td>[[roll.courseId1.room]]</td>
                         <td>[[roll.courseId1.meeting]]</td>
                         <td style="text-align:center">
-                            <i class="glyphicon glyphicon-plus text-success"></i>
+                            <a href="{{ action('CoursesController@addToCart') }}?course_id=[[roll.courseId1.courseSection]]">
+                                <i class="glyphicon glyphicon-plus text-success"></i>
+                            </a>
                         </td>
                     </tr> 
                   </tbody>

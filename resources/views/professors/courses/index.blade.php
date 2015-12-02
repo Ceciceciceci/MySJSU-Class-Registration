@@ -18,7 +18,7 @@
             <hr />
             <ul class="nav nav-pills nav-stacked">
                 <li>
-                    <a href="{{ action('ProfessorsController@index') }}">
+                    <a href="{{ action('') }}">
                         <i class="glyphicon glyphicon-home"></i>
                         Dashboard
                     </a>
@@ -128,7 +128,7 @@
                       var json = response["courses"];
 
                       //console.log(json);
-                      
+
                       for(var i = 0; i < json.length; i++) {
                         var obj = json[i];
                         var result = {};

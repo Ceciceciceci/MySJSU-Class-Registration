@@ -66,12 +66,12 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>Course</th>
-                        <th>Instructor</th>
-                        <th>Meeting Days & Time</th>
-                        <th>Enrolled</th>
-                        <th>Waitlist</th>
-                        <th></th>
+                        <td><a href="">Course</a></td>
+                        <td><a href="">Instructor</a></td>
+                        <td><a href="">Meeting Days & Time</a></td>
+                        <td><a href="">Enrolled</a></td>
+                        <td><a href="">Waitlist</a></td>
+                        <td></td>
                     </tr>
                     </thead>
                     <tbody>

@@ -59,14 +59,23 @@
             <h4 class="lead">Courses I'm Taking</h4>
             <hr />
             @if(Auth::user()->currentClasses())
-                <table class="table">
+                <table class="table table-bordered table-striped">
                     <thead>
-                    <tr>
-                        <th>Course</th>
-                        <th>Course Name</th>
-                        <th>Semester</th>
-                        <th>Action</th>
-                    </tr>
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)">Course</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)">Professor</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)">Room</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)">Meeting Days & Time</a>
+                            </td>
+                            <td></td>
+                        </tr>
                     </thead>
                     <tbody>
                     @foreach(Auth::user()->currentClasses() as $class)
@@ -80,14 +89,14 @@
                             <tr class="warning">
                         @else
                             <tr class="danger">
-                                @endif
-
+                        @endif
                                 <td>{{$class["subjectNumber"]}}</td>
-                                <td>{{$class["courseName"]}}</td>
-                                <td>{{$class["semester"]}}</td>
+                                <td>{{$class["instructor"]}}</td>
+                                <td>{{$class["room"]}}</td>
+                                <td>{{$class["meetingTime"]}}</td>
                                 <td><a href="{{ action('CoursesController@dropClass', ['student_id' => Auth::user()->id, 'section_id' => $class["section_id"]]) }}">drop</a></td>
                             </tr>
-                            @endforeach
+                    @endforeach
                     </tbody>
                 </table>
             @else

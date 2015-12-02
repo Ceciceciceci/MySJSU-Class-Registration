@@ -162,8 +162,12 @@ class User extends Model implements AuthenticatableContract,
 
             for($i = 0; $i < sizeof($classes_taken); $i++) {
                 $info = $classes_taken[$i]->courseinfo->toArray();
+                $class = Course::find($classes_taken[$i]["section_id"]);
                 $result[$i]["subjectNumber"] = $info["subjectNumber"];
                 $result[$i]["courseName"] = $info["courseName"];
+                $result[$i]["instructor"] = $class->instructor;
+                $result[$i]["room"] = $class->room;
+                $result[$i]["meetingTime"] = $class->meetingTime();
             }
 
             return array_reverse($result);
