@@ -108,7 +108,7 @@
             <h4 class="lead">Courses I've Taken</h4>
             <hr />
             @if(Auth::user()->pastClasses())
-                <table class="table">
+                <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th>Course</th>

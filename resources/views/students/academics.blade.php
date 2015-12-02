@@ -50,6 +50,43 @@
                     <canvas id="line" height="300" width="600"></canvas>
                 </div>
             </div>
+
+            <hr/>
+
+            @if(Auth::user()->pastClasses())
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Course Name</th>
+                        <th>Semester</th>
+                        <th>Grade Received</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach(Auth::user()->pastClasses() as $class)
+                        @if($class["grade"][0] === "-")
+                            <tr class="default">
+                                @elseif($class["grade"][0] === "A")
+                            <tr class="success">
+                                @elseif($class["grade"][0] === "B")
+                            <tr class="info">
+                                @elseif($class["grade"][0] === "C")
+                            <tr class="warning">
+                        @else
+                            <tr class="danger">
+                                @endif
+                                <td>{{$class["subjectNumber"]}}</td>
+                                <td>{{$class["courseName"]}}</td>
+                                <td>{{$class["semester"]}}</td>
+                                <td>{{$class["grade"]}}</td>
+                            </tr>
+                            @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p class="alert alert-info text-center">You have not previously taken any courses yet</p>
+            @endif
         </div>
     </div>
 @endsection

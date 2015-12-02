@@ -63,7 +63,9 @@ class User extends Model implements AuthenticatableContract,
     }
 
     public function gpa() {
-        $arr = ClassesTaken::where('id', $this->id)->get();
+        $arr = ClassesTaken::where('id', $this->id)->orderBy('semester', 'ASC')
+                                                   ->get();
+
         $n = sizeof($arr);
         $semesters = [];
         $total_gpa = [];
