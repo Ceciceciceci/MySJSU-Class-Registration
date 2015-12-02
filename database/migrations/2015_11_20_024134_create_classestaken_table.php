@@ -18,6 +18,7 @@ class CreateClassestakenTable extends Migration
             $table->integer('section_id')->unsigned()->nullable();
             $table->integer('cid');
             $table->string('semester');
+            $table->string('year');
             $table->string('grade')->nullable();
             $table->nullableTimestamps();
         });
