@@ -63,7 +63,8 @@ class User extends Model implements AuthenticatableContract,
     }
 
     public function gpa() {
-        $arr = ClassesTaken::where('id', $this->id)->orderBy('semester', 'ASC')
+        $arr = ClassesTaken::where('id', $this->id)->orderBy('year', 'ASC')
+                                                   ->orderBy('semester', 'ASC')
                                                    ->get();
 
         $n = sizeof($arr);
@@ -72,10 +73,10 @@ class User extends Model implements AuthenticatableContract,
 
         $i = 0;
         while($i < $n) {
-            $prev = $arr[$i]->semester;
+            $prev = $arr[$i]->semester . ' ' . $arr[$i]->year;
             $gpa = [];
             $j = $i;
-            while($j < $n && $arr[$j]->semester === $prev) {
+            while($j < $n && $arr[$j]->semester . ' ' . $arr[$j]->year === $prev) {
                 array_push($gpa, $arr[$j]->grade);
                 $j++;
             }
@@ -174,6 +175,7 @@ class User extends Model implements AuthenticatableContract,
 
             return array_reverse($result);
         }
+        return [];
     }
 
     public function classesTaught() {

@@ -45,7 +45,7 @@
             @if(sizeof($class->enrolledStudents()) == 0)
                 <p class="alert alert-info text-center">You don't have any students yet</p>
             @else
-                <table class ="table">
+                <table class ="table table-bordered">
                     <thead>
                         <tr>
                             <th>Student ID</th>
@@ -60,9 +60,10 @@
                             <td>{{ $student->id }}</td>
                             <td>{{ $student->name }}</td>
                             <td>
-                          <a href="#">
-                              <span class="glyphicon glyphicon-remove"></span>
-                          </a>
+                                <a href="{{ action('CoursesController@dropClass', ['student_id' => $student->id, 'section_id' => $class->id]) }}">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

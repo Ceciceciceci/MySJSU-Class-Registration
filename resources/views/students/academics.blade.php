@@ -92,6 +92,7 @@
 @endsection
 
 @section('footer')
+    @parent
     <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
     <script>
         var url = '/index.php/api?data=gpa&student_id=' + {{ Auth::user()->id }}

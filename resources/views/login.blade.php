@@ -1,15 +1,6 @@
 @extends('base')
 
 @section('navbar-right')
-    <style>
-        body {
-            padding-bottom:0 !important;
-        }
-
-        #page-header{
-
-        }
-    </style>
     {!! Form::open(['action' => 'SiteController@login', 'class' => 'form navbar-form navbar-right']) !!}
         <div class="form-group">
             <input name="sjsu_id" type="text" placeholder="SJSU ID" class="form-control input-sm">
