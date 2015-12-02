@@ -45,13 +45,13 @@
             <hr />
         </div>
         <div class="col-sm-9">
-            <h4 class="lead">Alerts</h4>
-            <hr />
-            <p class="text-center">There is a problem student in CS 49J Enrolled.</p>
-            <br />
+            {{--<h4 class="lead">Alerts</h4>--}}
+            {{--<hr />--}}
+            {{--<p class="text-center">There is a problem student in CS 49J Enrolled.</p>--}}
+            {{--<br />--}}
 
             <!--<a href="{{ action('CoursesController@show', 1) }}">link</a>-->
-            <h4 class="lead">Courses I Teach</h4>
+            <h4 class="lead">Courses I'm Teaching</h4>
             <hr />
 
             <table class="table table-bordered table-striped">
