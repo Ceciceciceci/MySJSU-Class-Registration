@@ -132,7 +132,7 @@
                         @endif
                             <td>{{$class["subjectNumber"]}}</td>
                             <td>{{$class["courseName"]}}</td>
-                            <td>{{$class["semester"]}}</td>
+                            <td>{{$class["semester"] . ' ' . $class["year"]}}</td>
                             <td>{{$class["grade"]}}</td>
                         </tr>
                     @endforeach

@@ -133,6 +133,9 @@ class Course extends Model
     public function getCid($class){
         return Course::where('class','=',$class)->first()->cid;
     }
+
+
+
     /*
      * First Parameter is Student ID, Second Parameter is Class Section ID
      * @returns boolean
@@ -140,10 +143,6 @@ class Course extends Model
     public function tryEnroll( $sid , $class ){
         //Get Cid
         $cid = Course::first()->getCid( $class );
-
-        //$cid = Course::where('class','=',$class)->first()->requisites;
-        //$cid = Course::where('cid','=',$cid)->first()->requisites;
-
         
         // Check if Student has taken the class.
         $x = ClassesTaken::find( $sid )->where('cid','=',$cid)->first();
@@ -153,49 +152,32 @@ class Course extends Model
 
         $list = Course::where('cid','=',$cid)->first()->requisites;
 
-        //return $list;
+        //if list is empty, return null;
         if(!($list))
             return true;
 
+        $holdBoolean = true;
         foreach ($list as $row) {
+            //IF Prerequisite OR Prerequisite, check both
             if($row->ORprid){
-                //$prid = CourseInfo::find( $row->prid )->subjectNumber();
-                //$ORprid = CourseInfo::find( $row->ORprid )->subjectNumber();
-                //$x .= $prid." or ".$ORprid.", ";
 
-                $hit = ClassesTaken::find( $sid )->where('cid','=',$row->ORprid)->first();
-                if(!($hit))
-                    return false;
-            }elseif($row->prid){
-                    //$prid = CourseInfo::find( $row->prid )->subjectNumber();
-                    //$x.= $prid.", ";
+                $get1 = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
+                $get2 = ClassesTaken::find( $sid )->where('cid','=',$row->ORprid)->first();
                 
-                $hit = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
-                if(!($hit))
+                //If student hasn't taken both courses
+                if( !($get1 || $get2) )
                     return false;
-            }
-            if($row->crid){
-                //$crid = CourseInfo::find( $row->crid )->subjectNumber();
-                //$x .= "Corequisite: ".$crid.", ";
 
-                $hit = ClassesTaken::find( $sid )->where('cid','=',$row->crid)->first();
+            }elseif($row->prid){
+
+                $hit = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
                 if(!($hit))
                     return false;
             }
         }
         return true;
-        //$x = substr($x,0,-2);//strip last comma
-        //return $x;
-        
-        //return $string;
-        //return $this->instructor;
+
     }
 
-    public function test1(){
-        return "apples";
-    }
-    /*
-    public function corequisites() {
-        return $this->belongsToMany('App\Course', 'requisites', 'cid', 'crid');
-    }*/
+
 }
