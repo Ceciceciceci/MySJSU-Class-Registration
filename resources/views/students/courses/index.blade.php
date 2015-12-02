@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('base')
 
 @section('navbar-right')
@@ -18,16 +17,16 @@
             <h4 class="lead">Quick Links</h4>
             <hr />
             <ul class="nav nav-pills nav-stacked">
+                <li>
+                    <a href="{{ action('StudentsController@index') }}">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Dashboard
+                    </a>
+                </li>
                 <li class="active">
                     <a href="{{ action('CoursesController@index') }}">
                         <i class="glyphicon glyphicon-search"></i>
                         Search Classes
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ action('CoursesController@plan') }}">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Plan
                     </a>
                 </li>
                 <li>
@@ -105,7 +104,6 @@
                       </td>
                     </tr>
                   </thead>
-
                   <tbody>
                       <?php $count = 1;
                       $icon;?>
@@ -115,7 +113,11 @@
                         <td>[[roll.courseId1.instructor ]]</td>
                         <td>[[roll.courseId1.room]]</td>
                         <td>[[roll.courseId1.meeting]]</td>
-                        <td style="text-align:center"><i class="glyphicon glyphicon-plus text-success"></i></td>
+                        <td style="text-align:center">
+                            <a href="{{ action('CoursesController@addToCart') }}?course_id=[[roll.courseId1.courseSection]]">
+                                <i class="glyphicon glyphicon-plus text-success"></i>
+                            </a>
+                        </td>
                     </tr> 
                   </tbody>
 
@@ -190,6 +192,7 @@
             <br />
         </div>
     </div>
+<<<<<<< HEAD
 =======
 @extends('base')
 
@@ -365,4 +368,6 @@
         </div>
     </div>
 >>>>>>> 22a87cfc9279955478dcbb12b9425081f794489b
+=======
+>>>>>>> 96a731c377ec355ed20daf7c863780f5934a1acf
 @endsection

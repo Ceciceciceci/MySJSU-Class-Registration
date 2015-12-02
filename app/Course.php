@@ -59,7 +59,7 @@ class Course extends Model
         $course_id = $this->cid;
         $semester = "Spring 2016";
         $grade = "-";
-        $eligible = $this->tryEnroll($user_id, $course_id);
+        $eligible = $this->tryEnroll($user_id, $section_id);
 
         if($eligible) {
             DB::table('classestaken')->insert([
@@ -133,6 +133,11 @@ class Course extends Model
     public function getCid($class){
         return Course::where('class','=',$class)->first()->cid;
     }
+
+    public function tester($id){
+        return CourseInfo::find( $id )->subjectNumber();
+    }
+
     /*
      * First Parameter is Student ID, Second Parameter is Class Section ID
      * @returns boolean
@@ -140,62 +145,49 @@ class Course extends Model
     public function tryEnroll( $sid , $class ){
         //Get Cid
         $cid = Course::first()->getCid( $class );
-
-        //$cid = Course::where('class','=',$class)->first()->requisites;
-        //$cid = Course::where('cid','=',$cid)->first()->requisites;
-
         
         // Check if Student has taken the class.
-        $x = ClassesTaken::find( $sid )->where('cid','=',$cid)->first();
-        if($x)
-            return false;
+        $x = ClassesTaken::where('id', $sid )->where('cid','=',$cid)->first();
+        if($x){
+            return array("You have already taken this course.");//return false;
+        }else{
 
 
         $list = Course::where('cid','=',$cid)->first()->requisites;
 
-        //return $list;
+        //if list is empty, return null;
         if(!($list))
-            return true;
+            return array();
 
+        $results = array();
         foreach ($list as $row) {
+            //IF Prerequisite OR Prerequisite, check both
             if($row->ORprid){
-                //$prid = CourseInfo::find( $row->prid )->subjectNumber();
-                //$ORprid = CourseInfo::find( $row->ORprid )->subjectNumber();
-                //$x .= $prid." or ".$ORprid.", ";
 
-                $hit = ClassesTaken::find( $sid )->where('cid','=',$row->ORprid)->first();
-                if(!($hit))
-                    return false;
-            }elseif($row->prid){
-                    //$prid = CourseInfo::find( $row->prid )->subjectNumber();
-                    //$x.= $prid.", ";
+                $get1 = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
+                $get2 = ClassesTaken::find( $sid )->where('cid','=',$row->ORprid)->first();
                 
-                $hit = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
-                if(!($hit))
-                    return false;
-            }
-            if($row->crid){
-                //$crid = CourseInfo::find( $row->crid )->subjectNumber();
-                //$x .= "Corequisite: ".$crid.", ";
+                //If student hasn't taken both courses
+                if( !($get1 || $get2) ){
+                    $x = CourseInfo::find( $row->prid )->subjectNumber();
+                    $y = CourseInfo::find( $row->ORprid )->subjectNumber();
+                    $result = "You are missing both ".$x." and ".$y." prerequisites.";
+                    array_push($results,$result);//return false;
+                }
 
-                $hit = ClassesTaken::find( $sid )->where('cid','=',$row->crid)->first();
-                if(!($hit))
-                    return false;
+            }elseif($row->prid){
+
+                $hit = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
+                if(!($hit)){
+                    $y = CourseInfo::find( $row->prid )->subjectNumber();
+                    $result = "You are missing ".$y." prerequisite.";
+                    array_push($results,$result);//return false;
+                }
             }
         }
-        return true;
-        //$x = substr($x,0,-2);//strip last comma
-        //return $x;
-        
-        //return $string;
-        //return $this->instructor;
+        return $results;//return true;
+
     }
 
-    public function test1(){
-        return "apples";
-    }
-    /*
-    public function corequisites() {
-        return $this->belongsToMany('App\Course', 'requisites', 'cid', 'crid');
-    }*/
+
 }
