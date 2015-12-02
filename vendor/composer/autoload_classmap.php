@@ -10,6 +10,7 @@ return array(
     'CourseInfoTableSeeder' => $baseDir . '/database/seeds/CourseInfoTableSeeder.php',
     'CoursesTableSeeder' => $baseDir . '/database/seeds/CoursesTableSeeder.php',
     'CreateBooksTable' => $baseDir . '/database/migrations/2015_11_22_002929_create_books_table.php',
+    'CreateCartTable' => $baseDir . '/database/migrations/2015_12_01_032629_create_cart_table.php',
     'CreateClassestakenTable' => $baseDir . '/database/migrations/2015_11_20_024134_create_classestaken_table.php',
     'CreateCourseinfoTable' => $baseDir . '/database/migrations/2015_11_25_080518_create_courseinfo_table.php',
     'CreateCoursesTable' => $baseDir . '/database/migrations/2015_11_18_004252_create_courses_table.php',

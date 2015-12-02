@@ -22,7 +22,13 @@
         <div class="col-sm-3">
             <h4 class="lead">Quick Links</h4>
             <hr />
-            <ul class="nav nav-stacked">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                    <a href="">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Dashboard
+                    </a>
+                </li>
                 <li>
                     <a href="{{ action('CoursesController@index') }}">
                         <i class="glyphicon glyphicon-search"></i>
@@ -39,96 +45,41 @@
             <hr />
         </div>
         <div class="col-sm-9">
-            <h4 class="lead">Alerts</h4>
-            <hr />
-            <p class="text-center">There is a problem student in CS 49J Enrolled.</p>
-            <br />
+            {{--<h4 class="lead">Alerts</h4>--}}
+            {{--<hr />--}}
+            {{--<p class="text-center">There is a problem student in CS 49J Enrolled.</p>--}}
+            {{--<br />--}}
 
             <!--<a href="{{ action('CoursesController@show', 1) }}">link</a>-->
-            <h4 class="lead">Courses I Teach</h4>
+            <h4 class="lead">Courses I'm Teaching</h4>
             <hr />
-            <table class="table">
+
+            <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>Course</th>
                     <th>Course Name</th>
-                    <th></th>
+                    <th>Status</th>
                     <th>View Enrolled</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="success"> 
-                    <td>CS 49J
-                    </td>
-                    <td>Introduction to Java</td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseOne">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseOne" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]] <br> </div>
-                                </div>
+                @foreach(Auth::user()->classesTaught() as $class)
+                    <tr>
+                        <td>{{ $class->subject . ' ' . $class->courseNumber }}</td>
+                        <td>{{ $class->courseName }}</td>
+                        <td>
+                            <div class="accordion-inner">
+                                Enrolled: {{ $class->totalEnrolled() }} <br>
+                                Waitlist: {{ $class->totalWaitlisted() }} <br>
                             </div>
-                        </div></td>
-                    <td> <a href="{{ action('CoursesController@show', 1) }}">More Info</a> </td>
-                </tr>
-                <tr class="success">
-                    <td>CS 46B</td>
-                    <td>Introduction to CS Part II</td>
-                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseTwo" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
-                                </div>
-                            </div>
-                        </div></td>
-                </tr>
-                <tr class="success">
-                    <td>CS 49C</td>
-                    <td>Introduction to C Programming</td>
-                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseThree">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseThree" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
-                                </div>
-                            </div>
-                        </div></td>
-                </tr>
-                <tr class="success">
-                    <td>CS 46A</td>
-                    <td>Introduction to CS Part I</td>
-                    <td><a href="{{ action('CoursesController@show', 1) }}">More Info</a></td>
-                    <td> <div class="accordion" id="accordion2">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapseFour">
-                                        More Info
-                                    </a>
-                                </div>
-                                <div id="collapseFour" class="accordion-body collapse in">
-                                    <div class="accordion-inner">Enrolled: [[number]]  <br> Waitlist: [[number]]</div>
-                                </div>
-                            </div>
-                        </div></td>
-                </tr>
+                        </td>
+                        <td> <a href="{{ action('CoursesController@show', $class->id) }}">More Info</a> </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table> 
-            <a href=""><p class="text-right">more</p></a>
+            {{--<a href=""><p class="text-right">more</p></a>--}}
             <br />
         </div>
     </div>

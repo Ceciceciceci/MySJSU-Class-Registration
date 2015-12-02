@@ -18,15 +18,15 @@
             <hr />
             <ul class="nav nav-pills nav-stacked">
                 <li>
-                    <a href="{{ action('CoursesController@index') }}">
-                        <i class="glyphicon glyphicon-search"></i>
-                        Search Classes
+                    <a href="{{ action('StudentsController@index') }}">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="{{ action('CoursesController@plan') }}">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Plan
+                    <a href="{{ action('CoursesController@index') }}">
+                        <i class="glyphicon glyphicon-search"></i>
+                        Search Classes
                     </a>
                 </li>
                 <li class="active">
@@ -46,45 +46,48 @@
         </div>
         <div class="col-sm-9">
             <br />
-            <h4 class="lead">Spring 2016 Shopping Cart</h4>
+            <h4 class="lead">
+                @if ($errors->has())
+
+                    @foreach ($errors->all() as $error)
+                        <p class="alert alert-danger text-center small">
+                            {{ $error}}
+                        </p>
+                    @endforeach
+
+                @endif
+                Spring 2016 Shopping Cart
+                <a href="{{action('CoursesController@enrollAll')}}" class="btn btn-success pull-right">Enroll All</a>
+            </h4>
             <hr />
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Course</th>
-                    <th>Course courseid</th>
-                    <th>Instructor</th>
-                    <th>Grade Received</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>CS 49J</td>
-                    <td>Introduction to Java</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr>
-                    <td>CS 46B</td>
-                    <td>Introduction to CS Part II</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr>
-                    <td>CS 49C</td>
-                    <td>Introduction to C Programming</td>
-                    <td>Frank Butt</td>
-                    <td>C</td>
-                </tr>
-                <tr>
-                    <td>CS 46A</td>
-                    <td>Introduction to CS Part I</td>
-                    <td>Frank Butt</td>
-                    <td>F</td>
-                </tr>
-                </tbody>
-            </table>
-            
+            @if(Auth::user()->cart->isEmpty())
+                <p class="alert alert-info text-center">Your shopping cart is empty.</p>
+            @else
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <td><a href="">Course</a></td>
+                        <td><a href="">Instructor</a></td>
+                        <td><a href="">Meeting Days & Time</a></td>
+                        <td><a href="">Enrolled</a></td>
+                        <td><a href="">Waitlist</a></td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach(Auth::user()->cart as $class)
+                        <tr>
+                            <td>{{ $class->subject . $class->courseNumber . ' - ' . $class->courseName}}</td>
+                            <td>{{ $class->instructor }}</td>
+                            <td>{{ $class->meetingTime() }}</td>
+                            <td>{{ $class->totalEnrolled() . '/35' }}</td>
+                            <td>{{ $class->totalWaitlisted() . '/15' }}</td>
+                            <td class="text-center"><a href="{{ action('CoursesController@removeFromCart', ['course_id' => $class->id]) }}">delete</a></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @endif
         </div>
     </div>
 @endsection

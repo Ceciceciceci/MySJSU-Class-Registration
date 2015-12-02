@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CoursesController extends Controller
 {
@@ -54,12 +55,14 @@ class CoursesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($course_id)
     {
-        if(Auth::user()->id <= 38)
-            return view('professors.courses.show');
-        else
+        if(Auth::user()->isProfessor()) {
+            return view('professors.courses.show', ['class' => Course::find($course_id)]);
+        }
+        else {
             return view('students.courses.show');
+        }
     }
 
     /**
@@ -94,6 +97,57 @@ class CoursesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function dropClass(Request $request) {
+        if($request->has('student_id') && $request->has('section_id')) {
+            $student_id = $request->get('student_id');
+            $section_id = $request->get('section_id');
+
+            DB::table('classestaken')->where('id', $student_id)
+                                     ->where('section_id', $section_id)
+                                     ->delete();
+        }
+
+        return redirect()->back();
+    }
+
+    public function addToCart(Request $request) {
+        if($request->has('course_id')) {
+            $course_id = $request->get('course_id');
+            Auth::user()->addClassToCart($course_id);
+            return redirect()->action('CoursesController@enroll');
+        }
+        else {
+            return redirect()->back();
+        }
+    }
+
+    public function removeFromCart(Request $request) {
+        if($request->has('course_id')) {
+            $course_id = $request->get('course_id');
+            Auth::user()->removeClassFromCart($course_id);
+            return redirect()->action('CoursesController@enroll');
+        }
+        else {
+            return redirect()->back();
+        }
+    }
+
+    public function enrollAll(Request $request) {
+        $courses = Auth::user()->cart;
+        $errors = [];
+
+        foreach($courses as $course) {
+            $success = $course->enroll();
+
+            if($success == false) {
+                array_push($errors, ["Section " . $course->class . ": unable to enroll"]);
+            }
+        }
+
+        return redirect()->action('CoursesController@enroll')
+                         ->withErrors($errors);
     }
 
     public function plan()

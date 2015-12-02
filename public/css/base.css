@@ -1,5 +1,6 @@
 body {
-    padding-bottom: 200px;
+    /*padding-bottom: 200px;*/
+    padding-bottom:0 !important;
 }
 #main-content {
     padding: 20px;
@@ -14,6 +15,7 @@ body {
 }
 .mysjsu-main-row {
     /*padding-top: 30px;*/
+    min-height: 600px;
 }
 
 
@@ -22,7 +24,7 @@ body {
  position:absolute;
    bottom:0;
    width:100%;
-   height:60px;   /* Height of the footer */
+   /*height:60px;    Height of the footer */
    background:#6cf;
 }
 

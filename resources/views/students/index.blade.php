@@ -22,17 +22,17 @@
         <div class="col-sm-3">
             <h4 class="lead">Quick Links</h4>
             <hr />
-            <ul class="nav nav-stacked">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active">
+                    <a href="{{ action('StudentsController@index') }}">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Dashboard
+                    </a>
+                </li>
                 <li>
                     <a href="{{ action('CoursesController@index') }}">
                         <i class="glyphicon glyphicon-search"></i>
                         Search Classes
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ action('CoursesController@plan') }}">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Plan
                     </a>
                 </li>
                 <li>
@@ -51,55 +51,102 @@
             <hr />
         </div>
         <div class="col-sm-9">
-            <h4 class="lead">Alerts</h4>
+            {{--<h4 class="lead">Alerts</h4>--}}
+            {{--<hr />--}}
+            {{--<p class="alert alert-info text-center">You have no alert</p>--}}
+            {{--<br />--}}
+
+            <h4 class="lead">Courses I'm Taking</h4>
             <hr />
-            <p class="text-center">You have no alert</p>
-            <br />
+            @if(Auth::user()->currentClasses())
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)">Course</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)">Professor</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)">Room</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)">Meeting Days & Time</a>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach(Auth::user()->currentClasses() as $class)
+                        @if($class["grade"][0] === "-")
+                            <tr class="default">
+                                @elseif($class["grade"][0] === "A")
+                            <tr class="success">
+                                @elseif($class["grade"][0] === "B")
+                            <tr class="info">
+                                @elseif($class["grade"][0] === "C")
+                            <tr class="warning">
+                        @else
+                            <tr class="danger">
+                        @endif
+                                <td>{{$class["subjectNumber"]}}</td>
+                                <td>{{$class["instructor"]}}</td>
+                                <td>{{$class["room"]}}</td>
+                                <td>{{$class["meetingTime"]}}</td>
+                                <td><a href="{{ action('CoursesController@dropClass', ['student_id' => Auth::user()->id, 'section_id' => $class["section_id"]]) }}">drop</a></td>
+                            </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p class="alert alert-info text-center">You are not currently taking any classes</p>
+            @endif
+
+            <br/>
 
             <h4 class="lead">Courses I've Taken</h4>
             <hr />
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Course</th>
-                    <th>Course Name</th>
-                    <th>Instructor</th>
-                    <th>Grade Received</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="success">
-                    <td>CS 49J</td>
-                    <td>Introduction to Java</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr class="success">
-                    <td>CS 46B</td>
-                    <td>Introduction to CS Part II</td>
-                    <td>Frank Butt</td>
-                    <td>A+</td>
-                </tr>
-                <tr class="warning">
-                    <td>CS 49C</td>
-                    <td>Introduction to C Programming</td>
-                    <td>Frank Butt</td>
-                    <td>C</td>
-                </tr>
-                <tr class="danger">
-                    <td>CS 46A</td>
-                    <td>Introduction to CS Part I</td>
-                    <td>Frank Butt</td>
-                    <td>F</td>
-                </tr>
-                </tbody>
-            </table>
-            <a href=""><p class="text-right">more</p></a>
-            <br />
+            @if(Auth::user()->pastClasses())
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Course Name</th>
+                        <th>Semester</th>
+                        <th>Grade Received</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach(Auth::user()->pastClasses() as $class)
+                        @if($class["grade"][0] === "-")
+                        <tr class="default">
+                        @elseif($class["grade"][0] === "A")
+                        <tr class="success">
+                        @elseif($class["grade"][0] === "B")
+                        <tr class="info">
+                        @elseif($class["grade"][0] === "C")
+                        <tr class="warning">
+                        @else
+                        <tr class="danger">
+                        @endif
+                            <td>{{$class["subjectNumber"]}}</td>
+                            <td>{{$class["courseName"]}}</td>
+                            <td>{{$class["semester"]}}</td>
+                            <td>{{$class["grade"]}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p class="alert alert-info text-center">You have not previously taken any courses yet</p>
+            @endif
+            {{--<a href=""><p class="text-right">more</p></a>--}}
 
-            <h4 class="lead">Student Balance</h4>
-            <hr />
-            <p class="text-center">You have no outstanding balance</p>
+
+            {{--<h4 class="lead">Student Balance</h4>--}}
+            {{--<hr />--}}
+            {{--<p class="alert alert-info text-center">You have no outstanding balance</p>--}}
         </div>
     </div>
 @endsection

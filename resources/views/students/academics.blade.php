@@ -18,15 +18,15 @@
             <hr />
             <ul class="nav nav-pills nav-stacked">
                 <li>
-                    <a href="{{ action('CoursesController@index') }}">
-                        <i class="glyphicon glyphicon-search"></i>
-                        Search Classes
+                    <a href="{{ action('StudentsController@index') }}">
+                        <i class="glyphicon glyphicon-home"></i>
+                        Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="{{ action('CoursesController@plan') }}">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Plan
+                    <a href="{{ action('CoursesController@index') }}">
+                        <i class="glyphicon glyphicon-search"></i>
+                        Search Classes
                     </a>
                 </li>
                 <li>
@@ -46,34 +46,89 @@
         </div>
         <div class="col-sm-9">
             <div class="content-panel">
-                              <h4><i class="fa fa-angle-right"></i> GPA Chart</h4>
-                              <div class="panel-body text-center">
-                                  <canvas id="line" height="300" width="600"></canvas>
-                              </div>
-                          </div>
-            
-            
-            <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
-            <script>  
-    var Script = function () {
-        var lineChartData = {
-            labels : ["Sem 1","Sem 2","Sem 3","Sem 4","Sem 5","Sem 6","Sem 7"],
-            datasets : [
-                {
-                    data : [3.5,4.0,4.0,3.5,3.75,3.2,4.0],
-                    fillColor : "rgba(151,187,205,0.5)",
-                    strokeColor : "rgba(151,187,205,1)",
-                    pointColor : "rgba(151,187,205,1)",
-                    pointStrokeColor : "#fff"
-                }
-            ]
+                <div class="panel-body text-center">
+                    <canvas id="line" height="300" width="600"></canvas>
+                </div>
+            </div>
 
-        };
-         new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
-        }();
-    </script>
+            <hr/>
+
+            @if(Auth::user()->pastClasses())
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Course Name</th>
+                        <th>Semester</th>
+                        <th>Grade Received</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach(Auth::user()->pastClasses() as $class)
+                        @if($class["grade"][0] === "-")
+                            <tr class="default">
+                                @elseif($class["grade"][0] === "A")
+                            <tr class="success">
+                                @elseif($class["grade"][0] === "B")
+                            <tr class="info">
+                                @elseif($class["grade"][0] === "C")
+                            <tr class="warning">
+                        @else
+                            <tr class="danger">
+                                @endif
+                                <td>{{$class["subjectNumber"]}}</td>
+                                <td>{{$class["courseName"]}}</td>
+                                <td>{{$class["semester"]}}</td>
+                                <td>{{$class["grade"]}}</td>
+                            </tr>
+                            @endforeach
+                    </tbody>
+                </table>
+            @else
+                <p class="alert alert-info text-center">You have not previously taken any courses yet</p>
+            @endif
         </div>
-
-        
     </div>
+@endsection
+
+@section('footer')
+    @parent
+    <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
+    <script>
+        var url = '/index.php/api?data=gpa&student_id=' + {{ Auth::user()->id }}
+        var data;
+        $.ajax(url, {
+            success: function(ret) {
+                data = ret;
+            },
+            async: false
+        });
+
+        var lineChartData = {
+            labels : data.semesters,
+            datasets : [{
+                data : data.gpa,
+                fillColor : "rgba(0, 0, 0, 0)",
+                strokeColor : "rgba(151,187,205,1)",
+                pointColor : "rgba(151,187,205,1)",
+                pointStrokeColor : "#fff"
+            }]
+        };
+
+        Chart.types.Line.extend({
+            name: "LineAlt",
+            initialize: function(data){
+                Chart.types.Line.prototype.initialize.apply(this, arguments);
+                this.eachPoints(function(point, index){
+                    Chart.helpers.extend(point, {
+                        x: this.scale.calculateX(0),
+                        y: this.scale.calculateY(point.value)
+                    });
+                    point.save();
+                }, this);
+            }
+        });
+
+        var Script = new Chart(document.getElementById("line").getContext("2d")).LineAlt(lineChartData);
+    </script>
 @endsection

@@ -4,6 +4,15 @@ use Illuminate\Database\Seeder;
 
 class CoursesTableSeeder extends Seeder
 {
+
+    public function add_id($courses) {
+
+        for($i = 0; $i < sizeof($courses); $i++) {
+            $courses[$i]["id"] = $courses[$i]["class"];
+        }
+        return $courses;
+    }
+
     /**
      * Run the database seeds.
      *
@@ -14,7 +23,7 @@ class CoursesTableSeeder extends Seeder
         /*\DB::table('courses')->insert([
 
         ]);*/
-        DB::table('courses')->insert(array(
+        $data = array(
             array('subject' => 'CS', 'courseNumber' => '40', 'cid' => '41', 'courseName' => 'Introduction to Computers', 'class' => '42793', 'section1' => '01-SEM', 'section2' => 'Regular', 'days' => 'TuTh', 'startTime' => '12:00 PM', 'endTime' => '1:15 PM', 'room' => 'MacQuarrie Hall 225', 'instructor' => 'Kathleen O\'Brien', 'iid' => '17', 'meetingDates' => '08/20/2015 - 12/08/2015'),
             array('subject' => 'CS', 'courseNumber' => '46A', 'cid' => '43', 'courseName' => 'Introduction to Java Programming', 'class' => '27351', 'section1' => '01-LEC', 'section2' => 'Regular', 'days' => 'TuTh', 'startTime' => '1:30 PM', 'endTime' => '2:45 PM', 'room' => 'Yoshihiro Uchida Hall 124', 'instructor' => 'Kathleen O\'Brien', 'iid' => '17', 'meetingDates' => '01/28/2016 - 05/16/2016'),
             array('subject' => 'CS', 'courseNumber' => '46A', 'cid' => '43', 'courseName' => 'Introduction to Java Programming', 'class' => '27360', 'section1' => '11-LAB', 'section2' => 'Regular', 'days' => 'Fr', 'startTime' => '8:00 AM', 'endTime' => '10:45 AM', 'room' => 'MacQuarrie Hall 422', 'instructor' => 'Kathleen O\'Brien', 'iid' => '17', 'meetingDates' => '01/28/2016 - 05/16/2016'),
@@ -312,6 +321,8 @@ class CoursesTableSeeder extends Seeder
             array('subject' => 'MATH', 'courseNumber' => '285', 'cid' => '95', 'courseName' => 'Advanced Topics in Mathematics', 'class' => '28521', 'section1' => '03-SEM', 'section2' => 'Regular', 'days' => 'TuTh', 'startTime' => '3:00 PM', 'endTime' => '4:15 PM', 'room' => 'MacQuarrie Hall 234', 'instructor' => 'Staff', 'iid' => '33', 'meetingDates' => '01/28/2016 - 05/16/2016'),
             array('subject' => 'MATH', 'courseNumber' => '297', 'cid' => '96', 'courseName' => 'Professional Development in College Teaching', 'class' => '26342', 'section1' => '01-SEM', 'section2' => 'Regular', 'days' => 'Fr', 'startTime' => '12:00 PM', 'endTime' => '1:30 PM', 'room' => 'MacQuarrie Hall 320', 'instructor' => 'Staff', 'iid' => '33', 'meetingDates' => '01/28/2016 - 05/16/2016'),
             array('subject' => 'MATH', 'courseNumber' => '298I', 'cid' => '97', 'courseName' => 'Statistics Internship', 'class' => '26433', 'section1' => '01-SUP', 'section2' => 'Regular', 'days' => 'TBA', 'startTime' => 'TBA', 'endTime' => 'TBA', 'room' => 'TBA', 'instructor' => 'Staff', 'iid' => '33', 'meetingDates' => '01/28/2016 - 05/16/2016'),
-        ));
+        );
+
+        DB::table('courses')->insert($this->add_id($data));
     }
 }
