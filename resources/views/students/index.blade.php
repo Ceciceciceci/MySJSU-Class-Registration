@@ -72,6 +72,9 @@
                                 <a href="javascript:void(0)">Room</a>
                             </td>
                             <td>
+                                <a href="javascript:void(0)">Semester</a>
+                            </td>
+                            <td>
                                 <a href="javascript:void(0)">Meeting Days & Time</a>
                             </td>
                             <td></td>
@@ -93,6 +96,7 @@
                                 <td>{{$class["subjectNumber"]}}</td>
                                 <td>{{$class["instructor"]}}</td>
                                 <td>{{$class["room"]}}</td>
+                                <td>{{$class["semester"] . ' ' . $class["year"]}}</td>
                                 <td>{{$class["meetingTime"]}}</td>
                                 <td><a href="{{ action('CoursesController@dropClass', ['student_id' => Auth::user()->id, 'section_id' => $class["section_id"]]) }}">drop</a></td>
                             </tr>
