@@ -159,17 +159,17 @@
                         result.meeting = obj. days + " " + obj.startTime + " - " + obj.endTime;
                         result.instructor = obj.instructor;
                         result.seats= obj.seats;
-                        if(count===2)
+                        if(count===2)//wait list condition
                         {
                           result.stat = "glyphicon glyphicon-warning-sign text-warning"
                           count++;
                         }
-                        else if(count===3)
+                        else if(count===3) //closed section condition
                         {
                           result.stat = "glyphicon glyphicon-remove text-danger"
                           count = 1;
                         }
-                        else
+                        else// default condition is currently set to class being open
                         {
                           result.stat = "glyphicon glyphicon-ok text-success"
                           count++;
