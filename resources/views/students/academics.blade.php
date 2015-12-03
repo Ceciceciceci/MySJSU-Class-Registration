@@ -54,36 +54,94 @@
             <hr/>
 
             @if(Auth::user()->pastClasses())
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Course</th>
-                        <th>Course Name</th>
-                        <th>Semester</th>
-                        <th>Grade Received</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach(Auth::user()->pastClasses() as $class)
-                        @if($class["grade"][0] === "-")
-                            <tr class="default">
-                                @elseif($class["grade"][0] === "A")
-                            <tr class="success">
-                                @elseif($class["grade"][0] === "B")
-                            <tr class="info">
-                                @elseif($class["grade"][0] === "C")
-                            <tr class="warning">
-                        @else
-                            <tr class="danger">
+            <?php $testagainst="";?>
+                @foreach(Auth::user()->pastClasses() as $class)
+                    <?php $fullsem=$class["semester"] . ' ' . $class["year"];?>
+                    @if($testagainst === "")
+                        <?php $testagainst=$class["semester"] . ' ' . $class["year"];?>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Course</th>
+                                    <th>Course Name</th>
+                                    <th>Semester</th>
+                                    <th>Grade Received</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if($class["grade"][0] === "-")
+                                    <tr class="default">
+                                        @elseif($class["grade"][0] === "A")
+                                    <tr class="success">
+                                        @elseif($class["grade"][0] === "B")
+                                    <tr class="info">
+                                        @elseif($class["grade"][0] === "C")
+                                    <tr class="warning">
+                                @else
+                                    <tr class="danger">
+                                        @endif
+                                        <td>{{$class["subjectNumber"]}}</td>
+                                        <td>{{$class["courseName"]}}</td>
+                                        <td>{{$class["semester"] . ' ' . $class["year"]}}</td>
+                                        <td>{{$class["grade"]}}</td>
+                                    </tr>
+                                
+                            </tbody>
+
+                    @elseif($testagainst === $fullsem)
+                        
+                            <tbody>
+                                @if($class["grade"][0] === "-")
+                                    <tr class="default">
+                                        @elseif($class["grade"][0] === "A")
+                                    <tr class="success">
+                                        @elseif($class["grade"][0] === "B")
+                                    <tr class="info">
+                                        @elseif($class["grade"][0] === "C")
+                                    <tr class="warning">
+                                @else
+                                    <tr class="danger">
                                 @endif
-                                <td>{{$class["subjectNumber"]}}</td>
-                                <td>{{$class["courseName"]}}</td>
-                                <td>{{$class["semester"] . ' ' . $class["year"]}}</td>
-                                <td>{{$class["grade"]}}</td>
-                            </tr>
-                            @endforeach
-                    </tbody>
-                </table>
+                                        <td>{{$class["subjectNumber"]}}</td>
+                                        <td>{{$class["courseName"]}}</td>
+                                        <td>{{$class["semester"] . ' ' . $class["year"]}}</td>
+                                        <td>{{$class["grade"]}}</td>
+                                    </tr>
+                                
+                            </tbody>
+                    @else
+                        </table>
+                        <?php $testagainst=$class["semester"] . ' ' . $class["year"];?>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Course</th>
+                                    <th>Course Name</th>
+                                    <th>Semester</th>
+                                    <th>Grade Received</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if($class["grade"][0] === "-")
+                                    <tr class="default">
+                                        @elseif($class["grade"][0] === "A")
+                                    <tr class="success">
+                                        @elseif($class["grade"][0] === "B")
+                                    <tr class="info">
+                                        @elseif($class["grade"][0] === "C")
+                                    <tr class="warning">
+                                @else
+                                    <tr class="danger">
+                                @endif
+                                        <td>{{$class["subjectNumber"]}}</td>
+                                        <td>{{$class["courseName"]}}</td>
+                                        <td>{{$class["semester"] . ' ' . $class["year"]}}</td>
+                                        <td>{{$class["grade"]}}</td>
+                                    </tr>
+                            </tbody>
+                    @endif
+                @endforeach
+            </table>
             @else
                 <p class="alert alert-info text-center">You have not previously taken any courses yet</p>
             @endif
@@ -91,9 +149,8 @@
     </div>
 @endsection
 
-@section('footer')
-    @parent
-    <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
+@section('scripts')
+<script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
     <script>
         var url = '/index.php/api?data=gpa&student_id=' + {{ Auth::user()->id }}
         var data;
@@ -131,4 +188,8 @@
 
         var Script = new Chart(document.getElementById("line").getContext("2d")).LineAlt(lineChartData);
     </script>
+@endsection
+
+@section('footer')
+    @parent
 @endsection

@@ -379,8 +379,14 @@ a.title b {
 
 /*- FOOOOOOOTER -*/
 
-.site-min-height {
+/*.site-min-height {
     min-height: 900px;
+}*/
+.footer{
+    position: absolute;
+    bottom:0;
+    width:100%;
+    background:#6cf;
 }
 
 
