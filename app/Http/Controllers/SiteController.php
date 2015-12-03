@@ -16,41 +16,59 @@ use Illuminate\Support\Facades\Validator;
 class SiteController extends Controller
 {
     public function index() {
-        return view('login');
+        if(Auth::check()) {
+            if(Auth::user()->isProfessor())
+                return redirect()->action('ProfessorsController@index');
+            else
+                return redirect()->action('StudentsController@index');
+        }
+        else {
+            return view('login');
+        }
     }
 
     public function login(Request $request) {
-        $id = $request->get('sjsu_id');
-        $password = $request->get('password');
-        $inputs = ['id' => $id, 'password' => $password];
-        $rules = ['id'    => 'required', 'password' => 'required',];
-        $validator = Validator::make($inputs, $rules);
-        $user = User::find($id);
+        if(Auth::check() == false) {
+            $id = $request->get('sjsu_id');
+            $password = $request->get('password');
+            $inputs = ['id' => $id, 'password' => $password];
+            $rules = ['id'    => 'required', 'password' => 'required',];
+            $validator = Validator::make($inputs, $rules);
+            $user = User::find($id);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput($request->except('password'));
-        }
-
-
-        if($user && $password === $user->password) {
-            Auth::login($user);
-
-            if($id <= 38) {
-                return redirect()->action('ProfessorsController@index');
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput($request->except('password'));
             }
-            else {
-                return redirect()->action('StudentsController@index');
-            }
-        }
 
-        return redirect()->back();
+
+            if($user && $password === $user->password) {
+                Auth::login($user);
+
+                if($id <= 38) {
+                    return redirect()->action('ProfessorsController@index');
+                }
+                else {
+                    return redirect()->action('StudentsController@index');
+                }
+            }
+
+            return redirect()->back();
+        }
+        else {
+            return redirect()->back();
+        }
     }
 
     public function logout() {
-        Auth::logout();
-        return redirect()->action('SiteController@index');
+        if(Auth::check()) {
+            Auth::logout();
+            return redirect()->action('SiteController@index');
+        }
+        else {
+            return redirect()->back();
+        }
     }
 
     public function cecilia() {

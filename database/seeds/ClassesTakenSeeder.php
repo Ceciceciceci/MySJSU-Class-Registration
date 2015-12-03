@@ -11,7 +11,11 @@ class ClassesTakenSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('classestaken')->insert(array(
+        DB::table('classestaken')->insert($this->classesTaken());
+    }
+
+    private function classesTaken() {
+        $arr = array(
             array('id' => '39', 'cid' => '80', 'semester' => 'Spring', 'year' => '2014', 'grade' => 'B', 'section_id' => '28061'),
             array('id' => '39', 'cid' => '81', 'semester' => 'Spring', 'year' => '2014', 'grade' => 'A', 'section_id' => '22996'),
             array('id' => '39', 'cid' => '47', 'semester' => 'Spring', 'year' => '2014', 'grade' => 'B+', 'section_id' => '21473'),
@@ -33,8 +37,39 @@ class ClassesTakenSeeder extends Seeder
 
             array('id' => '40', 'cid' => '11', 'semester' => 'Fall', 'year' => '2014', 'grade' => 'A-', 'section_id' => '25153'),
             array('id' => '40', 'cid' => '47', 'semester' => 'Fall', 'year' => '2014', 'grade' => 'A+', 'section_id' => '21473'),
+        );
 
-            //array('id' => '39', 'cid' => '104', 'semester' => 'Spring 2015', 'grade' => 'B+'),
-        ));
+        return array_merge($arr, $this->moreSeed(10000));
+    }
+
+    public function moreSeed($n) {
+        $arr = [];
+        $grades = ['-', 'A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
+        $cids = DB::table('courses')->lists('cid');
+        $semesters = ['Fall', 'Spring'];
+        $years = ['2014', '2015'];
+
+        $count = 1;
+        for($i = 0; $i < $n; $i++) {
+            if($i % 1000 === 0) {
+                $num = $count * 1000;
+                print "generating " . $num . " records\n";
+                $count++;
+            }
+
+            $cid = $cids[rand(0,sizeof($cids)-1)];
+            $section_id = DB::table('courses')->where('cid', 95)->lists('id')[0];
+
+            array_push($arr, [
+                'id' => rand(39, 443),
+                'cid' => $cid,
+                'semester' => $semesters[rand(0, 1)],
+                'year' => $years[rand(0, 1)],
+                'grade' => $grades[rand(0, sizeof($grades)-1)],
+                'section_id' => $section_id
+            ]);
+        }
+
+        return $arr;
     }
 }
