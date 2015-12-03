@@ -69,8 +69,9 @@ class ClassesTaken extends Model
     }
     
 
-    public function test1(){
-        return "apples";
+    public function getClasses($sid){
+        return ClassesTaken::find($sid);
+        //return "apples";
     }
     /*
     public function corequisites() {
