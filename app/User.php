@@ -50,13 +50,35 @@ class User extends Model implements AuthenticatableContract,
         }
     }
     
-    public function tryCart($sid,$class){
+    /*public function tryCart($sid,$class){
+
+        //get cid
         $cid = Course::first()->getCid( $class );
-        $matchThese = ['user_id' => $sid, 'course_id' => $cid];
-        if( DB::table('cart')->where( $matchThese )->exists() == true)
-            return false;
-        return true;
-    }
+
+        if(!$cid){//if cid does not exist
+            return array();
+        }
+
+        // get coreq
+        $crid = Requisites::first()->getCoreq($cid);
+        
+
+        if(!($crid)){ //if no coreq
+            return array(); //return empty array
+        }
+
+        $matchThese = ['user_id' => $sid, 'course_id' => $crid];
+        $matchTheseAlso = ['id' => $sid, 'cid' => $crid];
+
+        if( DB::table('cart')->where( $matchThese )->exists() == true || DB::table('classestaken')->where( $matchTheseAlso )->exists() == true){//if student has coreq in cart
+            return array(); //return empty array
+        }
+
+        $x = CourseInfo::find( $crid )->subjectNumber();
+        $string = "You are missing ".$x." corequisites.";
+        return array($string);
+    }*/
+
     public function removeClassFromCart($course_id) {
         if($this->isStudent()) {
             $data = [
@@ -195,7 +217,47 @@ class User extends Model implements AuthenticatableContract,
         return "not a professor";
     }
 
+    /*
+    *   Generates Add Code
+    *   input-> Class Section ID
+    *   output-> Code
+    */
+    public function generateAddCode( $class_id ){
+        $count = DB::table('addcodes')->count();
+        
+        if($this->isProfessor()){
+            $x = md5($count+1);
+            $code = strtoupper(substr($x,0,6));
+            DB::table('addcodes')->insert(
+                ['class_id' => $class_id, 'code' => $code]
+            );
+        }
+        return $code;
 
+    }
+
+    //useAddCode check if student, section in & add code, 
+    //remove from table,
+    //call enroll on user
+    public function useAddCode( $class_id, $code ){
+        if($this->isStudent()) {
+
+            /*$dataForCartRemoval = [
+                'user_id' => $this->id,
+                'course_id' => $class_id
+            ];*/
+            $dataForAddCodesRemoval = [
+                'code' => $code,
+                'class_id' => $class_id
+            ];
+
+            if(DB::table('cart')->where($data)->exists()){
+                //add function to enroll to class
+                //DB::table('cart')->where($dataForCartRemoval)->delete();
+                DB::table('addcodes')->where($dataForAddCodesRemoval)->delete();
+            }
+        }
+    }
 
     /*
      * returns all courses in shopping cart
