@@ -63,8 +63,6 @@
 
                             document.getElementById("demo").innerHTML += code + "<br>";
 
-                            document.getElementById("demo1").innerHTML += code + "<br>";
-
                             code = code + a;
 
                             return false;
