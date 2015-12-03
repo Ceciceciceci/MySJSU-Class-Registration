@@ -38,13 +38,13 @@ class Requisites extends Model
     public function getCoreq( $cid ) {
         if( !(Course::where('cid','=',$cid)->exists()) )
             return null;
-        
+
         $list = Course::where('cid','=',$cid)->first()->requisites;
 
 
         $results = array();
         foreach ($list as $row) {
-            //IF Prerequisite OR Prerequisite, check both
+            //If CoRequisite exists
             if($row->crid){
                 return $row->crid;
             }

@@ -68,8 +68,9 @@ class User extends Model implements AuthenticatableContract,
         }
 
         $matchThese = ['user_id' => $sid, 'course_id' => $crid];
+        $matchTheseAlso = ['id' => $sid, 'cid' => $crid];
 
-        if( DB::table('cart')->where( $matchThese )->exists() == true){//if student has coreq in cart
+        if( DB::table('cart')->where( $matchThese )->exists() == true || DB::table('classestaken')->where( $matchTheseAlso )->exists() == true){//if student has coreq in cart
             return array(); //return empty array
         }
 
