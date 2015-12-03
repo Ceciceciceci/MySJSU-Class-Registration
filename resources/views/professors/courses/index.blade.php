@@ -18,7 +18,7 @@
             <hr />
             <ul class="nav nav-pills nav-stacked">
                 <li>
-                    <a href="{{ action('') }}">
+                    <a href="{{ action('SiteController@index') }}">
                         <i class="glyphicon glyphicon-home"></i>
                         Dashboard
                     </a>
