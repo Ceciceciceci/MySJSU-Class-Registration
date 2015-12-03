@@ -49,7 +49,14 @@ class User extends Model implements AuthenticatableContract,
                 DB::table('cart')->insert($data);
         }
     }
-
+    
+    public function tryCart($sid,$class){
+        $cid = Course::first()->getCid( $class );
+        $matchThese = ['user_id' => $sid, 'course_id' => $cid];
+        if( DB::table('cart')->where( $matchThese )->exists() == true)
+            return false;
+        return true;
+    }
     public function removeClassFromCart($course_id) {
         if($this->isStudent()) {
             $data = [
