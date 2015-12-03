@@ -131,7 +131,9 @@ class Course extends Model
         //return $this->instructor;
     }
     public function getCid($class){
-        return Course::where('class','=',$class)->first()->cid;
+        if(Course::where('class','=',$class)->exists())
+            return Course::where('class','=',$class)->first()->cid;
+        return null;
     }
 
     public function tester($id){

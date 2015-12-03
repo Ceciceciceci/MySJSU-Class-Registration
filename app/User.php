@@ -52,8 +52,14 @@ class User extends Model implements AuthenticatableContract,
     
     public function tryCart($sid,$class){
 
-
+        //get cid
         $cid = Course::first()->getCid( $class );
+
+        if(!$cid){//if cid does not exist
+            return array();
+        }
+
+        // get coreq
         $crid = Requisites::first()->getCoreq($cid);
 
         if(!($crid)){ //if no coreq
