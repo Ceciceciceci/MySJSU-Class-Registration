@@ -34,8 +34,20 @@ class Requisites extends Model
      * @var array
      */
 
-    /*
-    public function corequisites() {
-        return $this->belongsToMany('App\Course', 'requisites', 'cid', 'crid');
-    }*/
+    
+    public function getCoreq( $cid ) {
+        if( !(Course::where('cid','=',$cid)->exists()) )
+            return null;
+        
+        $list = Course::where('cid','=',$cid)->first()->requisites;
+
+
+        $results = array();
+        foreach ($list as $row) {
+            //IF Prerequisite OR Prerequisite, check both
+            if($row->crid){
+                return $row->crid;
+            }
+        }
+    }
 }

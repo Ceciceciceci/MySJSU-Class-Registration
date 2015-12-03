@@ -156,8 +156,8 @@ class Course extends Model
         $list = Course::where('cid','=',$cid)->first()->requisites;
 
         //if list is empty, return null;
-        if(!($list))
-            return array();
+        //if(!($list))
+            //return array();
 
         $results = array();
         foreach ($list as $row) {
@@ -178,6 +178,7 @@ class Course extends Model
             }elseif($row->prid){
 
                 $hit = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
+
                 if(!($hit)){
                     $y = CourseInfo::find( $row->prid )->subjectNumber();
                     $result = "You are missing ".$y." prerequisite.";
