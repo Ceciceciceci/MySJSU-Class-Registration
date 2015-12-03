@@ -181,7 +181,10 @@ class User extends Model implements AuthenticatableContract,
 
     public function classesTaken() {
         if($this->isStudent()) {
-            $classes_taken = ClassesTaken::where('id', $this->id)->get();
+            $classes_taken = ClassesTaken::where('id', $this->id)
+                                ->orderBy('year', 'DESC')
+                                ->orderBy('semester', 'DESC')
+                                ->get();
             $result = $classes_taken->toArray();
 
             for($i = 0; $i < sizeof($classes_taken); $i++) {
