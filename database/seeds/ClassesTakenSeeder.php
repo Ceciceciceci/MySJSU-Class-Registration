@@ -37,7 +37,7 @@ class ClassesTakenSeeder extends Seeder
             $cid = $cids[rand(0,sizeof($cids)-1)];
             $semester = $semesters[rand(0, 1)];
             $year = $years[rand(0, 1)];
-            $section_id = \App\Course::where('cid', 95)->lists('id')[0];
+            $section_id = \App\Course::where('cid', $cid)->lists('id')[0];
             $grade = $grades[rand(0, sizeof($grades)-1)];
 
             array_push($arr, [
