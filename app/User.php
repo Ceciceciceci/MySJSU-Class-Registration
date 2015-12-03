@@ -61,6 +61,7 @@ class User extends Model implements AuthenticatableContract,
 
         // get coreq
         $crid = Requisites::first()->getCoreq($cid);
+        
 
         if(!($crid)){ //if no coreq
             return array(); //return empty array
