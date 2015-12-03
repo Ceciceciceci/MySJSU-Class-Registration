@@ -36,8 +36,8 @@ class CreateCoursesTable extends Migration
             $table->string('instructor');
             $table->integer('iid')->nullable(); // instructor id
             $table->string('meetingDates');
-            $table->integer("seats", false, true)->nullable()
-                                                 ->default(35);
+            $table->integer("seats", false, false)->nullable()
+                                                  ->default(35);
             $table->nullableTimestamps();
         }); 
     }
