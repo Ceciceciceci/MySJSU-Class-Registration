@@ -171,7 +171,7 @@ class Course extends Model
                 if( !($get1 || $get2) ){
                     $x = CourseInfo::find( $row->prid )->subjectNumber();
                     $y = CourseInfo::find( $row->ORprid )->subjectNumber();
-                    $result = "You are missing both ".$x." and ".$y." prerequisites.";
+                    $result = "You are missing ".$x." or ".$y." prerequisites.";
                     array_push($results,$result);//return false;
                 }
 
@@ -189,5 +189,6 @@ class Course extends Model
 
     }
 
+}
 
 }
