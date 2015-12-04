@@ -55,23 +55,27 @@
                     <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
                
                    <canvas id="mycanvas" width="256" height="256">
-
-
-
-                                $CS_MUST = ("CS 46A", "CS 46B", "CS 47","CS 100W","CS 146","CS 147","CS 149","CS 151","CS 152","CS 154","CS 160");
-                                
-                                $MATH_MUST = ("MATH 30", "MATH 31","MATH 32","MATH 42","MATH 129");
-                                
-                                $CS_ELECTIVE = ("CS 72","CS 108","CS 116A","CS 116B","CS 122","CS 120A","CS 120B","CS 134","CS 143C","CS 157A","CS 157B","CS 159","CS 174","CS 180H","CS 185C");
-
-
-                   
-                                @foreach(Auth::user()->pastClasses() as $class)
-
-                                       
-                                      
-                                    @endforeach
                         <script>
+
+                                var data;
+
+                                $.ajax("{{ action('APIController@main', ['data' => 'classestaken'])}}", {
+                                    success: function(ret) {
+                                        data = ret;
+                                    },
+                                    async: false
+                                });
+
+                                var Class_Taken = [];
+                                for(var i = 0; i < data.length; i++) {
+                                    (function() {
+                                        var obj = data[i];
+                                        Class_Taken.push(obj.subjectNumber);
+                                        console.log(obj.subjectNumber);
+                                    })();
+                                }
+
+                                console.log(Class_Taken.length);
 
                                 var CS_MUST_count = 0;
                                 var MATH_MUST_count = 0
@@ -80,6 +84,8 @@
                                 var math = 50;
                                 var cs = 40;
                                 var left = 10;
+                                var left_Math = 0;
+                                var left_CS = 0;
 
                                 var elective_classes = 7;
 
@@ -88,7 +94,7 @@
                                 
                                 var CS_ELECTIVE = ["CS 72","CS 108","CS 116A","CS 116B","CS 122","CS 120A","CS 120B","CS 134","CS 143C","CS 157A","CS 157B","CS 159","CS 174","CS 180H","CS 185C"];
                                
-                                var Class_Taken = ["CS 152", "CS 146", "CS 149","MATH 129","CS 46B","MATH 31","CS 100W"]
+                                // var Class_Taken = ["CS 152", "CS 146", "CS 149","MATH 129","CS 46B","MATH 31","CS 100W"]
 
                                 var Total_requirment = CS_MUST.length + MATH_MUST.length + elective_classes;
 
@@ -134,33 +140,43 @@
 
                                 math = MATH_MUST_count;
 
-                                left = Total_requirment - cs - math;
+                                left_Math = MATH_MUST.length - MATH_MUST_count;
+
+                                left_CS = CS_MUST.length + CS_ELECTIVE.length - cs;
+
+                                //left = Total_requirment - cs - math;
 
 
                             $(document).ready(function(){
                                 var ctx = $("#mycanvas").get(0).getContext("2d");
-
-                                //pie chart data
-                                //sum of values = 360
 
                                 var data = [
                                     {
                                         value: math,
                                         color: "cornflowerblue",
                                         highlight: "lightskyblue",
-                                        label: "Math"
+                                        label: "Math complete",
+                                        segmentShowStroke : true,
+
+
                                     },
                                     {
                                         value: cs,
                                         color: "lightgreen",
                                         highlight: "yellowgreen",
-                                        label: "CS"
+                                        label: "CS complete"
                                     },
                                     {
-                                        value: left,
+                                        value: left_CS,
                                         color: "orange",
                                         highlight: "darkorange",
-                                        label: "Left"
+                                        label: "CS Left"
+                                    },
+                                    {
+                                        value: left_Math,
+                                        color: "yellow",
+                                        highlight: "yellow",
+                                        label: "Math Left"
                                     }
                                 ];
 
@@ -170,6 +186,7 @@
                         </script>
             
             </div>
+
 
         </div>
         <div class="col-sm-9">
