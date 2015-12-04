@@ -252,32 +252,37 @@ class User extends Model implements AuthenticatableContract,
     //useAddCode check if student, section in & add code, 
     //remove from table,
     //call enroll on user
-    public function useAddCode( $class_id, $code ){
+    public function useAddCode( $code ){
         if($this->isStudent()) {
+            if(DB::table('addcodes')->where(['code'=> $code])->exists()){
+                $x = DB::table('addcodes')->where(['code'=> $code])->first();
+                $class_id = $x->class_id;
+                $entry = DB::table('addcodes')->where($dataForAddCodesRemoval);
+                $dataForCartRemoval = [
+                    'user_id' => $this->id,
+                    'course_id' => $class_id
+                ];
+                $dataForAddCodesRemoval = [
+                    'code' => $code,
+                    'class_id' => $class_id
+                ];
 
-            $dataForCartRemoval = [
-                'user_id' => $this->id,
-                'course_id' => $class_id
-            ];
-            $dataForAddCodesRemoval = [
-                'code' => $code,
-                'class_id' => $class_id
-            ];
+                //if class exists in student cart and class exists.
+                if(DB::table('cart')->where($dataForCartRemoval)->exists() && DB::table('addcodes')->where($dataForAddCodesRemoval)->exists()){
 
-            //if class exists in student cart and class exists.
-            if(DB::table('cart')->where($dataForCartRemoval)->exists() && DB::table('addcodes')->where($dataForAddCodesRemoval)->exists()){
+                    //INSERT FUNCTION TO ADD CLASS TO CLASSESTAKEN TABLE
+                    $course = Course::find($class_id);
+                    $course->enroll();
 
-                //INSERT FUNCTION TO ADD CLASS TO CLASSESTAKEN TABLE
-                $course = Course::find($class_id);
-                $course->enroll();
+                    //cmd to remove class from cart
+                    //DB::table('cart')->where($dataForCartRemoval)->delete();
 
-                //cmd to remove class from cart
-                //DB::table('cart')->where($dataForCartRemoval)->delete();
-
-                //removes add code from addcodes table
-                DB::table('addcodes')->where($dataForAddCodesRemoval)->delete();
-                $result = "You have successfull enrolled into section ".$class_id.".";
-                return $result;
+                    //removes add code from addcodes table
+                    DB::table('addcodes')->where($dataForAddCodesRemoval)->delete();
+                    $result = "You have successfull enrolled into section ".$class_id.".";
+                    return $result;
+                }
+                return "You have entered an invalid add code.";
             }
             return "You have entered an invalid add code.";
         }
