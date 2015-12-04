@@ -275,7 +275,7 @@ class User extends Model implements AuthenticatableContract,
             if(DB::table('addcodes')->where(['code'=> $code])->exists()){
                 $x = DB::table('addcodes')->where(['code'=> $code])->first();
                 $class_id = $x->class_id;
-                $entry = DB::table('addcodes')->where($dataForAddCodesRemoval);
+                
                 $dataForCartRemoval = [
                     'user_id' => $this->id,
                     'course_id' => $class_id
@@ -284,9 +284,9 @@ class User extends Model implements AuthenticatableContract,
                     'code' => $code,
                     'class_id' => $class_id
                 ];
-
-                //if class exists in student cart and class exists.
-                if(DB::table('cart')->where($dataForCartRemoval)->exists() && DB::table('addcodes')->where($dataForAddCodesRemoval)->exists()){
+                //$entry = DB::table('addcodes')->where($dataForAddCodesRemoval);
+                //if class exists in student cart.
+                if(DB::table('cart')->where($dataForCartRemoval)->exists()){
 
                     //INSERT FUNCTION TO ADD CLASS TO CLASSESTAKEN TABLE
                     $course = Course::find($class_id);
@@ -300,7 +300,7 @@ class User extends Model implements AuthenticatableContract,
                     $result = "You have successfull enrolled into section ".$class_id.".";
                     return $result;
                 }
-                return "You have entered an invalid add code.";
+                return "You do not have this course in your cart.";
             }
             return "You have entered an invalid add code.";
         }
