@@ -78,6 +78,18 @@ class Course extends Model
         }
     }
 
+    /*  Returns a string of Seats Status
+    */  
+    public function seatsStatus(){
+        if( $this->seats > 0 ){
+            return "Open";
+        }elseif( $this->seats <= 0 && $this->seats > -15 ){
+            return "Waitlisted";
+        }else{
+            return "Closed";
+        }
+    }
+
     private function incSeats() {
         // Increment seats
         $this->seats++;
