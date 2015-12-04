@@ -252,7 +252,21 @@ class User extends Model implements AuthenticatableContract,
         }
         return null;
     }
-
+    /*
+    *   Return Active Codes
+    *   input-> Class Section ID
+    *   output-> list of codes
+    */
+    public function returnActiveCodes( $class_id ){
+        if($this->isProfessor()){
+            if(DB::table('addcodes')->where('class_id','=',$class_id)->exists()){
+                $list = DB::table('addcodes')->where('class_id','=',$class_id)->get();
+                return $list;
+            }else{
+                return array();
+            }
+        }
+    }
     //useAddCode check if student, section in & add code, 
     //remove from table,
     //call enroll on user
@@ -268,16 +282,22 @@ class User extends Model implements AuthenticatableContract,
                 'class_id' => $class_id
             ];
 
-            //if class exists in student cart.
-            if(DB::table('cart')->where($dataForCartRemoval)->exists()){
+            //if class exists in student cart and class exists.
+            if(DB::table('cart')->where($dataForCartRemoval)->exists() && DB::table('addcodes')->where($dataForAddCodesRemoval)->exists()){
 
                 //INSERT FUNCTION TO ADD CLASS TO CLASSESTAKEN TABLE
+                $course = Course::find($class_id);
+                $course->enroll();
 
+                //cmd to remove class from cart
                 //DB::table('cart')->where($dataForCartRemoval)->delete();
 
                 //removes add code from addcodes table
                 DB::table('addcodes')->where($dataForAddCodesRemoval)->delete();
+                $result = "You have successfull enrolled into section ".$class_id.".";
+                return $result;
             }
+            return "You have entered an invalid add code.";
         }
     }
 
