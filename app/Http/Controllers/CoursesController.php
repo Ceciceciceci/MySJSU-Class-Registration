@@ -139,10 +139,12 @@ class CoursesController extends Controller
         $errors = [];
 
         foreach($courses as $course) {
-            $success = $course->enroll();
+            $results = $course->enroll();
 
-            if($success == false) {
-                array_push($errors, ["Section " . $course->class . ": unable to enroll"]);
+            //if Results contain error message
+            if($results) {
+                $errors = $results;
+                //array_push($errors, ["Section " . $course->class . ": unable to enroll"]);
             }
         }
 
