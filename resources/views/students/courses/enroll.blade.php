@@ -57,7 +57,11 @@
 
                 @endif
                 Spring 2016 Shopping Cart
-                <a href="{{action('CoursesController@enrollAll')}}" class="btn btn-success pull-right">Enroll All</a>
+                    <div class="pull-right">
+                        <a href="" class="btn btn-warning">Use Add Code</a>
+                        <a href="{{action('CoursesController@enrollAll')}}" class="btn btn-success">Enroll All</a>
+                    </div>
+
             </h4>
             <hr />
             @if(Auth::user()->cart->isEmpty())
