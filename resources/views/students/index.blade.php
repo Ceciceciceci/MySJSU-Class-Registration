@@ -49,6 +49,128 @@
                 </li>
             </ul>
             <hr />
+
+            <div>
+               <script type="text/javascript" src="{{ URL::asset('js/jquery-2.1.4.min.js') }}"></script>
+                    <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
+               
+                   <canvas id="mycanvas" width="256" height="256">
+
+
+
+                                $CS_MUST = ("CS 46A", "CS 46B", "CS 47","CS 100W","CS 146","CS 147","CS 149","CS 151","CS 152","CS 154","CS 160");
+                                
+                                $MATH_MUST = ("MATH 30", "MATH 31","MATH 32","MATH 42","MATH 129");
+                                
+                                $CS_ELECTIVE = ("CS 72","CS 108","CS 116A","CS 116B","CS 122","CS 120A","CS 120B","CS 134","CS 143C","CS 157A","CS 157B","CS 159","CS 174","CS 180H","CS 185C");
+
+
+                   
+                                @foreach(Auth::user()->pastClasses() as $class)
+
+                                       
+                                      
+                                    @endforeach
+                        <script>
+
+                                var CS_MUST_count = 0;
+                                var MATH_MUST_count = 0
+                                var CS_ELECTIVE_count = 0;
+
+                                var math = 50;
+                                var cs = 40;
+                                var left = 10;
+
+                                var elective_classes = 7;
+
+                                var CS_MUST = ["CS 46A", "CS 46B", "CS 47","CS 100W","CS 146","CS 147","CS 149","CS 151","CS 152","CS 154","CS 160"];
+                                var MATH_MUST = ["MATH 30", "MATH 31","MATH 32","MATH 42","MATH 129"];
+                                
+                                var CS_ELECTIVE = ["CS 72","CS 108","CS 116A","CS 116B","CS 122","CS 120A","CS 120B","CS 134","CS 143C","CS 157A","CS 157B","CS 159","CS 174","CS 180H","CS 185C"];
+                               
+                                var Class_Taken = ["CS 152", "CS 146", "CS 149","MATH 129","CS 46B","MATH 31","CS 100W"]
+
+                                var Total_requirment = CS_MUST.length + MATH_MUST.length + elective_classes;
+
+                                for(var i = 0; i < Class_Taken.length ; i++ ) {
+
+                                        for(var j = 0; j < CS_MUST.length ; j++ ) {
+
+                                            if(Class_Taken[i] == CS_MUST[j]) {
+
+                                                CS_MUST_count++;
+                                            }
+                                        }
+                                }
+
+                                for(var i = 0; i < Class_Taken.length ; i++ ) {
+
+                                        for(var j = 0; j < MATH_MUST.length ; j++ ) {
+
+                                            if(Class_Taken[i] == MATH_MUST[j]) {
+
+                                                MATH_MUST_count++;
+                                            }
+                                        }
+                                }
+
+                                for(var i = 0; i < Class_Taken.length ; i++ ) {
+
+                                        for(var j = 0; j < CS_ELECTIVE.length ; j++ ) {
+
+                                            if(Class_Taken[i] == CS_ELECTIVE[j]) {
+
+                                                CS_ELECTIVE_count++;
+                                            }
+                                        }
+                                }
+
+                                if(CS_ELECTIVE_count > 7) {
+
+                                    CS_ELECTIVE_count = 7;
+                                } 
+
+                                cs = CS_MUST_count + CS_ELECTIVE_count;
+
+                                math = MATH_MUST_count;
+
+                                left = Total_requirment - cs - math;
+
+
+                            $(document).ready(function(){
+                                var ctx = $("#mycanvas").get(0).getContext("2d");
+
+                                //pie chart data
+                                //sum of values = 360
+
+                                var data = [
+                                    {
+                                        value: math,
+                                        color: "cornflowerblue",
+                                        highlight: "lightskyblue",
+                                        label: "Math"
+                                    },
+                                    {
+                                        value: cs,
+                                        color: "lightgreen",
+                                        highlight: "yellowgreen",
+                                        label: "CS"
+                                    },
+                                    {
+                                        value: left,
+                                        color: "orange",
+                                        highlight: "darkorange",
+                                        label: "Left"
+                                    }
+                                ];
+
+                                //draw
+                                var piechart = new Chart(ctx).Pie(data);
+                            });
+                        </script>
+            
+            </div>
+
         </div>
         <div class="col-sm-9">
             {{--<h4 class="lead">Alerts</h4>--}}
