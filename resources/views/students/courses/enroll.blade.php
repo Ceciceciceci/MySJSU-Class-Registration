@@ -56,6 +56,11 @@
                     @endforeach
 
                 @endif
+                @if (session('msg'))
+                    <div class="alert alert-info">
+                        {{ session('msg') }}
+                    </div>
+                @endif
                 Spring 2016 Shopping Cart
                     <div class="pull-right">
                         <!--Add Code starts here-->
