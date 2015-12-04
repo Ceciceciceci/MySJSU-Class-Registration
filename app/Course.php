@@ -61,7 +61,7 @@ class Course extends Model
         $grade = "-";
         $eligible = $this->tryEnroll($user_id, $section_id);
 
-        if($eligible) {
+        if(!$eligible) {
             DB::table('classestaken')->insert([
                 'id' => $user_id,
                 'cid' => $course_id,
@@ -71,10 +71,19 @@ class Course extends Model
             ]);
             Auth::user()->removeClassFromCart($section_id);
             $this->decSeats();
-            return true;
         }
-        else {
-            return false;
+        return $eligible;
+    }
+
+    /*  Returns a string of Seats Status
+    */  
+    public function seatsStatus(){
+        if( $this->seats > 0 ){
+            return "Open";
+        }elseif( $this->seats <= 0 && $this->seats > -15 ){
+            return "Waitlisted";
+        }else{
+            return "Closed";
         }
     }
 
@@ -142,7 +151,7 @@ class Course extends Model
 
     /*
      * First Parameter is Student ID, Second Parameter is Class Section ID
-     * @returns boolean
+     * @returns empty array if successful, else array
      */
     public function tryEnroll( $sid , $class ){
         //Get Cid

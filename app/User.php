@@ -224,16 +224,15 @@ class User extends Model implements AuthenticatableContract,
     */
     public function generateAddCode( $class_id ){
         $count = DB::table('addcodes')->count();
-        
+        $x = md5(microtime(true));
+        $code = strtoupper(substr($x,0,6));
         if($this->isProfessor()){
-            $x = md5($count+1);
-            $code = strtoupper(substr($x,0,6));
-            DB::table('addcodes')->insert(
+            $id = DB::table('addcodes')->insertGetId(
                 ['class_id' => $class_id, 'code' => $code]
             );
+            return $code;
         }
-        return $code;
-
+        return null;
     }
 
     //useAddCode check if student, section in & add code, 
@@ -242,18 +241,26 @@ class User extends Model implements AuthenticatableContract,
     public function useAddCode( $class_id, $code ){
         if($this->isStudent()) {
 
-            /*$dataForCartRemoval = [
+            $dataForCartRemoval = [
                 'user_id' => $this->id,
                 'course_id' => $class_id
-            ];*/
+            ];
             $dataForAddCodesRemoval = [
                 'code' => $code,
                 'class_id' => $class_id
             ];
 
-            if(DB::table('cart')->where($data)->exists()){
-                //add function to enroll to class
+            //if class exists in student cart.
+            if(DB::table('cart')->where($dataForCartRemoval)->exists() && DB::table('addcodes')->where($dataForAddCodesRemoval)->exists()){
+
+                //INSERT FUNCTION TO ADD CLASS TO CLASSESTAKEN TABLE
+                $course = Course::find($class_id);
+                $course->enroll();
+
+                //cmd to remove class from cart
                 //DB::table('cart')->where($dataForCartRemoval)->delete();
+
+                //removes add code from addcodes table
                 DB::table('addcodes')->where($dataForAddCodesRemoval)->delete();
             }
         }
