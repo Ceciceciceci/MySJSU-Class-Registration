@@ -56,6 +56,11 @@
                     @endforeach
 
                 @endif
+                @if (session('msg'))
+                    <div class="alert alert-info">
+                        {{ session('msg') }}
+                    </div>
+                @endif
                 Spring 2016 Shopping Cart
                     <div class="pull-right">
                         <!--Add Code starts here-->
@@ -73,11 +78,11 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                      <input type="text" class="form-control" id="ADDcODE">
+                                      <input name="addcode" type="text" class="form-control" id="ADDcODE">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="#" class="btn btn-success">Enter</a>
+                                    <a href="{{ action('CoursesController@useaddcode') }}" id="submitaddcode" class="btn btn-success">Enter</a>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                               </div>
@@ -121,4 +126,16 @@
             @endif
         </div>
     </div>
+@endsection
+
+
+@section('footer')
+    <script type="text/javascript">
+        $('#submitaddcode').click(function() {
+            var url = $(this).attr("href");
+            var addcode = $('input[name=addcode]').val();
+
+            $(this).attr("href", url + "?addcode=" + addcode);
+        });
+    </script>
 @endsection
