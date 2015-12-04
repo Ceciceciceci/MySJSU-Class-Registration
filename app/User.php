@@ -234,6 +234,11 @@ class User extends Model implements AuthenticatableContract,
         }
         return null;
     }
+    /*
+    *   Return Active Codes
+    *   input-> Class Section ID
+    *   output-> list of codes
+    */
     public function returnActiveCodes( $class_id ){
         if($this->isProfessor()){
             if(DB::table('addcodes')->where('class_id','=',$class_id)->exists()){
