@@ -139,10 +139,12 @@ class CoursesController extends Controller
         $errors = [];
 
         foreach($courses as $course) {
-            $success = $course->enroll();
+            $results = $course->enroll();
 
-            if($success == false) {
-                array_push($errors, ["Section " . $course->class . ": unable to enroll"]);
+            //if Results contain error message
+            if($results) {
+                $errors = $results;
+                //array_push($errors, ["Section " . $course->class . ": unable to enroll"]);
             }
         }
 
@@ -171,5 +173,19 @@ class CoursesController extends Controller
             return view('professors.courses.addCode');
         else
             return redirect()->route('students.index');
+    }
+
+    public function useaddcode(Request $request) {
+        if($request->has('addcode')){
+            $code = $request->get('addcode');
+            $result = Auth::user()->useAddCode( $code );
+            return redirect()->action('CoursesController@enroll')
+                             ->with('msg', $result);
+        }
+        return "Please enter the right addcode";
+        
+
+
+        return redirect()->action('CoursesController@enroll');
     }
 }

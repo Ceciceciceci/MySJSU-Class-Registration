@@ -18,7 +18,7 @@
             <hr />
             <ul class="nav nav-pills nav-stacked">
                 <li>
-                    <a href="">
+                    <a href="{{ action('ProfessorsController@index') }}">
                         <i class="glyphicon glyphicon-home"></i>
                         Dashboard
                     </a>
@@ -42,114 +42,167 @@
 
             <h4 class="lead">Genrate Add Code</h4>
             <hr />
+<<<<<<< HEAD
+                
+                @foreach (Auth::user()->classesTaught() as $class)
+                
+                    <table  class="col-md-12 table table-bordered table-striped">
+                    <thead >
+=======
+
+            <table class="col-md-12 table table-bordered table-striped">
+                <thead>
+
+                </thead>
+            </table>
 
             <table  class="col-md-12 table table-bordered table-striped">
                 <thead >
-                <tr class = "">
-                    <th class ="col-md-3">Course</th>
-                    <th class ="col-md-3">Course Name</th>
-                    <th class ="col-md-3" style = "text-align:center;"><button onclick="genrate()">Genrate Code</button></th>
-                    <th class ="col-md-3"> Important info </th>
-
-                    <script>
-
-                        var a =  1;
-
-                        var code = 10000;
-
-                        var code1 = "<br>";
-                        
-                        function genrate (e) {     
-
-                            document.getElementById("demo").innerHTML += code + "<br>";
-
-                            code = code + a;
-
-                            return false;
-
-                        }
-                    </script>
-                    
-                </tr>
-                </thead>
-                <tbody>
-             
-                    <tr>
-                        <td>Cs 46b</td>
-                            <td>Data structure</td>
-                        <td>
-                            <div align="center"  id= "genrateCode">
-                                <p id="demo">   </p> 
-                             
-                            </div>
-                        </td>
-
-                        <td> <div>
-                           
-
-                        </div>
-                        </td>
-                      
-                    </tr>
-
-             
-                </tbody>
-            </table>
-
-            <table  class="col-md-3 table table-bordered table-striped">
-                <thead >
+>>>>>>> 70e52a58b52fa0a76bc5ff594eb8520f205524d0
+                    <tr class = "">
+                        <th class ="col-md-3">Course</th>
+                        <th class ="col-md-3">Course Name</th>
+                        <th class ="col-md-3" style = "text-align:center;"><button onclick="genrate()">Genrate Code</button></th>
+<<<<<<< HEAD
+                        <th class ="col-md-3"> Important info </th>                 
+                    </tr>   
+                
                 <tr>
-                    <th class ="col-md-3">Course</th>
-                    <th class ="col-md-3">Course Name</th>
-                    <th class ="col-md-3" style = "text-align:center;"><button onclick="genrate2()">Genrate Code</button></th>
-                    <th class ="col-md-3"> Important info </th>
-
-                    <script>
-
-                        var a =  1;
-
-                        var code = 10000;
-
-                        var code1 = "<br>";
-                        
-                        function genrate2 (e) {     
-
-                            document.getElementById("demo1").innerHTML += code + "<br>";
-
-
-                            code = code + a;
-
-                            return false;
-
-                        }
-                    </script>
-                    
-                </tr>
                 </thead>
                 <tbody>
-             
                     <tr>
-                        <td>Cs 49J</td>
-                            <td>Java programming</td>
+                        <td>{{$class["subject"]. " " . $class["courseNumber"]}}</td>
+                        <td>{{$class["courseName"]}}</td>
+                        <td>{{$class["semester"] . ' ' . $class["year"]}}</td>
+                        <td></td>
+                    </tr>
+=======
+                        <th class ="col-md-3"> Important info </th>
+
+                        <script>
+
+                            var a =  1;
+
+                            var code = 10000;
+
+                            var code1 = "<br>";
+
+                            function genrate (e) {
+
+                                document.getElementById("demo").innerHTML += code + "<br>";
+
+                                code = code + a;
+
+                                return false;
+
+                            }
+                        </script>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Cs 46b
+                        </td>
+                        <td>
+                            Data structure
+                        </td>
                         <td>
                             <div align="center"  id= "genrateCode">
-                                <p id="demo1">   </p> 
-                             
+                                <p id="demo">   </p>
                             </div>
                         </td>
-
-                        <td> <div>
-                            
-
-                        </div>
+                        <td>
+                            <div>
+                            </div>
                         </td>
-                      
                     </tr>
-
-             
                 </tbody>
+>>>>>>> 70e52a58b52fa0a76bc5ff594eb8520f205524d0
             </table>
+               @endforeach 
            
         </div>
     </div>
+@endsection
+
+<<<<<<< HEAD
+@section('footer')
+<script>
+
+                            var a =  1;
+
+                            var code = 10000;
+
+                            var code1 = "<br>";
+                            
+                            function genrate (e) {     
+
+                                document.getElementById("demo").innerHTML += code + "<br>";
+
+                                code = code + a;
+
+                                return false;
+                            }
+                           
+                        </script>
+=======
+            {{--<table  class="col-md-3 table table-bordered table-striped">--}}
+                {{--<thead >--}}
+                {{--<tr>--}}
+                    {{--<th class ="col-md-3">Course</th>--}}
+                    {{--<th class ="col-md-3">Course Name</th>--}}
+                    {{--<th class ="col-md-3" style = "text-align:center;"><button onclick="genrate2()">Genrate Code</button></th>--}}
+                    {{--<th class ="col-md-3"> Important info </th>--}}
+
+                    {{--<script>--}}
+
+                        {{--var a =  1;--}}
+
+                        {{--var code = 10000;--}}
+
+                        {{--var code1 = "<br>";--}}
+                        {{----}}
+                        {{--function genrate2 (e) {     --}}
+
+                            {{--document.getElementById("demo1").innerHTML += code + "<br>";--}}
+
+
+                            {{--code = code + a;--}}
+
+                            {{--return false;--}}
+
+                        {{--}--}}
+                    {{--</script>--}}
+                    {{----}}
+                {{--</tr>--}}
+                {{--</thead>--}}
+                {{--<tbody>--}}
+             {{----}}
+                    {{--<tr>--}}
+                        {{--<td>Cs 49J</td>--}}
+                            {{--<td>Java programming</td>--}}
+                        {{--<td>--}}
+                            {{--<div align="center"  id= "genrateCode">--}}
+                                {{--<p id="demo1">   </p> --}}
+                             {{----}}
+                            {{--</div>--}}
+                        {{--</td>--}}
+
+                        {{--<td> <div>--}}
+                            {{----}}
+
+                        {{--</div>--}}
+                        {{--</td>--}}
+                      {{----}}
+                    {{--</tr>--}}
+
+             {{----}}
+                {{--</tbody>--}}
+            {{--</table>--}}
+           {{----}}
+        </div>
+    </div>
+>>>>>>> 70e52a58b52fa0a76bc5ff594eb8520f205524d0
 @endsection

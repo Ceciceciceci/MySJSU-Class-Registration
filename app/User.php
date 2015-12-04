@@ -210,6 +210,24 @@ class User extends Model implements AuthenticatableContract,
         return [];
     }
 
+    public function recentSemester()
+    {
+        $classes = $this->pastClasses();
+        $class = sizeof($classes)-1;
+        $result = $classes[$class];
+        return $result["semester"]. " " . $result["year"];
+    }
+
+    public function recentClasses() {
+        return array_filter($this->pastClasses(),
+            function($class)
+            {
+
+                return ($class["semester"] . " " . $class["year"])=== $this->recentSemester();
+            });
+
+    }
+
     public function classesTaught() {
         if($this->isProfessor()) {
             return Course::where('iid', $this->id)->get();
@@ -224,38 +242,67 @@ class User extends Model implements AuthenticatableContract,
     */
     public function generateAddCode( $class_id ){
         $count = DB::table('addcodes')->count();
-        
+        $x = md5(microtime(true));
+        $code = strtoupper(substr($x,0,6));
         if($this->isProfessor()){
-            $x = md5($count+1);
-            $code = strtoupper(substr($x,0,6));
-            DB::table('addcodes')->insert(
+            $id = DB::table('addcodes')->insertGetId(
                 ['class_id' => $class_id, 'code' => $code]
             );
+            return $code;
         }
-        return $code;
-
+        return null;
     }
-
+    /*
+    *   Return Active Codes
+    *   input-> Class Section ID
+    *   output-> list of codes
+    */
+    public function returnActiveCodes( $class_id ){
+        if($this->isProfessor()){
+            if(DB::table('addcodes')->where('class_id','=',$class_id)->exists()){
+                $list = DB::table('addcodes')->where('class_id','=',$class_id)->get();
+                return $list;
+            }else{
+                return array();
+            }
+        }
+    }
     //useAddCode check if student, section in & add code, 
     //remove from table,
     //call enroll on user
-    public function useAddCode( $class_id, $code ){
+    public function useAddCode( $code ){
         if($this->isStudent()) {
+            if(DB::table('addcodes')->where(['code'=> $code])->exists()){
+                $x = DB::table('addcodes')->where(['code'=> $code])->first();
+                $class_id = $x->class_id;
+                
+                $dataForCartRemoval = [
+                    'user_id' => $this->id,
+                    'course_id' => $class_id
+                ];
+                $dataForAddCodesRemoval = [
+                    'code' => $code,
+                    'class_id' => $class_id
+                ];
+                //$entry = DB::table('addcodes')->where($dataForAddCodesRemoval);
+                //if class exists in student cart.
+                if(DB::table('cart')->where($dataForCartRemoval)->exists()){
 
-            /*$dataForCartRemoval = [
-                'user_id' => $this->id,
-                'course_id' => $class_id
-            ];*/
-            $dataForAddCodesRemoval = [
-                'code' => $code,
-                'class_id' => $class_id
-            ];
+                    //INSERT FUNCTION TO ADD CLASS TO CLASSESTAKEN TABLE
+                    $course = Course::find($class_id);
+                    $course->enroll();
 
-            if(DB::table('cart')->where($data)->exists()){
-                //add function to enroll to class
-                //DB::table('cart')->where($dataForCartRemoval)->delete();
-                DB::table('addcodes')->where($dataForAddCodesRemoval)->delete();
+                    //cmd to remove class from cart
+                    //DB::table('cart')->where($dataForCartRemoval)->delete();
+
+                    //removes add code from addcodes table
+                    DB::table('addcodes')->where($dataForAddCodesRemoval)->delete();
+                    $result = "You have successfull enrolled into section ".$class_id.".";
+                    return $result;
+                }
+                return "You do not have this course in your cart.";
             }
+            return "You have entered an invalid add code.";
         }
     }
 

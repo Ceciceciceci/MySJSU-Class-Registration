@@ -75,7 +75,20 @@
                                     })();
                                 }
 
+<<<<<<< HEAD
                                 console.log(Class_Taken.length);
+=======
+                                $CS_MUST = ("CS 46A", "CS 46B", "CS 47","CS 100W","CS 146","CS 147","CS 149","CS 151","CS 152","CS 154","CS 160");
+                                
+                                $MATH_MUST = ("MATH 30", "MATH 31","MATH 32","MATH 42","MATH 129");
+                                
+                                $CS_ELECTIVE = ("CS 72","CS 108","CS 116A","CS 116B","CS 122","CS 120A","CS 120B","CS 134","CS 143C","CS 157A","CS 157B","CS 159","CS 174","CS 180H","CS 185C");
+
+
+
+                                
+                        <script>
+>>>>>>> 837051371d9746c944068e789e6563176f69f93a
 
                                 var CS_MUST_count = 0;
                                 var MATH_MUST_count = 0
@@ -248,9 +261,9 @@
 
             <br/>
 
-            <h4 class="lead">Courses I've Taken</h4>
+            <h4 class="lead">Recent Courses</h4>
             <hr />
-            @if(Auth::user()->pastClasses())
+            @if(Auth::user()->recentClasses())
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -261,7 +274,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach(Auth::user()->pastClasses() as $class)
+                    @foreach(Auth::user()->recentClasses() as $class)
                         @if($class["grade"][0] === "-")
                         <tr class="default">
                         @elseif($class["grade"][0] === "A")

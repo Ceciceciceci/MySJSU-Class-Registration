@@ -19,6 +19,9 @@ class APIController extends Controller
         switch($request->data) {
             case "courses":
                 $courses = Course::all();
+                foreach($courses as $course)
+                    $course["status"] = $course->seatsStatus();
+                
                 return response()->json(['courses' => $courses]);
 
             case "gpa":
@@ -32,6 +35,14 @@ class APIController extends Controller
 
             case "classestaken":
                 return Auth::user()->pastClasses();
+
+            case "activecodes":
+                $section_id = $request->get('section_id');
+                return Auth::user()->returnActiveCodes($section_id);
+
+            case "generateaddcode":
+                $section_id = $request->get('section_id');
+                return Auth::user()->generateAddCode($section_id);
 
             default:
                 return "no data specified";
