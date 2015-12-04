@@ -210,6 +210,24 @@ class User extends Model implements AuthenticatableContract,
         return [];
     }
 
+    public function recentSemester()
+    {
+        $classes = $this->pastClasses();
+        $class = sizeof($classes)-1;
+        $result = $classes[$class];
+        return $result["semester"]. " " . $result["year"];
+    }
+
+    public function recentClasses() {
+        return array_filter($this->pastClasses(),
+            function($class)
+            {
+
+                return ($class["semester"] . " " . $class["year"])=== $this->recentSemester();
+            });
+
+    }
+
     public function classesTaught() {
         if($this->isProfessor()) {
             return Course::where('iid', $this->id)->get();

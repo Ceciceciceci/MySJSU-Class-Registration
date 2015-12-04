@@ -65,12 +65,8 @@
                                 $CS_ELECTIVE = ("CS 72","CS 108","CS 116A","CS 116B","CS 122","CS 120A","CS 120B","CS 134","CS 143C","CS 157A","CS 157B","CS 159","CS 174","CS 180H","CS 185C");
 
 
-                   
-                                @foreach(Auth::user()->pastClasses() as $class)
 
-                                       
-                                      
-                                    @endforeach
+                                
                         <script>
 
                                 var CS_MUST_count = 0;
@@ -231,9 +227,9 @@
 
             <br/>
 
-            <h4 class="lead">Courses I've Taken</h4>
+            <h4 class="lead">Recent Courses</h4>
             <hr />
-            @if(Auth::user()->pastClasses())
+            @if(Auth::user()->recentClasses())
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -244,7 +240,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach(Auth::user()->pastClasses() as $class)
+                    @foreach(Auth::user()->recentClasses() as $class)
                         @if($class["grade"][0] === "-")
                         <tr class="default">
                         @elseif($class["grade"][0] === "A")
