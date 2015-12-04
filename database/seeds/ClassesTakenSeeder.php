@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Course;
 
 class ClassesTakenSeeder extends Seeder
 {
@@ -37,19 +38,31 @@ class ClassesTakenSeeder extends Seeder
             $cid = $cids[rand(0,sizeof($cids)-1)];
             $semester = $semesters[rand(0, 1)];
             $year = $years[rand(0, 1)];
-            $section_id = \App\Course::where('cid', $cid)->lists('id')[0];
             $grade = $grades[rand(0, sizeof($grades)-1)];
 
-            array_push($arr, [
-                'id' => $id,
-                'cid' => $cid,
-                'semester' => $semester,
-                'year' => $year,
-                'grade' => ($semester==="Spring" && $year==="2015") ? "-" : $grade,
-                'section_id' => $section_id
-            ]);
+            $sections = Course::where('cid', $cid)->lists('id')->toArray();
+            $j = 0;
+            $section_id = Course::where('cid', $cid)->lists('id')[$j];
+            $seats = Course::find($section_id)->seats;
 
-            DB::table('courses')->where('id', $section_id)->decrement('seats');
+            while($j < sizeof($sections) && $seats < 0) {
+                $j++;
+                $section_id = Course::where('cid', $cid)->lists('id')[$j];
+                $seats = Course::find($section_id)->seats;
+            }
+
+            if($j < sizeof($sections)) {
+                array_push($arr, [
+                    'id' => $id,
+                    'cid' => $cid,
+                    'semester' => $semester,
+                    'year' => $year,
+                    'grade' => ($semester==="Spring" && $year==="2015") ? "-" : $grade,
+                    'section_id' => $section_id
+                ]);
+
+                DB::table('courses')->where('id', $section_id)->decrement('seats');
+            }
         }
 
         return $arr;
