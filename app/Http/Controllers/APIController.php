@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class APIController extends Controller
 {
@@ -28,6 +29,10 @@ class APIController extends Controller
                 else {
                     return [];
                 }
+
+            case "classestaken":
+                return Auth::user()->pastClasses();
+
             default:
                 return "no data specified";
         }
