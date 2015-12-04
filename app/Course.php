@@ -42,7 +42,7 @@ class Course extends Model
     }
 
     public function totalEnrolled() {
-        return ($this->seats > 35) ? 35 : 35 - $this->seats;
+        return ($this->seats < 0) ? 35 : 35 - $this->seats;
     }
 
     public function totalWaitlisted() {
