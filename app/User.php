@@ -234,7 +234,21 @@ class User extends Model implements AuthenticatableContract,
         }
         return null;
     }
-
+    /*
+    *   Return Active Codes
+    *   input-> Class Section ID
+    *   output-> list of codes
+    */
+    public function returnActiveCodes( $class_id ){
+        if($this->isProfessor()){
+            if(DB::table('addcodes')->where('class_id','=',$class_id)->exists()){
+                $list = DB::table('addcodes')->where('class_id','=',$class_id)->get();
+                return $list;
+            }else{
+                return array();
+            }
+        }
+    }
     //useAddCode check if student, section in & add code, 
     //remove from table,
     //call enroll on user
@@ -250,7 +264,7 @@ class User extends Model implements AuthenticatableContract,
                 'class_id' => $class_id
             ];
 
-            //if class exists in student cart.
+            //if class exists in student cart and class exists.
             if(DB::table('cart')->where($dataForCartRemoval)->exists() && DB::table('addcodes')->where($dataForAddCodesRemoval)->exists()){
 
                 //INSERT FUNCTION TO ADD CLASS TO CLASSESTAKEN TABLE
