@@ -58,7 +58,35 @@
                 @endif
                 Spring 2016 Shopping Cart
                     <div class="pull-right">
-                        <a href="" class="btn btn-warning">Use Add Code</a>
+                        <!--Add Code starts here-->
+                        <a href="" class="btn btn-warning" data-toggle="modal" data-target="#myModal">Use Add Code</a>
+                        <!--***********************************************
+                        ********************** MODAL *******************-->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <center><h3 class = "modal-header" for="ADDcODE">Put add code here and press enter.</h3></center>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" id="ADDcODE">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#" class="btn btn-success">Enter</a>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+    
+                        <!--End of Modal-->
+                        <!--Add code ends here;  Enroll All button starts-->
                         <a href="{{action('CoursesController@enrollAll')}}" class="btn btn-success">Enroll All</a>
                     </div>
 
