@@ -24,7 +24,7 @@ class ClassesTakenSeeder extends Seeder
         $grades = ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'D-', 'F'];
         $cids = DB::table('courses')->lists('cid');
         $semesters = ['Fall', 'Spring'];
-        $years = ['2014', '2015'];
+        $years = ['2015', '2016'];
 
         $count = 1;
         for($i = 0; $i < $n; $i++) {
@@ -57,7 +57,7 @@ class ClassesTakenSeeder extends Seeder
                     'cid' => $cid,
                     'semester' => $semester,
                     'year' => $year,
-                    'grade' => ($semester==="Spring" && $year==="2015") ? "-" : $grade,
+                    'grade' => ($semester==="Spring" && $year==="2016") ? "-" : $grade,
                     'section_id' => $section_id
                 ]);
 
