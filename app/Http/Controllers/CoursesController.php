@@ -176,8 +176,14 @@ class CoursesController extends Controller
     }
 
     public function useaddcode(Request $request) {
-        if(!$request->has('addcode'))
-            return "Please enter the right addcode";
+        if($request->has('addcode'){
+            $code = $request->get('addcode');
+            Auth::user()->useAddCode( $code );
+            return redirect()->action('CoursesController@enroll');
+        }
+        return "Please enter the right addcode";
+        
+
 
         return redirect()->action('CoursesController@enroll');
     }
