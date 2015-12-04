@@ -276,7 +276,10 @@ class User extends Model implements AuthenticatableContract,
 
                 //removes add code from addcodes table
                 DB::table('addcodes')->where($dataForAddCodesRemoval)->delete();
+                $result = "You have successfull enrolled into section ".$class_id.".";
+                return $result;
             }
+            return "You have entered an invalid add code.";
         }
     }
 
