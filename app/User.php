@@ -251,10 +251,13 @@ class User extends Model implements AuthenticatableContract,
             ];
 
             //if class exists in student cart.
-            if(DB::table('cart')->where($dataForCartRemoval)->exists()){
+            if(DB::table('cart')->where($dataForCartRemoval)->exists() && DB::table('addcodes')->where($dataForAddCodesRemoval)->exists()){
 
                 //INSERT FUNCTION TO ADD CLASS TO CLASSESTAKEN TABLE
+                $course = Course::find($class_id);
+                $course->enroll();
 
+                //cmd to remove class from cart
                 //DB::table('cart')->where($dataForCartRemoval)->delete();
 
                 //removes add code from addcodes table
