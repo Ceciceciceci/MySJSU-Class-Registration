@@ -43,113 +43,116 @@
             <h4 class="lead">Genrate Add Code</h4>
             <hr />
 
+            <table class="col-md-12 table table-bordered table-striped">
+                <thead>
+
+                </thead>
+            </table>
+
             <table  class="col-md-12 table table-bordered table-striped">
                 <thead >
-                <tr class = "">
-                    <th class ="col-md-3">Course</th>
-                    <th class ="col-md-3">Course Name</th>
-                    <th class ="col-md-3" style = "text-align:center;"><button onclick="genrate()">Genrate Code</button></th>
-                    <th class ="col-md-3"> Important info </th>
+                    <tr class = "">
+                        <th class ="col-md-3">Course</th>
+                        <th class ="col-md-3">Course Name</th>
+                        <th class ="col-md-3" style = "text-align:center;"><button onclick="genrate()">Genrate Code</button></th>
+                        <th class ="col-md-3"> Important info </th>
 
-                    <script>
+                        <script>
 
-                        var a =  1;
+                            var a =  1;
 
-                        var code = 10000;
+                            var code = 10000;
 
-                        var code1 = "<br>";
-                        
-                        function genrate (e) {     
+                            var code1 = "<br>";
 
-                            document.getElementById("demo").innerHTML += code + "<br>";
+                            function genrate (e) {
 
-                            code = code + a;
+                                document.getElementById("demo").innerHTML += code + "<br>";
 
-                            return false;
+                                code = code + a;
 
-                        }
-                    </script>
-                    
-                </tr>
+                                return false;
+
+                            }
+                        </script>
+
+                    </tr>
                 </thead>
                 <tbody>
-             
                     <tr>
-                        <td>Cs 46b</td>
-                            <td>Data structure</td>
+                        <td>
+                            Cs 46b
+                        </td>
+                        <td>
+                            Data structure
+                        </td>
                         <td>
                             <div align="center"  id= "genrateCode">
-                                <p id="demo">   </p> 
-                             
+                                <p id="demo">   </p>
                             </div>
                         </td>
-
-                        <td> <div>
-                           
-
-                        </div>
+                        <td>
+                            <div>
+                            </div>
                         </td>
-                      
                     </tr>
-
-             
                 </tbody>
             </table>
 
-            <table  class="col-md-3 table table-bordered table-striped">
-                <thead >
-                <tr>
-                    <th class ="col-md-3">Course</th>
-                    <th class ="col-md-3">Course Name</th>
-                    <th class ="col-md-3" style = "text-align:center;"><button onclick="genrate2()">Genrate Code</button></th>
-                    <th class ="col-md-3"> Important info </th>
+            {{--<table  class="col-md-3 table table-bordered table-striped">--}}
+                {{--<thead >--}}
+                {{--<tr>--}}
+                    {{--<th class ="col-md-3">Course</th>--}}
+                    {{--<th class ="col-md-3">Course Name</th>--}}
+                    {{--<th class ="col-md-3" style = "text-align:center;"><button onclick="genrate2()">Genrate Code</button></th>--}}
+                    {{--<th class ="col-md-3"> Important info </th>--}}
 
-                    <script>
+                    {{--<script>--}}
 
-                        var a =  1;
+                        {{--var a =  1;--}}
 
-                        var code = 10000;
+                        {{--var code = 10000;--}}
 
-                        var code1 = "<br>";
-                        
-                        function genrate2 (e) {     
+                        {{--var code1 = "<br>";--}}
+                        {{----}}
+                        {{--function genrate2 (e) {     --}}
 
-                            document.getElementById("demo1").innerHTML += code + "<br>";
+                            {{--document.getElementById("demo1").innerHTML += code + "<br>";--}}
 
 
-                            code = code + a;
+                            {{--code = code + a;--}}
 
-                            return false;
+                            {{--return false;--}}
 
-                        }
-                    </script>
-                    
-                </tr>
-                </thead>
-                <tbody>
-             
-                    <tr>
-                        <td>Cs 49J</td>
-                            <td>Java programming</td>
-                        <td>
-                            <div align="center"  id= "genrateCode">
-                                <p id="demo1">   </p> 
-                             
-                            </div>
-                        </td>
+                        {{--}--}}
+                    {{--</script>--}}
+                    {{----}}
+                {{--</tr>--}}
+                {{--</thead>--}}
+                {{--<tbody>--}}
+             {{----}}
+                    {{--<tr>--}}
+                        {{--<td>Cs 49J</td>--}}
+                            {{--<td>Java programming</td>--}}
+                        {{--<td>--}}
+                            {{--<div align="center"  id= "genrateCode">--}}
+                                {{--<p id="demo1">   </p> --}}
+                             {{----}}
+                            {{--</div>--}}
+                        {{--</td>--}}
 
-                        <td> <div>
-                            
+                        {{--<td> <div>--}}
+                            {{----}}
 
-                        </div>
-                        </td>
-                      
-                    </tr>
+                        {{--</div>--}}
+                        {{--</td>--}}
+                      {{----}}
+                    {{--</tr>--}}
 
-             
-                </tbody>
-            </table>
-           
+             {{----}}
+                {{--</tbody>--}}
+            {{--</table>--}}
+           {{----}}
         </div>
     </div>
 @endsection
