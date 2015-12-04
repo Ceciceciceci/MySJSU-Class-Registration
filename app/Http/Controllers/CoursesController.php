@@ -174,4 +174,11 @@ class CoursesController extends Controller
         else
             return redirect()->route('students.index');
     }
+
+    public function useaddcode(Request $request) {
+        if(!$request->has('section_id') || !$request->has('addcode'))
+            return "Please enter the right section_id and addcode";
+
+        return redirect()->action('CoursesController@enroll');
+    }
 }
