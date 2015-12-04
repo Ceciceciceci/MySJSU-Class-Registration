@@ -84,7 +84,6 @@
 
                             </div>
                           </div>
-    
                         <!--End of Modal-->
                         <!--Add code ends here;  Enroll All button starts-->
                         <a href="{{action('CoursesController@enrollAll')}}" class="btn btn-success">Enroll All</a>
