@@ -25,6 +25,7 @@ Route::get('courses/enrollall', 'CoursesController@enrollAll');
 Route::get('courses/enroll', 'CoursesController@enroll');
 Route::get('courses/plan', 'CoursesController@plan');
 Route::get('courses/addcode', 'CoursesController@addCode');
+Route::get('courses/useaddcode', 'CoursesController@useaddcode');
 Route::resource('courses', 'CoursesController');
 
 /* API */
