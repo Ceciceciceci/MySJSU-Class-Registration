@@ -58,7 +58,7 @@
               </form>
 
               <div ng-repeat="(key, value) in class | orderBy:sortType:sortReverse | filter:searchClass | groupBy: 'courseName1'" >
-                <p> [[key]] <i class="glyphicon glyphicon-ok-sign text-success"></i></p>
+                <p> [[key]]</p>
                 <table class="table table-bordered table-striped">
 
                   <thead>
@@ -97,7 +97,7 @@
                   <tbody>
                     <tr ng-repeat="roll in value | orderBy:sortType:sortReverse | filter:searchClass">
                       <!-- <td>[[roll.courseId]]</td> -->
-                        <td>[[roll.courseId1.courseSection]]</td>
+                        <td>[[roll.courseId1.courseSection]]   <i class =[[roll.courseId1.stat]]></td>
                         <td>[[roll.courseId1.instructor ]]</td>
                         <td>[[roll.courseId1.room]]</td>
                         <td>[[roll.courseId1.meeting]]</td>
@@ -110,6 +110,7 @@
 
             </div>
             
+            <!-- start of NG FIlter-->
             <script>
                 var search = angular.module('search', ['angular.filter']);
                 search.config(function ($interpolateProvider) {
@@ -117,6 +118,9 @@
                     $interpolateProvider.endSymbol(']]');
                 })
                 search.controller('mainController', function($scope, $http) {
+                  // test ng-if
+                  $scope.test = 0;
+
                   $scope.sortType     = 'courseid'; // set the default sort type
                   $scope.sortReverse  = false;  // set the default sort order
                   $scope.searchClass   = '';     // set the default search/filter term
@@ -126,12 +130,14 @@
 
                       var groups = [];
                       var json = response["courses"];
+                      var count = 2;
 
                       //console.log(json);
-
+                      
                       for(var i = 0; i < json.length; i++) {
                         var obj = json[i];
                         var result = {};
+
                         result.courseSection = obj["class"];
                         result.courseName = obj.subject + " " + obj.courseNumber + " - " +obj.courseName;
                         result["type"] = obj.section1 + " " + obj.section2;
@@ -140,6 +146,23 @@
                         result.instructor = obj.instructor;
                         result.seats= obj.seats;
 
+                        // console.log(obj["status"]);
+                        var status = obj["status"];
+                        if(status==="Waitlisted")//wait list condition
+                        {
+                          result.stat = "glyphicon glyphicon-warning-sign text-warning"
+                          count++;
+                        }
+                        else if(status==="Closed") //closed section condition
+                        {
+                          result.stat = "glyphicon glyphicon-remove text-danger"
+                          count = 1;
+                        }
+                        else// default condition is currently set to class being open
+                        {
+                          result.stat = "glyphicon glyphicon-ok text-success"
+                          count++;
+                        }
                         groups.push({
                           courseId1 : result,
                           courseName1 : result.courseName
