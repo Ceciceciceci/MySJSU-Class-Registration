@@ -53,6 +53,9 @@
             <div>
                <script type="text/javascript" src="{{ URL::asset('js/jquery-2.1.4.min.js') }}"></script>
                     <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
+
+                    <img src="/img/chart.gif" alt="sjsu" style=" width:250px" height="70px">
+                    <br><br>
                
                    <canvas id="mycanvas" width="256" height="256">
                         <script>
@@ -75,20 +78,7 @@
                                     })();
                                 }
 
-<<<<<<< HEAD
                                 console.log(Class_Taken.length);
-=======
-                                $CS_MUST = ("CS 46A", "CS 46B", "CS 47","CS 100W","CS 146","CS 147","CS 149","CS 151","CS 152","CS 154","CS 160");
-                                
-                                $MATH_MUST = ("MATH 30", "MATH 31","MATH 32","MATH 42","MATH 129");
-                                
-                                $CS_ELECTIVE = ("CS 72","CS 108","CS 116A","CS 116B","CS 122","CS 120A","CS 120B","CS 134","CS 143C","CS 157A","CS 157B","CS 159","CS 174","CS 180H","CS 185C");
-
-
-
-                                
-                        <script>
->>>>>>> 837051371d9746c944068e789e6563176f69f93a
 
                                 var CS_MUST_count = 0;
                                 var MATH_MUST_count = 0
@@ -169,7 +159,6 @@
                                         color: "cornflowerblue",
                                         highlight: "lightskyblue",
                                         label: "Math complete",
-                                        segmentShowStroke : true,
 
 
                                     },
@@ -178,17 +167,19 @@
                                         color: "lightgreen",
                                         highlight: "yellowgreen",
                                         label: "CS complete"
+
                                     },
                                     {
                                         value: left_CS,
                                         color: "orange",
                                         highlight: "darkorange",
                                         label: "CS Left"
+
                                     },
                                     {
                                         value: left_Math,
-                                        color: "yellow",
-                                        highlight: "yellow",
+                                        color: "Green",
+                                        highlight: "darkgreen",
                                         label: "Math Left"
                                     }
                                 ];
@@ -199,7 +190,6 @@
                         </script>
             
             </div>
-
 
         </div>
         <div class="col-sm-9">
@@ -261,9 +251,9 @@
 
             <br/>
 
-            <h4 class="lead">Recent Courses</h4>
+            <h4 class="lead">Courses I've Taken</h4>
             <hr />
-            @if(Auth::user()->recentClasses())
+            @if(Auth::user()->pastClasses())
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -274,7 +264,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach(Auth::user()->recentClasses() as $class)
+                    @foreach(Auth::user()->pastClasses() as $class)
                         @if($class["grade"][0] === "-")
                         <tr class="default">
                         @elseif($class["grade"][0] === "A")
