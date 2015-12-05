@@ -192,7 +192,7 @@ class User extends Model implements AuthenticatableContract,
         if($this->isStudent()) {
             $classes_taken = ClassesTaken::where('id', $this->id)
                                 ->orderBy('year', 'DESC')
-                                ->orderBy('semester', 'DESC')
+                                ->orderBy('semester', 'ASC')
                                 ->get();
             $result = $classes_taken->toArray();
 
