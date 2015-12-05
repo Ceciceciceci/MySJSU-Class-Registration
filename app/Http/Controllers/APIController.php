@@ -44,8 +44,8 @@ class APIController extends Controller
 
             case "generateaddcode":
                 $section_id = $request->get('section_id');
-                return Auth::user()->generateAddCode($section_id);
-
+                Auth::user()->generateAddCode($section_id);
+                return redirect()->action('CoursesController@addCode');
             default:
                 return "no data specified";
         }

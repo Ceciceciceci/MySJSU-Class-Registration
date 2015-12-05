@@ -235,7 +235,12 @@
                         @else
                             <tr class="danger">
                         @endif
-                                <td>{{$class["subjectNumber"]}}</td>
+                                <td>
+                                    {{$class["subjectNumber"]}}
+                                    @if(Auth::user()->waitlist($class["class"]))
+                                        <i class="glyphicon glyphicon-warning-sign text-warning"></i>
+                                    @endif
+                                </td>
                                 <td>{{$class["instructor"]}}</td>
                                 <td>{{$class["room"]}}</td>
                                 <td>{{$class["semester"] . ' ' . $class["year"]}}</td>

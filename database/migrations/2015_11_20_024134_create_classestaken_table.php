@@ -19,6 +19,8 @@ class CreateClassestakenTable extends Migration
             $table->integer('cid');
             $table->string('semester');
             $table->string('year');
+            $table->boolean('waitlist')->default(false);
+            $table->boolean('extra')->default(false);
             $table->string('grade')->nullable();
             $table->nullableTimestamps();
         });

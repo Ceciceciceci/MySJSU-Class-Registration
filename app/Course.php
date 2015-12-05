@@ -42,22 +42,29 @@ class Course extends Model
     }
 
     public function totalEnrolled() {
-        return ($this->seats < 0) ? 35 : 35 - $this->seats;
+        return ($this->seats < 0) ? 35 + $this->extra() : 35 - $this->seats;
     }
 
     public function totalWaitlisted() {
-        return ($this->seats < 0) ? abs($this->seats) : 0;
+        return ($this->seats < 0) ? abs($this->seats) - $this->extra() : 0;
     }
 
     public function meetingTime() {
         return $this->days . ' ' . $this->startTime . '-' . $this->endTime;
     }
 
-    public function enroll() {
+    public function extra() {
+        return DB::table('classestaken')->where('section_id', $this->id)
+                                        ->where('extra', true)
+                                        ->count();
+    }
+
+    public function enroll($extra = false) {
         $user_id = Auth::user()->id;
         $section_id = $this->id;
         $course_id = $this->cid;
-        $semester = "Spring 2016";
+        $semester = "Spring";
+        $year = "2016";
         $grade = "-";
         $eligible = $this->tryEnroll($user_id, $section_id);
 
@@ -67,7 +74,10 @@ class Course extends Model
                 'cid' => $course_id,
                 'section_id' => $section_id,
                 'semester' => $semester,
-                'grade' => $grade
+                'year' => $year,
+                'grade' => $grade,
+                'waitlist' => $this->totalWaitlisted() >= 0 ,
+                'extra' => $extra
             ]);
             Auth::user()->removeClassFromCart($section_id);
             $this->decSeats();

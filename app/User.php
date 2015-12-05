@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class User extends Model implements AuthenticatableContract,
@@ -203,6 +204,7 @@ class User extends Model implements AuthenticatableContract,
                 $result[$i]["instructor"] = $class->instructor;
                 $result[$i]["room"] = $class->room;
                 $result[$i]["meetingTime"] = $class->meetingTime();
+                $result[$i]["class"] = $classes_taken[$i]["section_id"];
             }
 
             return array_reverse($result);
@@ -233,6 +235,21 @@ class User extends Model implements AuthenticatableContract,
             return Course::where('iid', $this->id)->get();
         }
         return "not a professor";
+    }
+
+    public function waitlist($section_id) {
+        if(Auth::user()->isProfessor())
+            return false;
+
+        $waitlist = DB::table('classestaken')->where('id', Auth::user()->id)
+                        ->where('section_id', $section_id)
+                        ->lists('waitlist')[0];
+
+        $extra = DB::table('classestaken')->where('id', Auth::user()->id)
+                    ->where('section_id', $section_id)
+                    ->lists('extra')[0];
+
+        return $waitlist && !$extra ;
     }
 
     /*
@@ -289,15 +306,17 @@ class User extends Model implements AuthenticatableContract,
                 if(DB::table('cart')->where($dataForCartRemoval)->exists()){
 
                     //INSERT FUNCTION TO ADD CLASS TO CLASSESTAKEN TABLE
-                    $course = Course::find($class_id);
-                    $course->enroll();
+//                    $course = Course::find($class_id);
+//                    $course->enroll(true);
+                    DB::table('classestaken')->where(['id' => $this->id, 'section_id' => $class_id])
+                                             ->update(['extra' => true]);
 
                     //cmd to remove class from cart
-                    //DB::table('cart')->where($dataForCartRemoval)->delete();
+                    DB::table('cart')->where($dataForCartRemoval)->delete();
 
                     //removes add code from addcodes table
                     DB::table('addcodes')->where($dataForAddCodesRemoval)->delete();
-                    $result = "You have successfull enrolled into section ".$class_id.".";
+                    $result = "You have successfully enrolled into section ".$class_id.".";
                     return $result;
                 }
                 return "You do not have this course in your cart.";
