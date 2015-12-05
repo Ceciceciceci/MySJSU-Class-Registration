@@ -33,6 +33,6 @@ class CreateClassestakenTable extends Migration
      */
     public function down()
     {
-        Schema::drop('classesTaken');
+        Schema::drop('classestaken');
     }
 }
