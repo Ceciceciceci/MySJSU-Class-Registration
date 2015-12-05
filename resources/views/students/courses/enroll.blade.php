@@ -130,6 +130,7 @@
 
 
 @section('footer')
+    @parent
     <script type="text/javascript">
         $('#submitaddcode').click(function() {
             var url = $(this).attr("href");

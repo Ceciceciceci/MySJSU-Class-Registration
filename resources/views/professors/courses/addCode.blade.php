@@ -78,6 +78,7 @@
 @endsection
 
 @section('footer')
+    @parent
     <script type="text/javascript">
         function generateAddCode(section_id) {
             var url = '{{ action('APIController@main') }}' + '?data=generateaddcode&section_id' + section_id;
