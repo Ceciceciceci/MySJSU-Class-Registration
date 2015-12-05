@@ -45,7 +45,7 @@ class ClassesTakenSeeder extends Seeder
             $section_id = Course::where('cid', $cid)->lists('id')[$j];
             $seats = Course::find($section_id)->seats;
 
-            while($j < sizeof($sections) && $seats < 0) {
+            while($j < sizeof($sections) && $seats <= 0) {
                 $j++;
                 $section_id = Course::where('cid', $cid)->lists('id')[$j];
                 $seats = Course::find($section_id)->seats;

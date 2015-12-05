@@ -19,9 +19,11 @@ class APIController extends Controller
         switch($request->data) {
             case "courses":
                 $courses = Course::all();
-                foreach($courses as $course)
+                foreach($courses as $course) {
                     $course["status"] = $course->seatsStatus();
-                
+                    $course["enrolled"] = $course->totalEnrolled();
+                    $course["waitlist"] = $course->totalWaitlisted();
+                }
                 return response()->json(['courses' => $courses]);
 
             case "gpa":

@@ -98,8 +98,12 @@
                         </a>
                       </td>
                       <td>
-                        
-                          
+                        <a href="javascript:void(0)">
+                          Status
+                        </a>
+                      </td>
+                      <td>
+                        <a>
                         </a>
                       </td>
                     </tr>
@@ -115,6 +119,10 @@
                         <td>[[roll.courseId1.instructor ]]</td>
                         <td>[[roll.courseId1.room]]</td>
                         <td>[[roll.courseId1.meeting]]</td>
+                        <td>
+                            Enrolled: [[roll.courseId1.enrolled]] <br />
+                            Waitlist: [[roll.courseId1.waitlist]]
+                        </td>
                         <td style="text-align:center">
                             <a href="{{ action('CoursesController@addToCart') }}?course_id=[[roll.courseId1.courseSection]]">
                                 <i class="glyphicon glyphicon-plus text-success"></i>
@@ -134,7 +142,7 @@
                 search.config(function ($interpolateProvider) {
                     $interpolateProvider.startSymbol('[[');
                     $interpolateProvider.endSymbol(']]');
-                })
+                });
                 search.controller('mainController', function($scope, $http) {
                   // test ng-if
                   $scope.test = 0;
@@ -163,22 +171,24 @@
                         result.meeting = obj. days + " " + obj.startTime + " - " + obj.endTime;
                         result.instructor = obj.instructor;
                         result.seats= obj.seats;
+                        result.enrolled = obj.enrolled;
+                        result.waitlist = obj.waitlist;
 
                         // console.log(obj["status"]);
                         var status = obj["status"];
                         if(status==="Waitlisted")//wait list condition
                         {
-                          result.stat = "glyphicon glyphicon-warning-sign text-warning"
+                          result.stat = "glyphicon glyphicon-warning-sign text-warning";
                           count++;
                         }
                         else if(status==="Closed") //closed section condition
                         {
-                          result.stat = "glyphicon glyphicon-remove text-danger"
+                          result.stat = "glyphicon glyphicon-remove text-danger";
                           count = 1;
                         }
                         else// default condition is currently set to class being open
                         {
-                          result.stat = "glyphicon glyphicon-ok text-success"
+                          result.stat = "glyphicon glyphicon-ok text-success";
                           count++;
                         }
                         groups.push({
