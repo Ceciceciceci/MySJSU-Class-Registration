@@ -218,17 +218,17 @@ class Course extends Model
         //$cid = Course::first()->getCid( $class );
         
         // Check if Student has taken the class.
-        $x = ClassesTaken::where('id', $sid )->where('cid','=',$cid)->first();
+        $x = ClassesTaken::where('id', $sid )->where('cid','=',$cid)->exists();
         if($x){
             return false;//array("You have already taken this course.");//return false;
         }else{
-
-
-            $list = Course::where('cid','=',$cid)->first()->requisites;
+            
+            if(Course::where('cid','=',$cid)->exists())
+                $list = Course::where('cid','=',$cid)->first()->requisites;
 
             //if list is empty, return null;
-            //if(!($list))
-                //return array();
+            if(!($list))
+                return true;//array();
 
             $results = array();
             foreach ($list as $row) {
@@ -240,9 +240,9 @@ class Course extends Model
                     
                     //If student hasn't taken both courses
                     if( !($get1 || $get2) ){
-                        $x = CourseInfo::find( $row->prid )->subjectNumber();
-                        $y = CourseInfo::find( $row->ORprid )->subjectNumber();
-                        $result = "You are missing ".$x." or ".$y." prerequisites.";
+                        //$x = CourseInfo::find( $row->prid )->subjectNumber();
+                        //$y = CourseInfo::find( $row->ORprid )->subjectNumber();
+                        //$result = "You are missing ".$x." or ".$y." prerequisites.";
                         return false;//array_push($results,$result);//return false;
                     }
 
@@ -251,8 +251,8 @@ class Course extends Model
                     $hit = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
 
                     if(!($hit)){
-                        $y = CourseInfo::find( $row->prid )->subjectNumber();
-                        $result = "You are missing ".$y." prerequisite.";
+                        //$y = CourseInfo::find( $row->prid )->subjectNumber();
+                        //$result = "You are missing ".$y." prerequisite.";
                         return false;//array_push($results,$result);//return false;
                     }
                 }
