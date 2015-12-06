@@ -174,43 +174,93 @@ class Course extends Model
         }else{
 
 
-        $list = Course::where('cid','=',$cid)->first()->requisites;
+            $list = Course::where('cid','=',$cid)->first()->requisites;
 
-        //if list is empty, return null;
-        //if(!($list))
-            //return array();
+            //if list is empty, return null;
+            //if(!($list))
+                //return array();
 
-        $results = array();
-        foreach ($list as $row) {
-            //IF Prerequisite OR Prerequisite, check both
-            if($row->ORprid){
+            $results = array();
+            foreach ($list as $row) {
+                //IF Prerequisite OR Prerequisite, check both
+                if($row->ORprid){
 
-                $get1 = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
-                $get2 = ClassesTaken::find( $sid )->where('cid','=',$row->ORprid)->first();
-                
-                //If student hasn't taken both courses
-                if( !($get1 || $get2) ){
-                    $x = CourseInfo::find( $row->prid )->subjectNumber();
-                    $y = CourseInfo::find( $row->ORprid )->subjectNumber();
-                    $result = "You are missing ".$x." or ".$y." prerequisites.";
-                    array_push($results,$result);//return false;
-                }
+                    $get1 = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
+                    $get2 = ClassesTaken::find( $sid )->where('cid','=',$row->ORprid)->first();
+                    
+                    //If student hasn't taken both courses
+                    if( !($get1 || $get2) ){
+                        $x = CourseInfo::find( $row->prid )->subjectNumber();
+                        $y = CourseInfo::find( $row->ORprid )->subjectNumber();
+                        $result = "You are missing ".$x." or ".$y." prerequisites.";
+                        array_push($results,$result);//return false;
+                    }
 
-            }elseif($row->prid){
+                }elseif($row->prid){
 
-                $hit = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
+                    $hit = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
 
-                if(!($hit)){
-                    $y = CourseInfo::find( $row->prid )->subjectNumber();
-                    $result = "You are missing ".$y." prerequisite.";
-                    array_push($results,$result);//return false;
+                    if(!($hit)){
+                        $y = CourseInfo::find( $row->prid )->subjectNumber();
+                        $result = "You are missing ".$y." prerequisite.";
+                        array_push($results,$result);//return false;
+                    }
                 }
             }
+            return $results;//return true;
+
         }
-        return $results;//return true;
 
     }
 
-}
+    public function tryEnrollGen( $sid , $cid ){
+        //Get Cid
+        //$cid = Course::first()->getCid( $class );
+        
+        // Check if Student has taken the class.
+        $x = ClassesTaken::where('id', $sid )->where('cid','=',$cid)->first();
+        if($x){
+            return false;//array("You have already taken this course.");//return false;
+        }else{
+
+
+            $list = Course::where('cid','=',$cid)->first()->requisites;
+
+            //if list is empty, return null;
+            //if(!($list))
+                //return array();
+
+            $results = array();
+            foreach ($list as $row) {
+                //IF Prerequisite OR Prerequisite, check both
+                if($row->ORprid){
+
+                    $get1 = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
+                    $get2 = ClassesTaken::find( $sid )->where('cid','=',$row->ORprid)->first();
+                    
+                    //If student hasn't taken both courses
+                    if( !($get1 || $get2) ){
+                        $x = CourseInfo::find( $row->prid )->subjectNumber();
+                        $y = CourseInfo::find( $row->ORprid )->subjectNumber();
+                        $result = "You are missing ".$x." or ".$y." prerequisites.";
+                        return false;//array_push($results,$result);//return false;
+                    }
+
+                }elseif($row->prid){
+
+                    $hit = ClassesTaken::find( $sid )->where('cid','=',$row->prid)->first();
+
+                    if(!($hit)){
+                        $y = CourseInfo::find( $row->prid )->subjectNumber();
+                        $result = "You are missing ".$y." prerequisite.";
+                        return false;//array_push($results,$result);//return false;
+                    }
+                }
+            }
+            return true;//$results;//return true;
+
+        }
+
+    }
 
 }
