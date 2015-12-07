@@ -139,16 +139,23 @@ class ClassesTakenSeeder extends Seeder
             }
 
             if($j < sizeof($sections)) {
-                array_push($arr, [
-                    'id' => $id,
-                    'cid' => $cid,
-                    'semester' => $semester,
-                    'year' => $year,
-                    'grade' => ($semester==="Spring" && $year==="2016") ? "-" : $grade,
-                    'section_id' => $section_id
-                ]);
+                // if the student has taken this course before -> skip
+                $classCount = DB::table('classestaken')->where('id', $id)
+                            ->where('cid', $cid)
+                            ->count();
+                
+                if($classCount == 0) {
+                    array_push($arr, [
+                        'id' => $id,
+                        'cid' => $cid,
+                        'semester' => $semester,
+                        'year' => $year,
+                        'grade' => ($semester==="Spring" && $year==="2016") ? "-" : $grade,
+                        'section_id' => $section_id
+                    ]);
 
-                DB::table('courses')->where('id', $section_id)->decrement('seats');
+                    DB::table('courses')->where('id', $section_id)->decrement('seats');
+                }
             }
         }
 
