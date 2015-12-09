@@ -227,7 +227,7 @@
 
 				// ground
 
-				var groundTexture = THREE.ImageUtils.loadTexture( "/textures/terrain/grasslight-big.jpg" );
+				var groundTexture = THREE.ImageUtils.loadTexture( "/frankprof.jpg" );
 				groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
 				groundTexture.repeat.set( 25, 25 );
 				groundTexture.anisotropy = 16;
