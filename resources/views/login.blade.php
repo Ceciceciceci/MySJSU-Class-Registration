@@ -191,7 +191,7 @@
                         <div class="col">
                             <h4>Quick link</h4>
                             <ul>
-                                <li><a href="{{ action('SiteController@cecilia') }}">A-Z Index</a></li>
+                                <li><a target="_blank" href="{{ action('SiteController@cecilia') }}">A-Z Index</a></li>
                                 <li><a href="http://www.sjsu.edu/adminfinance/about/budget_central/index.html">Budget Central</a></li>
                                 <li><a href="http://www.sjsu.edu/calendars/index.html">Calendars</a></li>
                                 <li><a href="https://sjsu.instructure.com/">Canvas</a></li>
