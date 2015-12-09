@@ -1,297 +1,374 @@
-<!DOCTYPE html>
-<html>
-    <!--**********************************************************************************************
-    *******************************D A S H B O A R D   P A G E ***************************************
-    ***********************************************************************************************-->
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="Dashboard">
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>three.js cloth practice</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #000;
+				margin: 0px;
+				overflow: hidden;
+			}
 
-        <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('/css/style.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('/css/style-responsive.css') }}" rel="stylesheet" type="text/css" />
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    
-    <script type="text/javascript" src="{{ URL::asset('js/Chart.min.js') }}"></script>
-    </head>
+			#info {
+				position: absolute;
+				padding: 10px;
+				width: 100%;
+				text-align: center;
+			}
 
-    <body>
+			a {
+				text-decoration: underline;
+				cursor: pointer;
+			}
 
-    <section id="container" >
-        <!--header-->
-        <header class="header black-bg">
-            <!--title start-->
-            <a href="index.html" class="title"><b>MySJSU</b></a>
-            <!--title end-->
-            <div class="top-menu">
-                <!--careless whisper-->
-                <!--shhh...-->
-                <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="login.html">Logout</a></li>
-                </ul>
-            </div>
-        </header>
-        <!--header end-->
+			#stats { position: absolute; top:0; left: 0 }
+			#stats #fps { background: transparent !important }
+			#stats #fps #fpsText { color: #aaa !important }
+			#stats #fps #fpsGraph { display: none }
+		</style>
+	</head>
 
-        <!--**********************************************************************************************
-        ******************************************* S I D E B A R ***************************************
-        ***********************************************************************************************-->
-        <!--sidebar start-->
-        <aside>
-            <div id="sidebar"  class="nav-collapse ">
-                <!-- sidebar menu start-->
-                <ul class="sidebar-menu" id="nav-accordion">
+	<body>
+		<div id="info">
+			<a onclick="rotate = !rotate;">Camera</a> |
+			<a onclick="wind = !wind;">Wind</a> 
+<!--
+			<a onclick="sphere.visible = !sphere.visible;">Ball</a> |
+			<a onclick="togglePins();">Pins</a>
+-->
+		</div>
 
-                   <center><img src="https://upload.wikimedia.org/wikipedia/en/thumb/2/27/San_Jose_State_Spartans_Logo.svg/325px-San_Jose_State_Spartans_Logo.svg.png" style="width:30%; height:30%;"></center>
-                    <h5 class="centered">
-                        Welcome, <br><br>
-                        [[Student.name]]</h5>
+		<script src="/js/three.min.js"></script>
 
-                    <li class="mt">
-                        <a href="{{ action('StudentsController@index') }}">
-                            <i class="fa fa-dashboard"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
+		<script src="/js/Detector.js"></script>
+		<script src="/js/stats.min.js"></script>
 
-                    <li class="sub-menu">
-                        <a href="{{ action('CoursesController@index') }}" >
-                            <i class=""></i>
-                            <span>Search Classes</span>
-                        </a>
-                    </li>
+		<script src="/js/Cloth.js"></script>
 
-                    <li class="sub-menu">
-                        <a href="{{ action('CoursesController@plan') }}" >
-                            <i class=""></i>
-                            <span>Plan</span>
-                        </a>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="{{ action('CoursesController@enroll') }}" >
-                            <i class=""></i>
-                            <span>Enroll</span>
-                        </a>
-                    </li>
-                    <li class="sub-menu">
-                        <a href="{{ action('StudentsController@academics') }}" >
-                            <i class=""></i>
-                            <span>My Academics</span>
-                        </a>
-                    </li>
-                </ul>
-                <!-- sidebar menu end-->
-            </div>
-        </aside>
-        <!--sidebar end-->
+		<script type="x-shader/x-fragment" id="fragmentShaderDepth">
 
-        <!--**********************************************************************************************
-        *******************************M I D D L E   S E C T I O N ***************************************
-        ***********************************************************************************************-->
-        <!--main content start-->
-        <section id="main-content">
-            <section class="wrapper">
-                    <div class="col-lg-9 main-chart"  style="padding-top: 20px;">
-                        <!--***********************************************************************************
-                **************************START  OF NG FILTER********************************************
-                *************************************************************************************-->           
-                <div ng-app="main" ng-controller="mainController">
+			uniform sampler2D texture;
+			varying vec2 vUV;
 
-                  <div class="alert alert-info">
-                    <p>Sort Type: [[ sortType ]]</p>
-                    <p>Sort Reverse: [[ sortReverse ]]</p>
-                    <p>Search Query: [[ searchClass ]]</p>
-                  </div>
+			vec4 pack_depth( const in float depth ) {
 
-                  <form>
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                        <input type="text" class="form-control" placeholder="Search for ya classes" ng-model="searchClass">
-                      </div>      
-                    </div>
-                  </form>
+				const vec4 bit_shift = vec4( 256.0 * 256.0 * 256.0, 256.0 * 256.0, 256.0, 1.0 );
+				const vec4 bit_mask  = vec4( 0.0, 1.0 / 256.0, 1.0 / 256.0, 1.0 / 256.0 );
+				vec4 res = fract( depth * bit_shift );
+				res -= res.xxyz * bit_mask;
+				return res;
 
-                  <table class="table table-bordered table-striped">
+			}
 
-                    <thead>
-                      <tr>
-                        <td>
-                          <a href="#" ng-click="sortType = 'courseid'; sortReverse = !sortReverse">
-                            Course ID
-                            <span ng-show="sortType == 'courseid' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'courseid' && sortReverse" class="fa fa-caret-up"></span>
-                          </a>
-                        </td>
-                        <td>
-                          <a href="#" ng-click="sortType = 'coursename'; sortReverse = !sortReverse">
-                          Course Name 
-                            <span ng-show="sortType == 'coursename' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'coursename' && sortReverse" class="fa fa-caret-up"></span>
-                          </a>
-                        </td>
-                        <td>
-                          <a href="#" ng-click="sortType = 'professor'; sortReverse = !sortReverse">
-                          Professor 
-                            <span ng-show="sortType == 'professor' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'professor' && sortReverse" class="fa fa-caret-up"></span>
-                          </a>
-                        </td>
-                        <td>
-                          <a href="#" ng-click="sortType = 'room'; sortReverse = !sortReverse">
-                            Room Number and Time
-                            <span ng-show="sortType == 'room' && !sortReverse" class="fa fa-caret-down"></span>
-                            <span ng-show="sortType == 'room' && sortReverse" class="fa fa-caret-up"></span>
-                          </a>
-                        </td>
-                      </tr>
-                    </thead>
+			void main() {
 
-                    <tbody>
-                      <tr ng-repeat="roll in class | orderBy:sortType:sortReverse | filter:searchClass">
-                        <td>[[ roll.courseid ]]</td>
-                        <td>[[ roll.coursename ]]</td>
-                        <td>[[ roll.professor ]]</td>
-                        <td>[[ roll.room ]]</td>
-                      </tr>
-                    </tbody>
+				vec4 pixel = texture2D( texture, vUV );
 
-                  </table>
+				if ( pixel.a < 0.5 ) discard;
 
-                </div> 
+				gl_FragData[ 0 ] = pack_depth( gl_FragCoord.z );
 
-                    <script>
-                    angular.module('main', [])
-                    .config(function ($interpolateProvider) {
-                        $interpolateProvider.startSymbol('[[');
-                        $interpolateProvider.endSymbol(']]');
-                    })
-                    .controller('mainController', function($scope) {
-                      $scope.sortType     = 'courseid'; // set the default sort type
-                      $scope.sortReverse  = false;  // set the default sort order
-                      $scope.searchClass   = '';     // set the default search/filter term
+			}
+		</script>
 
-                      // create the list of class rolls 
-                      $scope.class = [
-                        { courseid: '10000', coursename: 'CS46A', professor: 'O-Brien',room:'WSQ 109' },
-                        { courseid: '20000', coursename: 'CS46B', professor: 'Potika', room:'MQH 233' },
-                        { courseid: '30000', coursename: 'CS151', professor: 'Ezzat',room:'MQH 225' },
-                        { courseid: '40000', coursename: 'CS151', professor: 'Kim',room:'MQH 345' },
-                        { courseid: '50000', coursename: 'CS174', professor: 'Kim',room:'MQH 345' },
-                        { courseid: '60000', coursename: 'CS160', professor: 'Kim',room:'MQH 345' },
-                        { courseid: '70000', coursename: 'CS187', professor: 'Badari',room:'WSQ 109' },
-                        { courseid: '80000', coursename: 'CS174', professor: 'Butt', room:'MQH 233' },
-                        { courseid: '90000', coursename: 'CS232', professor: 'Austin',room:'MQH 225' },
-                        { courseid: 'abcde', coursename: 'CS134', professor: 'Finder',room:'MQH 345' },
-                        { courseid: 'edcba', coursename: 'CS161', professor: 'Ezzat',room:'MQH 345' },
-                        { courseid: 'zywxv', coursename: 'CS151', professor: 'Lynn',room:'MQH 345' }
-                      ];
-                    });
-                </script>        
+		<script type="x-shader/x-vertex" id="vertexShaderDepth">
 
-                    <!--***********************************************************************************
-                    **************************END OF NG FILTER********************************************
-                    *************************************************************************************-->
-                        
-                        <h1>CURRENT CLASSES</h1>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Section</th>
-                                <th>Class</th>
-                                <th>Room</th>
-                                <th>Time</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>CS 174</td>
-                                <td>MQH 232</td>
-                                <td>6:00 - 7:15 AM</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>CS 151</td>
-                                <td>MQH 232</td>
-                                <td>6:00 - 7:15 AM</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>CS 157B</td>
-                                <td>MQH 232</td>
-                                <td>6:00 - 7:15 AM</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div><!-- /col-lg-9 END SECTION MIDDLE -->
+			varying vec2 vUV;
 
-            <!--**********************************************************************************************
-            *******************************R I G H T   S I D E B A R ***************************************
-            ***********************************************************************************************-->
+			void main() {
 
-                    <div class="col-lg-3 ds">
-                        <!-- PUT WHATEVER YA WANT HERE -->
-                        <h3>NOTIFICATIONS</h3>
-                        <br><br>
-                        
-                        <!--<div class="col-lg-6">-->
-                          <div class="content-panel">
-							  <h4><i class="fa fa-angle-right"></i> GPA Chart</h4>
-                              <div class="panel-body text-center">
-                                  <canvas id="line" height="300" width="200"></canvas>
-                              </div>
-                          </div>
-                        <!--</div>-->
-                        
-                        My fake plants died because I did not pretend to water them.
-                        <br><br><br>
-                    </div><!-- /col-lg-3 -->
-                </div><!--/row -->
-            </section>
-        </section>
-        <!--main content end-->
+				vUV = 0.75 * uv;
 
-        <!--footer start-->
-        <footer class="site-footer">
-            <div class="text-center">
-                (c) SJSU
-            </div>
-        </footer>
-        <!--footer end-->
-    </section>
+				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
 
-    <!-- ******************* JAVASCRIPT ****************** -->
-    <script>  
-    var Script = function () {
-        var lineChartData = {
-            labels : ["Sem 1","Sem 2","Sem 3","Sem 4","Sem 5","Sem 6","Sem 7"],
-            datasets : [
-                {
-                    data : [3.5,4.0,4.0,3.5,3.75,3.2,4.0],
-                    fillColor : "rgba(151,187,205,0.5)",
-                    strokeColor : "rgba(151,187,205,1)",
-                    pointColor : "rgba(151,187,205,1)",
-                    pointStrokeColor : "#fff"
-                }
-            ]
+				gl_Position = projectionMatrix * mvPosition;
 
-        };
-         new Chart(document.getElementById("line").getContext("2d")).Line(lineChartData);
-        }();
-    </script>
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/jquery-1.8.3.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.scrollTo.min.js"></script>
-    <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <!--common script for all pages-->
-    <script src="assets/js/common-scripts.js"></script>
-    <!-- ************** END OF JAVASCRIPT *************** -->
-    
-    </body>
+			}
+
+		</script>
+
+		<script>
+
+			/* testing cloth simulation */
+
+			var pinsFormation = [];
+			var pins = [6];
+
+			pinsFormation.push( pins );
+
+			pins = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
+			pinsFormation.push( pins );
+
+			pins = [ 0 ];
+			pinsFormation.push( pins );
+
+			pins = []; // cut the rope ;)
+			pinsFormation.push( pins );
+
+			pins = [ 0, cloth.w ]; // classic 2 pins
+			pinsFormation.push( pins );
+
+			pins = pinsFormation[ 1 ];
+
+
+			function togglePins() {
+
+				pins = pinsFormation[ ~~( Math.random() * pinsFormation.length ) ];
+
+			}
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			var container, stats;
+			var camera, scene, renderer;
+
+			var clothGeometry;
+			var sphere;
+			var object;
+
+			var rotate = true;
+
+			init();
+			animate();
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				// scene
+
+				scene = new THREE.Scene();
+				scene.fog = new THREE.Fog( 0xcce0ff, 500, 10000 );
+
+				// camera
+
+				camera = new THREE.PerspectiveCamera( 30, window.innerWidth / window.innerHeight, 1, 10000 );
+				camera.position.y = 50;
+				camera.position.z = 1500;
+				scene.add( camera );
+
+				// lights
+
+				var light, materials;
+
+				scene.add( new THREE.AmbientLight( 0x666666 ) );
+
+				light = new THREE.DirectionalLight( 0xdfebff, 1.75 );
+				light.position.set( 50, 200, 100 );
+				light.position.multiplyScalar( 1.3 );
+
+				light.castShadow = true;
+				// light.shadowCameraVisible = true;
+
+				light.shadowMapWidth = 1024;
+				light.shadowMapHeight = 1024;
+
+				var d = 300;
+
+				light.shadowCameraLeft = -d;
+				light.shadowCameraRight = d;
+				light.shadowCameraTop = d;
+				light.shadowCameraBottom = -d;
+
+				light.shadowCameraFar = 1000;
+
+				scene.add( light );
+
+				// cloth material
+
+				var clothTexture = THREE.ImageUtils.loadTexture( '/frankprof.jpg' );
+				clothTexture.wrapS = clothTexture.wrapT = THREE.RepeatWrapping;
+				clothTexture.anisotropy = 16;
+
+				var clothMaterial = new THREE.MeshPhongMaterial( {
+					specular: 0x030303,
+					emissive: 0x111111,
+					map: clothTexture,
+					side: THREE.DoubleSide,
+					alphaTest: 0.5
+				} );
+
+				// cloth geometry
+				clothGeometry = new THREE.ParametricGeometry( clothFunction, cloth.w, cloth.h );
+				clothGeometry.dynamic = true;
+
+				var uniforms = { texture:  { type: "t", value: clothTexture } };
+				var vertexShader = document.getElementById( 'vertexShaderDepth' ).textContent;
+				var fragmentShader = document.getElementById( 'fragmentShaderDepth' ).textContent;
+
+				// cloth mesh
+
+				object = new THREE.Mesh( clothGeometry, clothMaterial );
+				object.position.set( 0, 0, 0 );
+				object.castShadow = true;
+				scene.add( object );
+
+				object.customDepthMaterial = new THREE.ShaderMaterial( {
+					uniforms: uniforms,
+					vertexShader: vertexShader,
+					fragmentShader: fragmentShader,
+					side: THREE.DoubleSide
+				} );
+
+				// sphere
+
+				var ballGeo = new THREE.SphereGeometry( ballSize, 20, 20 );
+				var ballMaterial = new THREE.MeshPhongMaterial( { color: 0xaaaaaa } );
+
+				sphere = new THREE.Mesh( ballGeo, ballMaterial );
+				sphere.castShadow = true;
+				sphere.receiveShadow = true;
+				scene.add( sphere );
+
+				// ground
+
+				var groundTexture = THREE.ImageUtils.loadTexture( "/textures/terrain/grasslight-big.jpg" );
+				groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
+				groundTexture.repeat.set( 25, 25 );
+				groundTexture.anisotropy = 16;
+
+				var groundMaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, map: groundTexture } );
+
+				var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
+				mesh.position.y = -250;
+				mesh.rotation.x = - Math.PI / 2;
+				mesh.receiveShadow = true;
+				scene.add( mesh );
+
+				// poles
+
+				var poleGeo = new THREE.BoxGeometry( 5, 375, 5 );
+				var poleMat = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 100 } );
+
+				var mesh = new THREE.Mesh( poleGeo, poleMat );
+				mesh.position.x = -125;
+				mesh.position.y = -62;
+				mesh.receiveShadow = true;
+				mesh.castShadow = true;
+				scene.add( mesh );
+
+				var mesh = new THREE.Mesh( poleGeo, poleMat );
+				mesh.position.x = 125;
+				mesh.position.y = -62;
+				mesh.receiveShadow = true;
+				mesh.castShadow = true;
+				scene.add( mesh );
+
+				var mesh = new THREE.Mesh( new THREE.BoxGeometry( 255, 5, 5 ), poleMat );
+				mesh.position.y = -250 + 750/2;
+				mesh.position.x = 0;
+				mesh.receiveShadow = true;
+				mesh.castShadow = true;
+				scene.add( mesh );
+
+				var gg = new THREE.BoxGeometry( 10, 10, 10 );
+				var mesh = new THREE.Mesh( gg, poleMat );
+				mesh.position.y = -250;
+				mesh.position.x = 125;
+				mesh.receiveShadow = true;
+				mesh.castShadow = true;
+				scene.add( mesh );
+
+				var mesh = new THREE.Mesh( gg, poleMat );
+				mesh.position.y = -250;
+				mesh.position.x = -125;
+				mesh.receiveShadow = true;
+				mesh.castShadow = true;
+				scene.add( mesh );
+
+				//
+
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.setClearColor( scene.fog.color );
+
+				container.appendChild( renderer.domElement );
+
+				renderer.gammaInput = true;
+				renderer.gammaOutput = true;
+
+				renderer.shadowMap.enabled = true;
+
+				//
+
+				stats = new Stats();
+				container.appendChild( stats.domElement );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+				sphere.visible = !true
+
+			}
+
+			//
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			//
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				var time = Date.now();
+
+				windStrength = Math.cos( time / 7000 ) * 20 + 40;
+				windForce.set( Math.sin( time / 2000 ), Math.cos( time / 3000 ), Math.sin( time / 1000 ) ).normalize().multiplyScalar( windStrength );
+
+				simulate(time);
+				render();
+				stats.update();
+
+			}
+
+			function render() {
+
+				var timer = Date.now() * 0.0002;
+
+				var p = cloth.particles;
+
+				for ( var i = 0, il = p.length; i < il; i ++ ) {
+
+					clothGeometry.vertices[ i ].copy( p[ i ].position );
+
+				}
+
+				clothGeometry.computeFaceNormals();
+				clothGeometry.computeVertexNormals();
+
+				clothGeometry.normalsNeedUpdate = true;
+				clothGeometry.verticesNeedUpdate = true;
+
+				sphere.position.copy( ballPosition );
+
+				if ( rotate ) {
+
+					camera.position.x = Math.cos( timer ) * 1500;
+					camera.position.z = Math.sin( timer ) * 1500;
+
+				}
+
+				camera.lookAt( scene.position );
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+	</body>
 </html>
